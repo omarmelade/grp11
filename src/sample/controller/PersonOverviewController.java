@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.Connexion;
+import sample.Main;
 import sample.model.PersonModel;
 
 import java.net.URL;
@@ -29,17 +30,18 @@ public class PersonOverviewController implements Initializable {
 
     // user print
     @FXML
-    private TableView<PersonModel> personTable;
+    private TableView<PersonModel> personTable = new TableView<>();
     @FXML
-    private TableColumn<PersonModel, String> nomColonne;
+    private TableColumn<PersonModel, String> nomColonne = new TableColumn<>();
     @FXML
-    private TableColumn<PersonModel, String> prenomColonne;
+    private TableColumn<PersonModel, String> prenomColonne = new TableColumn<>();
     @FXML
-    private TableColumn<PersonModel, String> emailColonne;
+    private TableColumn<PersonModel, String> emailColonne = new TableColumn<>();
 
     // reference vers la classe Main
 
     ObservableList<PersonModel> oblist = FXCollections.observableArrayList();
+    private Main main;
 
     public PersonOverviewController() {
     }
@@ -66,15 +68,16 @@ public class PersonOverviewController implements Initializable {
             System.err.println("Error" + ex);
         }
 
-        emailColonne.setCellValueFactory(new PropertyValueFactory<>("email"));
-        nomColonne.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenomColonne.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        //emailColonne.setCellValueFactory(new PropertyValueFactory<>("email"));
+        emailColonne.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+        nomColonne.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
+        prenomColonne.setCellValueFactory(cellData -> cellData.getValue().prenomProperty());
+        //nomColonne.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        //prenomColonne.setCellValueFactory(new PropertyValueFactory<>("prenom"));
 
         personTable.setItems(oblist);
 
     }
-
-
 
 
     @FXML
