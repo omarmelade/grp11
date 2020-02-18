@@ -19,7 +19,7 @@ public class Main extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
-        System.out.println("Bonsoir Thomas");
+        System.out.println("Bonsoir Omarffff");
     }
 
     public static void main(String[] args){
