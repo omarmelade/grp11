@@ -1,0 +1,11 @@
+.root{
+    -fx-background-color: bisque;
+}
+.label{
+    -fx-font-size: 20;
+}
+
+.jfx-button {
+    -jfx-button-type: FLAT;
+    -fx-text-fill: #ffffff;
+}
