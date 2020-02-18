@@ -2,63 +2,36 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXHamburger?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox prefHeight="700" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.PersonOverviewController">
-  <children>
-      <SplitPane dividerPositions="0.39579158316633267" prefHeight="692.0" prefWidth="1027.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="676.0" prefWidth="382.0">
+   <children>
+      <AnchorPane prefHeight="73.0" prefWidth="1000.0">
+         <children>
+            <JFXButton layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="101.0" style="-fx-background-color: #e69f43;" text="Connexion" textFill="#fbf4a6" />
+            <JFXHamburger layoutX="838.0" layoutY="31.0" prefWidth="150.0" AnchorPane.bottomAnchor="-150.0" AnchorPane.topAnchor="10.0">
                <children>
-                  <TreeTableView layoutX="-4.0" layoutY="-1.0" prefHeight="678.0" prefWidth="399.0">
-                    <columns>
-                      <TreeTableColumn prefWidth="109.00003051757812" text="Nom" />
-                      <TreeTableColumn minWidth="0.0" prefWidth="138.0" text="Prenom" />
-                        <TreeTableColumn minWidth="0.0" prefWidth="151.0" text="Email" />
-                    </columns>
-                  </TreeTableView>
-               </children></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="697.0">
-               <children>
-                  <GridPane layoutX="27.0" layoutY="191.0" prefHeight="179.0" prefWidth="546.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="120.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="435.0" minWidth="10.0" prefWidth="426.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label text="Email" />
-                        <Label text="Nom" GridPane.rowIndex="1" />
-                        <Label text="Prenom" GridPane.rowIndex="2" />
-                        <JFXTextField fx:id="emailField" GridPane.columnIndex="1" />
-                        <JFXTextField fx:id="firstnameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <JFXTextField fx:id="lastnameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                     </children>
-                  </GridPane>
-                  <ButtonBar layoutX="55.0" layoutY="558.0" prefHeight="68.0" prefWidth="497.0">
-                    <buttons>
-                        <JFXButton onAction="#loadDataFromDatabase" prefHeight="57.0" prefWidth="126.0" ripplerFill="WHITE" style="-fx-background-color: #394dcc;" stylesheets="@sample.css" text="Actualiser" textAlignment="CENTER" wrapText="true" />
-                        <JFXButton onAction="#handleAddPerson" prefHeight="57.0" prefWidth="126.0" ripplerFill="WHITE" style="-fx-background-color: #394dcc;" stylesheets="@sample.css" text="Ajouter" textAlignment="CENTER" wrapText="true" />
-                    </buttons>
-                  </ButtonBar>
-                  <JFXHamburger layoutX="544.0" layoutY="14.0" prefHeight="32.0" prefWidth="42.0" />
+                  <JFXButton prefHeight="14.0" prefWidth="150.0" style="-fx-background-color: #e69f43;" text="Mon compte." textFill="#fbf4a6" />
+                  <JFXButton prefWidth="150.0" style="-fx-background-color: #e69f43;" text="Créer un projet." textFill="#fbf4a6" />
+                  <JFXButton prefWidth="150.0" style="-fx-background-color: #e69f43;" text="Rejoindre un projet." textFill="#fbf4a6" />
+                  <JFXButton alignment="CENTER" prefWidth="150.0" style="-fx-background-color: #e69f43;" text="Planning." textFill="#fbf4a6" />
+                  <JFXButton prefWidth="150.0" style="-fx-background-color: #e69f43;" text="Vue des projets." textFill="#fbf4a6" />
+                  <JFXButton prefWidth="150.0" style="-fx-background-color: #e69f43;" text="Vue des postulants." textFill="#fbf4a6" />
                </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-  </children>
+            </JFXHamburger>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="640.0" prefWidth="1000.0">
+         <children>
+            <Text fill="#b58338" layoutX="159.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue, veuillez vous connecter." wrappingWidth="681.13671875">
+               <font>
+                  <Font name="Serif Regular" size="45.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
 </VBox>

@@ -1,11 +1,13 @@
+
 .root{
-    -fx-background-color: bisque;
+    -fx-background-color: orange;
 }
 .label{
     -fx-font-size: 20;
 }
 
-.jfx-button {
+/*.jfx-button {
+    -fx-background-color: rgb(191,180,166);
     -jfx-button-type: FLAT;
-    -fx-text-fill: #ffffff;
-}
+    -fx-text-fill: rgb(230,159,67);
+}*/
