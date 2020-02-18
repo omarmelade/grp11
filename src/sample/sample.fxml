@@ -12,7 +12,7 @@
       <AnchorPane prefHeight="73.0" prefWidth="1000.0">
          <children>
             <JFXButton layoutX="14.0" layoutY="14.0" prefHeight="33.0" prefWidth="101.0" style="-fx-background-color: #e69f43;" text="Connexion" textFill="#fbf4a6" />
-            <JFXHamburger layoutX="838.0" layoutY="31.0" prefWidth="150.0" AnchorPane.bottomAnchor="-150.0" AnchorPane.topAnchor="10.0">
+            <JFXHamburger layoutX="838.0" layoutY="31.0"  prefWidth="150.0" AnchorPane.bottomAnchor="-150.0" AnchorPane.topAnchor="10.0">
                <children>
                   <JFXButton prefHeight="14.0" prefWidth="150.0" style="-fx-background-color: #e69f43;" text="Mon compte." textFill="#fbf4a6" />
                   <JFXButton prefWidth="150.0" style="-fx-background-color: #e69f43;" text="Créer un projet." textFill="#fbf4a6" />
