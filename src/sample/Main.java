@@ -1,13 +1,11 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.controller.PersonOverviewController;
-import sample.model.PersonModel;
+
 
 
 public class Main extends Application {
@@ -15,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("userView.fxml"));
 
         Scene scene = new Scene(root);
 
@@ -25,7 +23,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args){
-        // connection a la base de données
+        // connexion a la base de données
         launch(args);
     }
 

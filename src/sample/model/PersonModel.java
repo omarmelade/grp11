@@ -1,19 +1,30 @@
 package sample.model;
 
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class PersonModel {
 
+    private IntegerProperty id;
     private StringProperty email;
     private StringProperty nom;
     private StringProperty prenom;
 
-    public PersonModel(String email, String nom, String prenom) {
+
+    public PersonModel(int id, String email, String nom, String prenom) {
+        this.id = new SimpleIntegerProperty(id);
         this.email = new SimpleStringProperty(email);
         this.nom = new SimpleStringProperty(nom);
         this.prenom = new SimpleStringProperty(prenom);
+    }
+
+    public int getId() { return id.get(); }
+
+    public IntegerProperty idProperty() {
+        return id;
     }
 
     public StringProperty emailProperty() { return email; }
