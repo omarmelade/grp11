@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="VboxTool" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="154.0" stylesheets="@toolbar.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.toolbarController">
+   <children>
+      <JFXButton fx:id="homeButton" contentDisplay="TOP" prefHeight="400.0" prefWidth="154.0" ripplerFill="BLACK" style="-fx-background-color: #fff;" text="Home" textOverrun="CLIP" wrapText="true">
+         <graphic>
+            <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="75.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ressources/2x/baseline_home_black_48dp.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="accountButton" contentDisplay="TOP" prefHeight="400.0" prefWidth="154.0" ripplerFill="BLACK" style="-fx-background-color: #fff;" text="Compte" textOverrun="CLIP" wrapText="true">
+         <graphic>
+            <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="75.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ressources/2x/baseline_account_box_black_48dp.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="agendaButton" contentDisplay="TOP" disable="true" prefHeight="400.0" prefWidth="154.0" ripplerFill="BLACK" style="-fx-background-color: #fff;" text="Agenda" textOverrun="CLIP" wrapText="true">
+         <graphic>
+            <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="75.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ressources/2x/baseline_today_black_48dp.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="settingsButton" contentDisplay="TOP" prefHeight="400.0" prefWidth="154.0" ripplerFill="BLACK" style="-fx-background-color: #fff;" text="Settings" textOverrun="CLIP" wrapText="true">
+         <graphic>
+            <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="75.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ressources/2x/baseline_settings_black_48dp.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</VBox>
