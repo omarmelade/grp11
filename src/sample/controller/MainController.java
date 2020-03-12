@@ -71,7 +71,7 @@ public class MainController implements Initializable {
     @FXML
     private void loadConnect(ActionEvent event) {
         try {
-            Parent blah = FXMLLoader.load(getClass().getResource("../home2.fxml"));
+            Parent blah = FXMLLoader.load(getClass().getResource("../sceneHome.fxml"));
             Scene scene = new Scene(blah);
             Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             appStage.setScene(scene);

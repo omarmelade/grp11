@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
+
+    <children>
+
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+
+              <BorderPane prefHeight="200.0" prefWidth="200.0">
+
+                  <center>
+
+                      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+
+                          <children>
+            
+                                                <JFXTabPane maxWidth="1000.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1000.0" style="-fx-max-width: 100%; -fx-pref-width: 500px; -fx-background-color: #326771;" tabMinHeight="46.0" tabMinWidth="295.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            
+                                                    <Tab style="-fx-background-color: #931621;" text="Lister">
+            
+                                                        <content>
+            
+                                                            <AnchorPane prefHeight="347.0" prefWidth="1000.0">
+            
+                                                                <children>
+               
+                                                                                <BorderPane prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            
+                                                                </children>
+                              <cursor>
+                                 <Cursor fx:constant="DEFAULT" />
+                              </cursor>
+            
+                                                            </AnchorPane>
+            
+                                                        </content>
+                     </Tab>
+            
+                                                    <Tab style="-fx-background-color: #931621;" text="Ajouter">
+            
+                                                        <content>
+            
+                                                            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            
+                                                                <children>
+            
+                                                                    <VBox prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            
+                                                                </children>
+            
+                                                            </AnchorPane>
+            
+                                                        </content>
+            
+                                                    </Tab>
+                     <cursor>
+                        <Cursor fx:constant="MOVE" />
+                     </cursor>
+            
+                                                </JFXTabPane>
+                  <JFXDrawer layoutY="47.0" prefHeight="753.0" prefWidth="120.0" />
+                  <JFXHamburger AnchorPane.leftAnchor="950.0" AnchorPane.topAnchor="65.0" />
+
+                          </children>
+
+                      </AnchorPane>
+
+                  </center>
+
+              </BorderPane>
+	
+    </children>
+
+</StackPane>

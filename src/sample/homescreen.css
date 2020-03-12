@@ -1,6 +1,6 @@
 
 #anchorBack{
-	-fx-background-color: #f58a42;
+	-fx-background-color: #326771;
 	-fx-font-color: #d6d6d6;
 }
 
@@ -28,11 +28,11 @@
 }
 
 #logButton{
-	-fx-background-color: #B55B3A;
+	-fx-background-color: #28464B;
 	-fx-text-fill:#fff !important;
 }
 
 #registerButton{
-	-fx-background-color:#B55B3A;
+	-fx-background-color:#28464B;
 	-fx-text-fill:#fff !important;
 }
