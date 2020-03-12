@@ -7,8 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
+
 public class Main extends Application {
 
+    private Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -23,5 +25,9 @@ public class Main extends Application {
     public static void main(String[] args){
         // connexion a la base de données
         launch(args);
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 }
