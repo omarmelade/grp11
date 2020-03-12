@@ -7,17 +7,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Login{
+public class Login implements Runnable{
 
     private Connection cx;
     private String email, password;
-    private boolean connected;
+    public boolean connected;
 
-    public Login(String email, String password) throws SQLException {
+    public Login(String email, String password){
             this.email = email;
             this.password = password;
-            this.cx = Connexion.getConnection();
-            this.connected = initConn();
     }
 
     public boolean initConn() throws SQLException {
@@ -45,4 +43,13 @@ public class Login{
         return connected;
     }
 
+    @Override
+    public void run() {
+        try {
+            this.cx = Connexion.getConnection();
+            this.connected = initConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
