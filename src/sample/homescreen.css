@@ -1,0 +1,38 @@
+
+#anchorBack{
+	-fx-background-color: #f58a42;
+	-fx-font-color: #d6d6d6;
+}
+
+#labelTitle{
+	-fx-font-size: 46pt;
+	-fx-font-family: Roboto;
+}
+
+#emailLabel{
+	-fx-font-size: 15pt;
+}
+
+#passLabel{
+	-fx-font-size: 15pt;
+}
+
+#emailField{
+	-fx-font-size: 14pt;
+	-fx-text-fill:#fff !important;
+}
+
+#passField{
+	-fx-font-size: 14pt;
+	-fx-text-fill:#fff !important;
+}
+
+#logButton{
+	-fx-background-color: #B55B3A;
+	-fx-text-fill:#fff !important;
+}
+
+#registerButton{
+	-fx-background-color:#B55B3A;
+	-fx-text-fill:#fff !important;
+}

@@ -64,7 +64,7 @@
             </AnchorPane>
          </center>
          <right>
-            <JFXDrawer fx:id="drawer" prefHeight="373.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
+            <JFXDrawer fx:id="drawertheo" prefHeight="373.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
    </children>
