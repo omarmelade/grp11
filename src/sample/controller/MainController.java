@@ -2,12 +2,13 @@ package sample.controller;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -34,24 +35,24 @@ public class MainController implements Initializable {
 
     private void initDrawer(){
         try {
-            VBox toolbar = FXMLLoader.load(getClass().getResource("../toolbar.fxml"));
+            VBox toolbar = FXMLLoader.load(getClass().getResource("../view/toolbarController.fxml"));
             drawer.setSidePane(toolbar);
             drawer.close();
         }catch (IOException ignored){
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ignored);
         }
 
-        HamburgerSlideCloseTransition task = new HamburgerSlideCloseTransition(hamburger);
+        HamburgerBackArrowBasicTransition task = new HamburgerBackArrowBasicTransition(hamburger);
         task.setRate(-1);
         hamburger.addEventHandler(MouseEvent.MOUSE_CLICKED, (Event event) -> {
                 task.setRate(task.getRate() * -1 );
                 task.play();
-                if(drawer.isClosed()){
-                    drawer.open();
+                if(drawer.isOpened()){
+                    drawer.close();
                 }
                 else
                 {
-                    drawer.close();
+                    drawer.open();
                 }
             });
         }
