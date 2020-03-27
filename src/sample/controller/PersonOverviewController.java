@@ -155,6 +155,4 @@ public class PersonOverviewController implements Initializable {
     public String getLastnameField() {
         return lastnameField.getText();
     }
-
-
 }

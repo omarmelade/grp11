@@ -1,0 +1,15 @@
+Premier arrivé premier servis sur les ressources.
+
+En cas de conflit : 
+
+	- Messagerie entre les personnes concernés.
+	- Le système recommande une salle.
+	- Quota de reservation (rendre les jetons, si le confilt est resolut).
+	- Priorité entre les projets.
+	- Dater les projets et comparer les dates de fin.
+	- Delais de reservation obligatoire.
+
+	
+Gérer le cas où l'employé est indisponible.
+	
+	

@@ -21,7 +21,6 @@ public class Login implements Runnable{
     public boolean initConn() throws SQLException {
         Statement stmt = cx.createStatement();
         String sql = "SELECT email, password FROM utilisateurs";
-
         try {
             ResultSet rs = stmt.executeQuery(sql);
             connected = false;
@@ -32,7 +31,7 @@ public class Login implements Runnable{
                 emailRes = rs.getString("email");
                 passRes = rs.getString("password");
 
-                if (emailRes.equals(emailRes) && passRes.equals(password)) {
+                if (emailRes.equals(email) && passRes.equals(password)) {
                     connected = true;
                 }
 
@@ -43,7 +42,6 @@ public class Login implements Runnable{
         return connected;
     }
 
-    @Override
     public void run() {
         try {
             this.cx = Connexion.getConnection();

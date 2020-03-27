@@ -14,7 +14,7 @@ public class PersonModel {
     private StringProperty prenom;
 
 
-    public PersonModel(int id, String email, String nom, String prenom) {
+    public PersonModel(int id, String email, String nom, String prenom){
         this.id = new SimpleIntegerProperty(id);
         this.email = new SimpleStringProperty(email);
         this.nom = new SimpleStringProperty(nom);

@@ -5,13 +5,16 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Label;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import sample.API.Login;
 
 
 import java.io.IOException;
@@ -42,7 +45,7 @@ public class HomeController implements Initializable {
 
     }
 
-/*    public void logButton(){
+    public void logButton(){
         logButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (Event event) -> {
             String email = emailField.getText();
             String pass = passField.getText();
@@ -56,11 +59,5 @@ public class HomeController implements Initializable {
                 System.out.println("Authentification echouée.");
             }
         });
-    }*/
-
-    @FXML
-    public void loadConnect(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("test.fxml"));
-        anchorBack.getChildren().setAll(pane);
     }
 }
