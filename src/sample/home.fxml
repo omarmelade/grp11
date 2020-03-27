@@ -3,8 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="anchorBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" stylesheets="@homescreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
+<AnchorPane id="anchorBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" stylesheets="@homescreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.HomeController">
    <children>
       <AnchorPane layoutX="118.0" layoutY="67.0" prefHeight="667.0" prefWidth="765.0">
          <children>
@@ -34,28 +32,16 @@
                       <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <JFXTextField id="emailField" fx:id="emailField" focusColor="WHITE" prefHeight="40.0" prefWidth="300.0" promptText="example@ressources.com" unFocusColor="#931621" GridPane.rowIndex="1">
-                           <cursor>
-                              <Cursor fx:constant="TEXT" />
-                           </cursor></JFXTextField>
+                        <JFXTextField id="emailField" fx:id="emailField" focusColor="WHITE" prefHeight="40.0" prefWidth="300.0" promptText="example@ressources.com" unFocusColor="#b55b3a" GridPane.rowIndex="1" />
                         <Label id="emailLabel" fx:id="emailLabel" text="EMAIL" />
                         <Label id="passLabel" fx:id="passLabel" text="MOT DE PASSE" GridPane.rowIndex="2" />
-                        <JFXPasswordField id="passField" fx:id="passField" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#931621" GridPane.rowIndex="3">
-                           <cursor>
-                              <Cursor fx:constant="TEXT" />
-                           </cursor></JFXPasswordField>
+                        <JFXPasswordField id="passField" fx:id="passField" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#b55b3a" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                   <ButtonBar layoutX="32.0" layoutY="217.0" prefHeight="45.0" prefWidth="224.0">
                     <buttons>
-                        <JFXButton id="logButton" fx:id="logButton" minWidth="13.0" onAction="#loadConnect" prefHeight="45.0" prefWidth="100.0" ripplerFill="WHITE" text="Connexion" wrapText="true">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></JFXButton>
-                        <JFXButton id="registerButton" fx:id="registerButton" minWidth="13.0" prefHeight="45.0" prefWidth="150.0" ripplerFill="#fff" text="Inscription" textAlignment="CENTER">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></JFXButton>
+                        <JFXButton id="logButton" fx:id="logButton" minWidth="13.0" onAction="#loadConnect" prefHeight="45.0" prefWidth="100.0" ripplerFill="WHITE" text="Connexion" wrapText="true" />
+                        <JFXButton id="registerButton" fx:id="registerButton" minWidth="13.0" prefHeight="45.0" prefWidth="150.0" ripplerFill="#fff" text="Inscription" textAlignment="CENTER" />
                     </buttons>
                   </ButtonBar>
                </children>
@@ -63,7 +49,4 @@
          </children>
       </AnchorPane>
    </children>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
 </AnchorPane>

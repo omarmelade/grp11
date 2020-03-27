@@ -3,24 +3,25 @@ package sample.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import javafx.event.Event;
+import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import sample.API.Login;
-import sample.Main;
+
+import javafx.scene.layout.AnchorPane;
+
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
+    @FXML
+    AnchorPane anchorBack;
     @FXML
     Label labelTitle;
     @FXML
@@ -38,21 +39,28 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        logButton();
+
     }
 
-    public void logButton(){
+/*    public void logButton(){
         logButton.addEventHandler(MouseEvent.MOUSE_CLICKED, (Event event) -> {
             String email = emailField.getText();
             String pass = passField.getText();
+
             Login log = new Login(email, pass);
             log.run();
             if(log.connected){
                 System.out.println("Authentification reussie.");
 
-            }else {
+            }else{
                 System.out.println("Authentification echouée.");
             }
         });
+    }*/
+
+    @FXML
+    public void loadConnect(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("test.fxml"));
+        anchorBack.getChildren().setAll(pane);
     }
 }
