@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="anchorBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" stylesheets="@homescreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
+<AnchorPane id="anchorBack" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" stylesheets="@homescreen.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.SubscriptionController">
    <children>
       <AnchorPane layoutX="118.0" layoutY="67.0" prefHeight="667.0" prefWidth="765.0">
          <children>
@@ -44,12 +44,12 @@
                               <Cursor fx:constant="TEXT" />
                            </cursor></JFXTextField>
                         <Label id="passLabel" fx:id="nomLabel" text="NOM" GridPane.rowIndex="2" />
-                        <JFXTextField id="passField" fx:id="nomField" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#931621" GridPane.rowIndex="3">
+                        <JFXTextField id="nomField" fx:id="nomField" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#931621" GridPane.rowIndex="3">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor></JFXTextField>
                         <Label id="passLabel" fx:id="prenomLabel" text="PRENOM" GridPane.rowIndex="4" />
-                        <JFXTextField id="passField" fx:id="prenomField" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#931621" GridPane.rowIndex="5">
+                        <JFXTextField id="prenomField" fx:id="prenomField" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#931621" GridPane.rowIndex="5">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
