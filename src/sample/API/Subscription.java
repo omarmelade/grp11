@@ -23,30 +23,24 @@ public class Subscription implements Runnable{
     }
 
     public boolean emailExist(String emailtest) throws SQLException {
-        ResultSet rs = null;
+        Statement stmt = cx.createStatement();
+        String sql = "SELECT email FROM utilisateurs WHERE email = '" + emailtest + "'";
         try {
-            rs = cx.createStatement().executeQuery("SELECT email FROM utilisateurs WHERE email = '" + emailtest + "'");
+            ResultSet rs = stmt.executeQuery(sql);
+            this.sub = !rs.first();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if(rs != null) {
-            if (rs.getString("email").equals(emailtest)) {
-                return false;
-            }else{
-                return true;
-            }
-        }else{
-            return false;
-        }
+        return this.sub;
     }
 
     public void initSub() throws SQLException {
         if(emailExist(email)){
-            try (Statement stmt = cx.createStatement()) {
-                String sql = "INSERT INTO utilisateur (email, nom, prenom, password) VALUES (" + email + ", " + nom + ", " + prenom + ", " + pass + ")";
+            try (Statement stmt = cx.createStatement()){
+                String sql = "INSERT INTO utilisateurs (email, nom, prenom, password) VALUES ('" + this.email + "' , '" + this.nom + "' , '" + this.prenom + "' , '" + this.pass + "')";
                 stmt.executeUpdate(sql);
             }catch (SQLException sq) {
-            System.err.println(sq);
+                System.err.println(sq);
             }
             this.sub = true;
         }else{

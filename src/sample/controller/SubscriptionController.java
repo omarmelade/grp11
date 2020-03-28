@@ -1,8 +1,11 @@
 package sample.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import sample.API.Subscription;
 
@@ -28,6 +33,8 @@ public class SubscriptionController implements Initializable {
     private JFXTextField prenomField;
     @FXML
     private JFXPasswordField passField;
+    @FXML
+    private JFXButton registerButton;
 
     @FXML
     private void loadConnect(ActionEvent event) {
@@ -43,10 +50,10 @@ public class SubscriptionController implements Initializable {
     }
 
     @FXML
-    private void loadSubscription(ActionEvent event){
+    public void loadSubscription(ActionEvent event){
         String email = emailField.getText();
         String nom = nomField.getText();
-        String prenom = nomField.getText();
+        String prenom = prenomField.getText();
         String pass = passField.getText();
         Subscription sub = new Subscription(email, nom, prenom, pass);
         sub.run();
@@ -81,6 +88,6 @@ public class SubscriptionController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
+
 }
