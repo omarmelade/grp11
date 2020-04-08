@@ -46,7 +46,7 @@ public class PersonModel {
     @Override
     public String toString() {
         return "Person{" +
-                ", email='" + email + '\'' +
+                " email='" + email + '\'' +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 '}';

@@ -1,10 +1,7 @@
 package sample.controller;
 
 import com.jfoenix.controls.*;
-import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,25 +9,23 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+
 import javafx.stage.Stage;
 import sample.API.Login;
+import sample.Main;
+import sample.model.PersonModel;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 public class MainController implements Initializable {
 
-    @FXML
-    private StackPane rootPane;
+
     @FXML
     private JFXHamburger hamburger;
     @FXML
@@ -38,33 +33,15 @@ public class MainController implements Initializable {
     @FXML
     JFXPasswordField passField;
 
+    PersonModel pm;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //initDrawer();
+
     }
 
-/*    private void initDrawer() {
-        try {
-            VBox toolbar = FXMLLoader.load(getClass().getResource("../view/toolbarController.fxml"));
-            drawer.setSidePane(toolbar);
-            drawer.close();
-        } catch (IOException ignored) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ignored);
-        }
-
-        HamburgerBackArrowBasicTransition task = new HamburgerBackArrowBasicTransition(hamburger);
-        task.setRate(-1);
-        hamburger.addEventHandler(MouseEvent.MOUSE_CLICKED, (Event event) -> {
-            task.setRate(task.getRate() * -1);
-            task.play();
-            if (drawer.isOpened()) {
-                drawer.close();
-            } else {
-                drawer.open();
-            }
-        });
-    }*/
 
     @FXML
     private void loadConnect(ActionEvent event) {
@@ -74,13 +51,25 @@ public class MainController implements Initializable {
         login.run();
         if(login.connected) {
             try {
-                Parent blah = FXMLLoader.load(getClass().getResource("../sceneHome.fxml"));
+                // recuperation de l'utilisateur connnecté
+                this.pm = login.getPm();
+                // insctanciation du controller et passage de user en param
+                HomeController hm = new HomeController(this.pm);
+                // on charge la vue
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceneHome.fxml"));
+                // on charge le controller
+                loader.setController(hm);
+                // on charge le parent
+                Parent blah = loader.load();
+                    // ancienne maneire de faire (sans charger de controller)
+                    // ne permet pas d'avoir un constructeur
+                //Parent blah = FXMLLoader.load(getClass().getResource("../sceneHome.fxml"));
                 Scene scene = new Scene(blah);
                 Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 appStage.setScene(scene);
                 appStage.show();
             } catch (IOException e) {
-                System.out.println("Une erreur s'est produite !");
+                System.out.println("Une erreur s'est produite !" + e);
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -91,7 +80,6 @@ public class MainController implements Initializable {
             alert.showAndWait();
         }
     }
-
 
     @FXML
     private void loadSubscription(ActionEvent event) {
@@ -104,5 +92,10 @@ public class MainController implements Initializable {
         } catch (IOException e) {
             System.out.println("Une erreur s'est produite !");
         }
+    }
+
+
+    public PersonModel getConnectedPm() {
+        return this.pm;
     }
 }

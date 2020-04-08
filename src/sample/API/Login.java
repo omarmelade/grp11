@@ -1,6 +1,7 @@
  package sample.API;
 
 import sample.Connexion;
+import sample.model.PersonModel;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,8 +11,10 @@ import java.sql.Statement;
 public class Login implements Runnable{
 
     private Connection cx;
-    private String email, password;
+    private String email, password, nom, prenom;
+    private int id;
     public boolean connected;
+    private PersonModel pm;
 
     public Login(String email, String password){
             this.email = email;
@@ -20,11 +23,11 @@ public class Login implements Runnable{
 
     public boolean initConn() throws SQLException {
         Statement stmt = cx.createStatement();
-        String sql = "SELECT email, password FROM utilisateurs";
+        String sql = "SELECT * FROM utilisateurs";
         try {
             ResultSet rs = stmt.executeQuery(sql);
             connected = false;
-            int id;
+            int id = -1;
             String emailRes, passRes;
 
             while (rs.next() || !connected) {
@@ -33,6 +36,9 @@ public class Login implements Runnable{
 
                 if (emailRes.equals(email) && passRes.equals(password)) {
                     connected = true;
+                    this.nom = rs.getString("nom");
+                    this.prenom = rs.getString("prenom");
+                    this.id = rs.getInt("id_user");
                 }
 
             }
@@ -49,5 +55,9 @@ public class Login implements Runnable{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public PersonModel getPm() {
+        return new PersonModel(this.id, this.email, this.nom, this.prenom);
     }
 }
