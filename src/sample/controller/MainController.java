@@ -22,7 +22,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-
 public class MainController implements Initializable {
 
 
@@ -66,6 +65,7 @@ public class MainController implements Initializable {
                 //Parent blah = FXMLLoader.load(getClass().getResource("../sceneHome.fxml"));
                 Scene scene = new Scene(blah);
                 Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene.getStylesheets().add(getClass().getResource("../css/Vbox.css").toExternalForm());
                 appStage.setScene(scene);
                 appStage.show();
             } catch (IOException e) {

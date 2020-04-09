@@ -1,0 +1,15 @@
+.label {
+    -fx-font-size: 30pt;
+    -fx-font-family: "Roboto Medium";
+    -fx-text-fill: #fff;
+    -fx-padding: 15px;
+}
+
+.grid-pane {
+    -fx-padding: 35px;
+}
+
+.button {
+    -fx-background-color: #fff;
+    -fx-start-margin: 30px;
+}
