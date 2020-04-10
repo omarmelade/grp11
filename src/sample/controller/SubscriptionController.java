@@ -13,8 +13,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import sample.API.Subscription;
 
@@ -24,7 +30,10 @@ import java.util.ResourceBundle;
 
 public class SubscriptionController implements Initializable {
 
-
+    @FXML
+    public Label connexion;
+    @FXML
+    public AnchorPane anchorBack;
     @FXML
     private JFXTextField emailField;
     @FXML
@@ -36,47 +45,7 @@ public class SubscriptionController implements Initializable {
     @FXML
     private JFXButton registerButton;
 
-    @FXML
-    private void loadConnect(ActionEvent event) {
-        try {
-            Parent connect = FXMLLoader.load(getClass().getResource("../home.fxml"));
-            Scene conn = new Scene(connect);
-            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            appStage.setScene(conn);
-            appStage.show();
-        } catch (IOException e) {
-            System.out.println("Une erreur s'est produite !");
-        }
-    }
 
-    @FXML
-    public void loadSubscription(ActionEvent event){
-        String email = emailField.getText();
-        String nom = nomField.getText();
-        String prenom = prenomField.getText();
-        String pass = passField.getText();
-        Subscription sub = new Subscription(email, nom, prenom, pass);
-        sub.run();
-        if(sub.sub){
-            try{
-                Parent root = FXMLLoader.load(getClass().getResource("../sceneHome.fxml"));
-                Scene dashboard = new Scene(root);
-                Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                appStage.setScene(dashboard);
-                appStage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("Impossible de charger le dashboard");
-            }
-        }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Inscription impossible.");
-            alert.setHeaderText("Champs incorrects");
-            alert.setContentText(sub.res);
-
-            alert.showAndWait();
-        }
-    }
 
     /**
      * Called to initialize a controller after its root element has been
@@ -88,6 +57,94 @@ public class SubscriptionController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        connexion.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                loadConnect();
+            }
+        });
+        connexion.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                connexion.getStyleClass().add("hover-btn");
+            }
+        });
+        connexion.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                connexion.getStyleClass().clear();
+            }
+        });
+
+        registerButton.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                loadSubscription();
+            }
+        });
+
+        anchorBack.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode() == KeyCode.ENTER){
+                    loadSubscription();
+                }
+            }
+        });
     }
+
+
+    private void loadConnect() {
+        try {
+            Parent connect = FXMLLoader.load(getClass().getResource("../home.fxml"));
+            Scene conn = new Scene(connect);
+            conn.getStylesheets().add(getClass().getResource("../css/Subscript.css").toExternalForm());
+            Stage stage = (Stage) anchorBack.getScene().getWindow();
+            stage.setScene(conn);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Impossible de changer de page !");
+            e.printStackTrace();
+        }
+    }
+
+    public void loadSubscription(){
+        String email = emailField.getText();
+        String nom = nomField.getText();
+        String prenom = prenomField.getText();
+        String pass = passField.getText();
+        Subscription sub = new Subscription(email, nom, prenom, pass);
+        sub.run();
+        if(!email.equals("") || !pass.equals("")) {
+            if (sub.sub) {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("../sceneHome.fxml"));
+                    Scene dashboard = new Scene(root);
+                    Stage appStage = (Stage) anchorBack.getScene().getWindow();
+                    appStage.setScene(dashboard);
+                    appStage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("Impossible de charger le dashboard");
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Inscription impossible.");
+                alert.setHeaderText("Le compte existe déjà");
+                alert.setContentText(sub.res);
+
+                alert.showAndWait();
+            }
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Inscription impossible.");
+            alert.setHeaderText("Veuillez remplir TOUT les champs");
+            alert.setContentText(sub.res);
+
+            alert.showAndWait();
+        }
+    }
+
+
 
 }

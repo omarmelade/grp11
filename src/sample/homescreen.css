@@ -1,7 +1,9 @@
 
+
 #anchorBack{
 	-fx-background-color: #326771;
 	-fx-font-color: #d6d6d6;
+	-fx-background: #326771;
 }
 
 #labelTitle{

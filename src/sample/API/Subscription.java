@@ -35,19 +35,25 @@ public class Subscription implements Runnable{
     }
 
     public void initSub() throws SQLException {
-        if(emailExist(email)){
-            try (Statement stmt = cx.createStatement()){
-                String sql = "INSERT INTO utilisateurs (email, nom, prenom, password) VALUES ('" + this.email + "' , '" + this.nom + "' , '" + this.prenom + "' , '" + this.pass + "')";
-                stmt.executeUpdate(sql);
-            }catch (SQLException sq) {
-                System.err.println(sq);
+        if(!this.email.equals("") && this.pass.equals("")) {
+            if (emailExist(email)) {
+                try (Statement stmt = cx.createStatement()) {
+                    String sql = "INSERT INTO utilisateurs (email, nom, prenom, password) VALUES ('" + this.email + "' , '" + this.nom + "' , '" + this.prenom + "' , '" + this.pass + "')";
+                    stmt.executeUpdate(sql);
+                    this.sub = true;
+                } catch (SQLException sq) {
+                    System.err.println(sq);
+                }
+            } else {
+                this.res = "Un compte existe déjà avec cet email";
+                this.sub = false;
             }
-            this.sub = true;
-        }else{
-            this.res = "Un compte existe déjà avec cet email";
+        }else {
             this.sub = false;
+            this.res = "Les champs doivent être remplis correctement";
         }
     }
+
 
     @Override
     public void run() {

@@ -2,6 +2,10 @@ package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,15 +13,18 @@ import javafx.scene.Parent;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+
 import javafx.scene.layout.VBox;
 import sample.model.PersonModel;
 
-import javax.swing.*;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,7 +49,7 @@ public class HomeController implements Initializable {
         // creation de l'espace d'affichage du Tab
         String name = this.pm.getPrenom().substring(0,1).toUpperCase() + this.pm.getPrenom().substring(1);
         Label msg = new Label("Hi, " + name);
-
+        
         ImageView imageView = new ImageView(new Image("sample/ressources/2x/baseline_home_black_48dp.png"));
         JFXButton btn = new JFXButton("Home", imageView);
         btn.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
@@ -54,6 +61,18 @@ public class HomeController implements Initializable {
         ImageView settview  = new ImageView(new Image("sample/ressources/2x/baseline_settings_black_48dp.png"));
         JFXButton btnSett = new JFXButton("Settings", settview);
         btnSett.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+
+
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    loadProject();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         GridPane gp = new GridPane();
         gp.getStyleClass().add("grid-pane");
@@ -72,6 +91,11 @@ public class HomeController implements Initializable {
     }
 
 
+    public void loadProject() throws IOException {
+        System.out.println("Ceci est la fenetre projet");
+        Parent root = tabPane.getParent();
 
+
+    }
 
 }
