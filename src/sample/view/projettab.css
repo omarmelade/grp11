@@ -1,0 +1,9 @@
+//for change the header color, i used:
+.tab-header-background{
+-fx-background-color: #28464B;
+}
+
+//for change the text color from the tabs
+.tab-label {
+-fx-text-fill: white ;
+}
