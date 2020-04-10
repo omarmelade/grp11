@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -18,10 +19,13 @@ import javafx.scene.image.Image;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import sample.Listener.DecoListener;
 import sample.model.PersonModel;
 
 import java.awt.event.KeyEvent;
@@ -32,9 +36,13 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
 
     @FXML
-    StackPane rootPane;
+    public AnchorPane anchorBack;
     @FXML
-    JFXTabPane tabPane;
+    private Label nameHello;
+    @FXML
+    private JFXButton deconnexion;
+    @FXML
+    private JFXButton projetbtn;
 
     PersonModel pm;
 
@@ -48,54 +56,38 @@ public class HomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // creation de l'espace d'affichage du Tab
         String name = this.pm.getPrenom().substring(0,1).toUpperCase() + this.pm.getPrenom().substring(1);
-        Label msg = new Label("Hi, " + name);
+        nameHello.setText(nameHello.getText() + " " + name + ",");
         
-        ImageView imageView = new ImageView(new Image("sample/ressources/2x/baseline_home_black_48dp.png"));
-        JFXButton btn = new JFXButton("Home", imageView);
-        btn.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        deconnexion.addEventHandler(MouseEvent.MOUSE_RELEASED, new DecoListener(this.anchorBack));
 
-        ImageView accView = new ImageView(new Image("sample/ressources/2x/baseline_account_box_black_48dp.png"));
-        JFXButton btnAcc = new JFXButton("Mon Compte", accView);
-        btnAcc.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-
-        ImageView settview  = new ImageView(new Image("sample/ressources/2x/baseline_settings_black_48dp.png"));
-        JFXButton btnSett = new JFXButton("Settings", settview);
-        btnSett.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-
-
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+        projetbtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent event) {
-                try {
-                    loadProject();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        GridPane gp = new GridPane();
-        gp.getStyleClass().add("grid-pane");
-        gp.add(btn, 0,0);
-        gp.add(btnAcc, 1,0);
-        gp.add(btnSett, 2,0);
-
-        VBox vb2 = new VBox();
-        vb2.getChildren().add(msg);
-        vb2.getChildren().add(gp);
-
-        // creation des onglets
-        Tab tab = new Tab("DashBoard", vb2);
-        // ajout des onglets a TabPane (defini plus haut)
-        tabPane.getTabs().add(tab);
+            public void handle(MouseEvent event) {
+                try { loadProjectScreen(); } catch (IOException e) { e.printStackTrace(); }}}
+        );
     }
 
 
-    public void loadProject() throws IOException {
-        System.out.println("Ceci est la fenetre projet");
-        Parent root = tabPane.getParent();
 
 
+
+    public void loadProjectScreen() throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/projet.fxml"));
+            loader.setController(new ProjectScreenControler(getPm()));
+            Parent proj = loader.load();
+            Scene sub = new Scene(proj);
+            Stage stage = (Stage) anchorBack.getScene().getWindow();
+            stage.setScene(sub);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Impossible de changer de page !");
+            e.printStackTrace();
+        }
     }
 
+
+    public PersonModel getPm() {
+        return pm;
+    }
 }

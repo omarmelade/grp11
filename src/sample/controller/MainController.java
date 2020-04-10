@@ -106,7 +106,7 @@ public class MainController implements Initializable {
                         // insctanciation du controller et passage de user en param
                     HomeController hm = new HomeController(this.pm);
                         // on charge la vue
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceneHome.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/connectmembre.fxml"));
                         // on charge le controller
                     loader.setController(hm);
                         // on charge le parent
@@ -116,7 +116,6 @@ public class MainController implements Initializable {
                         //Parent blah = FXMLLoader.load(getClass().getResource("../sceneHome.fxml"));
                     Scene scene = new Scene(blah);
                     Stage appStage = (Stage) anchorBack.getScene().getWindow();
-                    scene.getStylesheets().add(getClass().getResource("../css/Vbox.css").toExternalForm());
                     appStage.setScene(scene);
                     appStage.show();
                 } catch (IOException e) {
