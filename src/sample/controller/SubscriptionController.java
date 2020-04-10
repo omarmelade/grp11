@@ -23,6 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import sample.API.Subscription;
+import sample.Listener.DecoListener;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,12 +58,8 @@ public class SubscriptionController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        connexion.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                loadConnect();
-            }
-        });
+        connexion.addEventHandler(MouseEvent.MOUSE_RELEASED, new DecoListener(this.anchorBack));
+
         connexion.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -93,20 +90,6 @@ public class SubscriptionController implements Initializable {
         });
     }
 
-
-    private void loadConnect() {
-        try {
-            Parent connect = FXMLLoader.load(getClass().getResource("../home.fxml"));
-            Scene conn = new Scene(connect);
-            conn.getStylesheets().add(getClass().getResource("../css/Subscript.css").toExternalForm());
-            Stage stage = (Stage) anchorBack.getScene().getWindow();
-            stage.setScene(conn);
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Impossible de changer de page !");
-            e.printStackTrace();
-        }
-    }
 
     public void loadSubscription(){
         String email = emailField.getText();

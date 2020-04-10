@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="800.0" maxWidth="1000.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #326771;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorBack" maxHeight="800.0" maxWidth="1000.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #326771;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutY="-7.0" prefHeight="203.0" prefWidth="1000.0" style="-fx-background-color: #CACAAA;" />
       <Label layoutX="87.0" layoutY="88.0" prefHeight="98.0" prefWidth="459.0" style="-fx-background-color: #CACAAA;" text="ravi de vous revoir.">
@@ -18,7 +18,7 @@
             <Font name="Cambria" size="54.0" />
          </font>
       </Label>
-      <Label layoutX="87.0" prefHeight="113.0" prefWidth="357.0" style="-fx-background-color: #CACAAA;" text="Bonjour Omar,">
+      <Label fx:id="nameHello" layoutX="87.0" prefHeight="113.0" prefWidth="608.0" style="-fx-background-color: #CACAAA;" text="Bonjour">
          <font>
             <Font name="Cambria" size="54.0" />
          </font></Label>
@@ -27,7 +27,7 @@
          <graphic>
             <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Desktop/Scenebuider/agenda.png" />
+                  <Image url="@../ressources/connecte/agenda.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
@@ -41,11 +41,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="homeButton" buttonType="RAISED" contentDisplay="TOP" layoutX="87.0" layoutY="309.0" prefHeight="0.0" prefWidth="242.0" ripplerFill="BLACK" text="Projet" textOverrun="CLIP" wrapText="true">
+      <JFXButton fx:id="projetbtn" buttonType="RAISED" contentDisplay="TOP" layoutX="87.0" layoutY="309.0" prefHeight="0.0" prefWidth="242.0" ripplerFill="BLACK" text="Projet" textOverrun="CLIP" wrapText="true">
          <graphic>
             <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="181.0" fitWidth="219.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Desktop/Scenebuider/réunion.png" />
+                  <Image url="@../ressources/connecte/réunion.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
@@ -72,7 +72,7 @@
          <graphic>
             <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Desktop/Scenebuider/compte.png" />
+                  <Image url="@../ressources/connecte/compte.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
@@ -80,11 +80,11 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="homeButton1" buttonType="RAISED" contentDisplay="TOP" layoutX="890.0" layoutY="15.0" prefHeight="84.0" prefWidth="96.0" ripplerFill="BLACK" text="Déconnexion" textOverrun="CLIP" wrapText="true">
+      <JFXButton fx:id="deconnexion" buttonType="RAISED" contentDisplay="TOP" layoutX="890.0" layoutY="15.0" prefHeight="84.0" prefWidth="96.0" ripplerFill="BLACK" text="Déconnexion" textOverrun="CLIP" wrapText="true">
          <graphic>
             <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="54.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Desktop/Scenebuider/deco.png" />
+                  <Image url="@../ressources/connecte/deco.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
@@ -101,6 +101,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXTextField layoutX="793.0" layoutY="759.0" prefHeight="27.0" prefWidth="193.0" text="2019 -2020_Copyright Ressource©" unFocusColor="#931621" />
+      <Label layoutX="793.0" layoutY="759.0" prefHeight="27.0" prefWidth="193.0" text="2019 -2020_Copyright Ressource©" />
    </children>
 </AnchorPane>

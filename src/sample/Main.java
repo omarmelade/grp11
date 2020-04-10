@@ -1,9 +1,6 @@
 package sample;
 
-import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,11 +8,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 
-import static java.lang.Thread.MAX_PRIORITY;
 
 
 public class Main extends Application{
