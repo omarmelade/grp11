@@ -127,6 +127,7 @@ public class MainController implements Initializable {
                 alert.setHeaderText("Champs incorrects");
                 alert.setContentText("Votre email ou votre mot de passe sont incorrects.");
                 alert.showAndWait();
+
             }
         }else{
             alert.setTitle("ERROR");

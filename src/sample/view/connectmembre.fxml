@@ -62,7 +62,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="homeButton21" buttonType="RAISED" contentDisplay="TOP" layoutX="665.0" layoutY="290.0" prefHeight="256.0" prefWidth="235.0" ripplerFill="BLACK" text="Compte" textOverrun="CLIP" wrapText="true">
+      <JFXButton fx:id="comptebtn" buttonType="RAISED" contentDisplay="TOP" layoutX="665.0" layoutY="290.0" prefHeight="256.0" prefWidth="235.0" ripplerFill="BLACK" text="Compte" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="Serif Regular" size="35.0" />
          </font>

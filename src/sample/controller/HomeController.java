@@ -25,6 +25,7 @@ import javafx.scene.layout.StackPane;
 
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import sample.Listener.AccountListener;
 import sample.Listener.DecoListener;
 import sample.model.PersonModel;
 
@@ -43,6 +44,8 @@ public class HomeController implements Initializable {
     private JFXButton deconnexion;
     @FXML
     private JFXButton projetbtn;
+    @FXML
+    private JFXButton comptebtn;
 
     PersonModel pm;
 
@@ -65,6 +68,8 @@ public class HomeController implements Initializable {
             public void handle(MouseEvent event) {
                 try { loadProjectScreen(); } catch (IOException e) { e.printStackTrace(); }}}
         );
+
+        comptebtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new AccountListener(this.anchorBack, "../view/compte.fxml", getPm()));
     }
 
 
