@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="800.0" maxWidth="1000.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #326771;" stylesheets="@../../IdeaProjects/grp11/src/sample/view/projettab.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label prefHeight="116.0" prefWidth="1000.0" style="-fx-background-color: #CACAAA;" />
+      <JFXButton fx:id="homeButton1" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="0.0" layoutX="14.0" layoutY="7.0" prefHeight="103.0" prefWidth="88.0" ripplerFill="BLACK" text="Accueil" textOverrun="CLIP" wrapText="true">
+         <graphic>
+            <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="66.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../IdeaProjects/grp11/src/sample/ressources/2x/baseline_home_black_48dp.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="homeButton11" buttonType="RAISED" contentDisplay="TOP" layoutX="877.0" layoutY="6.0" prefHeight="103.0" prefWidth="123.0" ripplerFill="BLACK" text="Déconnexion" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="57.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@deco.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <viewport>
+                  <Rectangle2D width="200.0" />
+               </viewport>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXTextField alignment="CENTER" layoutX="382.0" layoutY="3.0" prefHeight="111.0" prefWidth="236.0" text="COMPTE">
+         <font>
+            <Font name="Yu Gothic Regular" size="52.0" />
+         </font>
+      </JFXTextField>
+      <JFXTabPane layoutX="-1.0" layoutY="116.0" prefHeight="686.0" prefWidth="1000.0">
+         <tabs>
+            <Tab text="Général">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="1000.0">
+                     <children>
+                        <Text fill="#cacaaa" layoutX="673.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOM : " wrappingWidth="88.00001859664917">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#cacaaa" layoutX="673.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRÉNOM :" wrappingWidth="135.00001859664917">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#cacaaa" layoutX="673.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMAIL :" wrappingWidth="88.00001859664917">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Label layoutX="761.0" layoutY="225.0" prefHeight="44.0" prefWidth="312.0" />
+                        <Label layoutX="808.0" layoutY="284.0" prefHeight="44.0" prefWidth="312.0" />
+                        <Label layoutX="776.0" layoutY="349.0" prefHeight="44.0" prefWidth="312.0" />
+                     </children>
+                  </AnchorPane>
+               </content></Tab>
+            <Tab text="Changement de nom ou prénom">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Circle fill="#cacaaa" layoutX="139.0" layoutY="363.0" opacity="0.3" radius="441.0" stroke="BLACK" strokeType="INSIDE" />
+                        <GridPane layoutX="121.0" layoutY="33.0" prefHeight="352.0" prefWidth="301.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label id="emailLabel" fx:id="emailLabel" text="ANCIEN PRÉNOM" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="nomField" fx:id="emailField" focusColor="WHITE" prefHeight="40.0" prefWidth="300.0" promptText="Ancien prénom" unFocusColor="#931621" GridPane.rowIndex="1">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label id="passLabel" fx:id="nomLabel" text="NOUVEAU PRÉNOM" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="objectifField" fx:id="nomField" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="Nouveau prénom" text="" unFocusColor="#931621" GridPane.rowIndex="3">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label id="passLabel" fx:id="prenomLabel" text="NOUVEAU PRÉNOM" textFill="WHITE" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="langageField" fx:id="prenomField" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="Nouveau prénom" text="" unFocusColor="#931621" GridPane.rowIndex="5">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </GridPane>
+                        <JFXButton id="registerButton" fx:id="registerButton" contentDisplay="TOP" layoutX="193.0" layoutY="414.0" minWidth="13.0" onAction="#loadSubscription" prefHeight="45.0" prefWidth="157.0" ripplerFill="#fff" style="-fx-background-color: #28464B;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <GridPane layoutX="580.0" layoutY="33.0" prefHeight="352.0" prefWidth="301.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label id="emailLabel" fx:id="emailLabel2" text="ANCIEN NOM" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="nomField" fx:id="emailField2" focusColor="WHITE" prefHeight="40.0" prefWidth="300.0" promptText="Ancien nom" unFocusColor="#931621" GridPane.rowIndex="1">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label id="passLabel" fx:id="nomLabel2" text="NOUVEAU NOM" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="objectifField" fx:id="nomField2" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="Nouveau nom" text="" unFocusColor="#931621" GridPane.rowIndex="3">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label id="passLabel" fx:id="prenomLabel2" text="NOUVEAU NOM" textFill="WHITE" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="langageField" fx:id="prenomField2" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="Nouveau nom" text="" unFocusColor="#931621" GridPane.rowIndex="5">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </GridPane>
+                        <JFXButton id="registerButton" fx:id="registerButton2" contentDisplay="TOP" layoutX="652.0" layoutY="414.0" minWidth="13.0" onAction="#loadSubscription" prefHeight="45.0" prefWidth="157.0" ripplerFill="#fff" style="-fx-background-color: #28464B;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Changement d'email">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="193.0" layoutY="33.0" prefHeight="400.0" prefWidth="614.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label id="emailLabel" fx:id="emailLabel1" text="ANCIEN EMAIL" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="nomField" fx:id="emailField1" focusColor="WHITE" prefHeight="40.0" prefWidth="300.0" promptText="Ancien email" unFocusColor="#931621" GridPane.rowIndex="1">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label id="passLabel" fx:id="nomLabel1" text="NOUVEAU EMAIL" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="objectifField" fx:id="nomField1" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="Nouveau email" text="" unFocusColor="#931621" GridPane.rowIndex="3">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label id="passLabel" fx:id="prenomLabel1" text="NOUVEAU EMAIL" textFill="WHITE" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="langageField" fx:id="prenomField1" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="Nouveau email" text="" unFocusColor="#931621" GridPane.rowIndex="5">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </GridPane>
+                        <JFXButton id="registerButton" fx:id="registerButton1" contentDisplay="TOP" layoutX="422.0" layoutY="460.0" minWidth="13.0" onAction="#loadSubscription" prefHeight="45.0" prefWidth="157.0" ripplerFill="#fff" style="-fx-background-color: #28464B;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Changement de mot de passe">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="193.0" layoutY="33.0" prefHeight="400.0" prefWidth="614.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label id="emailLabel" fx:id="emailLabel11" text="ANCIEN MOT DE PASSE" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="nomField" fx:id="emailField11" focusColor="WHITE" prefHeight="40.0" prefWidth="300.0" promptText="Ancien mot de passe" unFocusColor="#931621" GridPane.rowIndex="1">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label id="passLabel" fx:id="nomLabel11" text="NOUVEAU MOT DE PASSE" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="objectifField" fx:id="nomField11" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="Nouveau mot de passe" text="" unFocusColor="#931621" GridPane.rowIndex="3">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                              <Label id="passLabel" fx:id="prenomLabel11" text="NOUVEAU MOT DE PASSE" textFill="WHITE" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField id="langageField" fx:id="prenomField11" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="Nouveau mot de passe" text="" unFocusColor="#931621" GridPane.rowIndex="5">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </GridPane>
+                        <JFXButton id="registerButton" fx:id="registerButton11" contentDisplay="TOP" layoutX="422.0" layoutY="460.0" minWidth="13.0" onAction="#loadSubscription" prefHeight="45.0" prefWidth="157.0" ripplerFill="#fff" style="-fx-background-color: #28464B;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </children>
+</AnchorPane>
