@@ -59,7 +59,6 @@
       </JFXTabPane>
    </children>
    <stylesheets>
-      <URL value="@projettab.css" />
-      <URL value="@../../../../../Desktop/Scenebuider/projettab.css" />
+      <URL value="@../css/projettab.css" />
    </stylesheets>
 </AnchorPane>
