@@ -77,7 +77,7 @@ public class HomeController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 Label secondLabel = new Label("I'm a Label on new Window");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../toolbar.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../projetclic.fxml"));
                 Parent root = null;
                 try {
                     root = loader.load();
