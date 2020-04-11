@@ -77,19 +77,19 @@ public class HomeController implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 Label secondLabel = new Label("I'm a Label on new Window");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../projetclic.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/projetclic.fxml"));
                 Parent root = null;
                 try {
                     root = loader.load();
-                    Scene secondScene = new Scene(root, 230, 100);
+                    Scene secondScene = new Scene(root, 1000, 800);
                     // New window (Stage)
                     Stage newWindow = new Stage();
                     newWindow.setTitle("Second Stage");
                     newWindow.setScene(secondScene);
 
                     // Set position of second window, related to primary window.
-                    newWindow.setX(getStage().getX() + 500);
-                    newWindow.setY(getStage().getY() + 200);
+                    newWindow.setX(getStage().getX() + 200);
+                    newWindow.setY(getStage().getY() + 100);
 
                     newWindow.show();
                 } catch (IOException e) {

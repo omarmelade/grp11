@@ -66,7 +66,6 @@ public class ProjectScreenControler implements Initializable {
 
         userProject.setContent(new VBox(new Label("Aucun projet n'est encore disponible")));
         userPartProject.setContent(new VBox(new Label("Aucun projet n'est encore disponible")));
-        createProject.setContent(new VBox(new Label("La création projet n'est encore disponible")));
 
         try {
             loadProjects();

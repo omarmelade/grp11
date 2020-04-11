@@ -1,6 +1,5 @@
 .label {
-    -fx-font-size: 30pt;
-    -fx-font-family: "Roboto Medium";
+    -fx-font-size: 20pt;
     -fx-text-fill: #fff;
     -fx-padding: 15px;
 }

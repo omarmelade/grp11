@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -23,7 +22,7 @@
             <Font name="Cambria" size="54.0" />
          </font></Label>
       <Label layoutX="793.0" layoutY="14.0" prefHeight="98.0" prefWidth="193.0" />
-      <JFXButton fx:id="agenda" buttonType="RAISED" contentDisplay="TOP" layoutX="372.0" layoutY="290.0" prefHeight="256.0" prefWidth="235.0" ripplerFill="BLACK" text="Planning" textOverrun="CLIP" wrapText="true">
+      <JFXButton fx:id="agenda" buttonType="RAISED" contentDisplay="TOP" layoutX="372.0" layoutY="228.0" prefHeight="256.0" prefWidth="235.0" ripplerFill="BLACK" text="Planning" textFill="#cacaaa" textOverrun="CLIP" wrapText="true">
          <graphic>
             <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -41,7 +40,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="projetbtn" buttonType="RAISED" contentDisplay="TOP" layoutX="87.0" layoutY="309.0" prefHeight="0.0" prefWidth="242.0" ripplerFill="BLACK" text="Projet" textOverrun="CLIP" wrapText="true">
+      <JFXButton fx:id="projetbtn" buttonType="RAISED" contentDisplay="TOP" layoutX="87.0" layoutY="247.0" prefHeight="0.0" prefWidth="242.0" ripplerFill="BLACK" text="Projet" textFill="#cacaaa" wrapText="true">
          <graphic>
             <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="181.0" fitWidth="219.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -62,7 +61,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="comptebtn" buttonType="RAISED" contentDisplay="TOP" layoutX="665.0" layoutY="290.0" prefHeight="256.0" prefWidth="235.0" ripplerFill="BLACK" text="Compte" textOverrun="CLIP" wrapText="true">
+      <JFXButton fx:id="comptebtn" buttonType="RAISED" contentDisplay="TOP" layoutX="669.0" layoutY="228.0" prefHeight="256.0" prefWidth="235.0" ripplerFill="BLACK" text="Compte" textFill="#cacaaa" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="Serif Regular" size="35.0" />
          </font>
@@ -102,5 +101,26 @@
          </cursor>
       </JFXButton>
       <Label layoutX="793.0" layoutY="759.0" prefHeight="27.0" prefWidth="193.0" text="2019 -2020_Copyright Ressource©" />
+      <JFXButton fx:id="projetbtn1" contentDisplay="TOP" layoutX="379.0" layoutY="511.0" prefHeight="0.0" prefWidth="242.0" ripplerFill="BLACK" text="Messagerie" textFill="#cacaaa" wrapText="true">
+         <graphic>
+            <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="181.0" fitWidth="219.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ressources/connecte/message.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <viewport>
+                  <Rectangle2D width="200.0" />
+               </viewport>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Serif Regular" size="35.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>
