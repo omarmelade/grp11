@@ -60,7 +60,7 @@
          <tabs>
             <Tab fx:id="listProject" text="Liste des projets">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane fx:id="projetlist" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
             <Tab fx:id="userProject" text="Mes projets" />

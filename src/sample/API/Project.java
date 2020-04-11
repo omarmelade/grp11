@@ -17,14 +17,13 @@ public class Project implements Runnable {
     private ProjectTable pt;
     public boolean connected;
 
-    public Project(String demande) {
-        this.demande = demande;
+    public Project() {
         this.pt = new ProjectTable();
     }
 
     public void initConnection() throws SQLException {
         Statement stmt = cx.createStatement();
-        String sql = "SELECT * FROM projet";
+        String sql = "SELECT * FROM projet p JOIN utilisateurs u ON p.id_proprio = u.id_user";
         try {
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -33,8 +32,9 @@ public class Project implements Runnable {
                 int id_proprio = rs.getInt("id_proprio");
                 String nom_proj = rs.getString("nom_projet");
                 String desc = rs.getString("description");
+                String email_proprio = rs.getString("email");
                 // on ajoute le projet a la table
-                ProjectModel pm = new ProjectModel(id_proj, id_proprio, nom_proj, desc);
+                ProjectModel pm = new ProjectModel(id_proj, id_proprio, nom_proj, desc, email_proprio);
                 this.pt.ajouteProj(pm);
                 // la connexion a été effectué
                 this.connected = true;

@@ -1,6 +1,7 @@
 package sample.API;
 
 import sample.Connexion;
+import sample.model.PersonModel;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,6 +15,7 @@ public class Subscription implements Runnable{
     private String email, nom, prenom, pass;
     public String res;
     public boolean sub;
+    private PersonModel newUser;
 
     public Subscription(String email, String nom, String prenom, String pass) {
         this.email = email;
@@ -35,12 +37,17 @@ public class Subscription implements Runnable{
     }
 
     public void initSub() throws SQLException {
-        if(!this.email.equals("") && this.pass.equals("")) {
+        System.out.println(email + " "+ pass);
+        if(!this.email.equals("") && !this.pass.equals("") && !this.nom.equals("") && !this.prenom.equals("")) {
+            System.out.println("Les champs ne sont pas vides");
             if (emailExist(email)) {
+                System.out.println("L'email n'existe pas dans la base");
                 try (Statement stmt = cx.createStatement()) {
+                    System.out.println("on execute l'insertion");
                     String sql = "INSERT INTO utilisateurs (email, nom, prenom, password) VALUES ('" + this.email + "' , '" + this.nom + "' , '" + this.prenom + "' , '" + this.pass + "')";
                     stmt.executeUpdate(sql);
                     this.sub = true;
+                    loadUser(this.email, this.pass);
                 } catch (SQLException sq) {
                     System.err.println(sq);
                 }
@@ -54,6 +61,16 @@ public class Subscription implements Runnable{
         }
     }
 
+    private void loadUser(String email, String pass) throws SQLException {
+        Login lg = new Login(email, pass);
+        lg.run();
+        this.newUser = lg.getPm();
+    }
+
+
+    public PersonModel getNewUser() {
+        return newUser;
+    }
 
     @Override
     public void run() {
@@ -64,4 +81,5 @@ public class Subscription implements Runnable{
             e.printStackTrace();
         }
     }
+
 }

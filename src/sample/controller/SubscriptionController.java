@@ -98,10 +98,15 @@ public class SubscriptionController implements Initializable {
         String pass = passField.getText();
         Subscription sub = new Subscription(email, nom, prenom, pass);
         sub.run();
-        if(!email.equals("") || !pass.equals("")) {
+        if(!email.equals("") && !pass.equals("")) {
             if (sub.sub) {
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("../sceneHome.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/connectmembre.fxml"));
+
+                    HomeController hm = new HomeController(sub.getNewUser());
+                    loader.setController(hm);
+                    Parent root = loader.load();
+                    //Parent root = FXMLLoader.load(getClass().getResource("../view/connectmembre.fxml"));
                     Scene dashboard = new Scene(root);
                     Stage appStage = (Stage) anchorBack.getScene().getWindow();
                     appStage.setScene(dashboard);
@@ -113,7 +118,7 @@ public class SubscriptionController implements Initializable {
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Inscription impossible.");
-                alert.setHeaderText("Le compte existe déjà");
+                alert.setHeaderText(sub.res);
                 alert.setContentText(sub.res);
 
                 alert.showAndWait();

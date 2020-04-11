@@ -66,7 +66,7 @@ public class HomeController implements Initializable {
         projetbtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                try { loadProjectScreen(); } catch (IOException e) { e.printStackTrace(); }}}
+                try { loadProjectScreen(); } catch (IOException e) { e.printStackTrace(); System.out.println("ff"); }}}
         );
 
         comptebtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new AccountListener(this.anchorBack, "../view/compte.fxml", getPm()));
