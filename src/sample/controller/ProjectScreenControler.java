@@ -88,6 +88,9 @@ public class ProjectScreenControler implements Initializable {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cardProj.fxml"));
             Node nodeItem = (Node) loader.load();
+            JFXButton btnProj = new JFXButton();
+            btnProj.setGraphic(nodeItem);
+
             Label nomProj = (Label) loader.getNamespace().get("nomProj");
             Label descriptionProj = (Label) loader.getNamespace().get("descriptionProj");
             Label nomProprio = (Label) loader.getNamespace().get("chefProj");
@@ -98,7 +101,7 @@ public class ProjectScreenControler implements Initializable {
             descriptionProj.setText(projm.getDescription());
             nomProprio.setText(nomProprio.getText() + " " + projm.getEmail_proprio());
 
-            gp.add(nodeItem, 0,i);
+            gp.add(btnProj, 0,i);
 
 
             i++;

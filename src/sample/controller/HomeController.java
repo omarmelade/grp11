@@ -29,6 +29,7 @@ import sample.Listener.AccountListener;
 import sample.Listener.DecoListener;
 import sample.model.PersonModel;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -40,6 +41,8 @@ public class HomeController implements Initializable {
     public AnchorPane anchorBack;
     @FXML
     private Label nameHello;
+    @FXML
+    private JFXButton agenda;
     @FXML
     private JFXButton deconnexion;
     @FXML
@@ -70,6 +73,34 @@ public class HomeController implements Initializable {
         );
 
         comptebtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new AccountListener(this.anchorBack, "../view/compte.fxml", getPm()));
+        agenda.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Label secondLabel = new Label("I'm a Label on new Window");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../toolbar.fxml"));
+                Parent root = null;
+                try {
+                    root = loader.load();
+                    Scene secondScene = new Scene(root, 230, 100);
+                    // New window (Stage)
+                    Stage newWindow = new Stage();
+                    newWindow.setTitle("Second Stage");
+                    newWindow.setScene(secondScene);
+
+                    // Set position of second window, related to primary window.
+                    newWindow.setX(getStage().getX() + 500);
+                    newWindow.setY(getStage().getY() + 200);
+
+                    newWindow.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+            }
+        });
     }
 
 
@@ -94,5 +125,9 @@ public class HomeController implements Initializable {
 
     public PersonModel getPm() {
         return pm;
+    }
+
+    public Stage getStage(){
+        return  (Stage) anchorBack.getScene().getWindow();
     }
 }

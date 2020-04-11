@@ -32,7 +32,7 @@ public class Main extends Application{
         Parent main = FXMLLoader.load(getClass().getResource("home.fxml"));
         root.getChildren().add(main);
         Scene scene = new Scene(root);
-
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
 

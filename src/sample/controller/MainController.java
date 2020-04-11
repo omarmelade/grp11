@@ -130,7 +130,7 @@ public class MainController implements Initializable {
 
             }
         }else{
-            alert.setTitle("ERROR");
+            alert.setTitle("ERREUR");
             alert.setHeaderText("LES CHAMPS SONT VIDES");
             alert.setContentText("Veuillez remplir les champs !");
             alert.showAndWait();
