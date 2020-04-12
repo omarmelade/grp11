@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 
 <AnchorPane prefHeight="137.0" prefWidth="513.0" style="-fx-background-color: #CACAAA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">

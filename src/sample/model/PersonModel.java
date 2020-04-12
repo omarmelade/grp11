@@ -21,6 +21,13 @@ public class PersonModel {
         this.prenom = new SimpleStringProperty(prenom);
     }
 
+    public PersonModel(int id, String email, String nom, String prenom, int valide){
+        this.id = new SimpleIntegerProperty(id);
+        this.email = new SimpleStringProperty(email);
+        this.nom = new SimpleStringProperty(nom);
+        this.prenom = new SimpleStringProperty(prenom);
+    }
+
     public int getId() { return id.get(); }
 
     public IntegerProperty idProperty() {

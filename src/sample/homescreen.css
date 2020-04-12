@@ -1,4 +1,11 @@
+@font-face {
+	-fx-font-family: Amethyst;
+	src: url("ressources/font/Amethyst.ttf");
+}
 
+.titreLabel {
+	-fx-font-family: "Wolu";
+}
 
 #anchorBack{
 	-fx-background-color: #326771;
@@ -6,9 +13,10 @@
 	-fx-background: #326771;
 }
 
+
 #labelTitle{
 	-fx-font-size: 46pt;
-	-fx-font-family: Roboto;
+	-fx-font-family: Amethyst;
 }
 
 #emailLabel{

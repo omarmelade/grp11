@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
@@ -51,7 +53,8 @@ public class Main extends Application{
 
     public void loadScreen(Stage primaryStage) throws IOException {
         StackPane sp = new StackPane();
-        Parent main = FXMLLoader.load(getClass().getResource("home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+        Parent main = loader.load();
         sp.getChildren().add(main);
         Scene sc = root.getScene();
         sc.getStylesheets().add(getClass().getResource("../css/Subscript.css").toExternalForm());

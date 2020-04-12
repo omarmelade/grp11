@@ -24,27 +24,32 @@ public class Login implements Runnable{
     public boolean initConn() throws SQLException {
         Statement stmt = cx.createStatement();
         String sql = "SELECT * FROM utilisateurs";
-        try {
-            ResultSet rs = stmt.executeQuery(sql);
-            connected = false;
-            int id = -1;
-            String emailRes, passRes;
+        if(!email.equals("") && !password.equals("")) {
+            try {
+                ResultSet rs = stmt.executeQuery(sql);
+                connected = false;
+                int id = -1;
+                String emailRes, passRes;
 
-            while (rs.next() || !connected) {
-                emailRes = rs.getString("email");
-                passRes = rs.getString("password");
+                while (rs.next() || !connected) {
+                    emailRes = rs.getString("email");
+                    passRes = rs.getString("password");
 
-                if (emailRes.equals(email) && passRes.equals(password)) {
-                    connected = true;
-                    this.nom = rs.getString("nom");
-                    this.prenom = rs.getString("prenom");
-                    this.id = rs.getInt("id_user");
+                    if (emailRes.equals(email) && passRes.equals(password)) {
+                        connected = true;
+                        this.nom = rs.getString("nom");
+                        this.prenom = rs.getString("prenom");
+                        this.id = rs.getInt("id_user");
+                    }
+
                 }
+                rs.close();
 
+            } catch (SQLException sq) {
+                System.err.println(sq);
             }
-        } catch (SQLException sq) {
-            System.err.println(sq);
         }
+        stmt.close();
         return connected;
     }
 

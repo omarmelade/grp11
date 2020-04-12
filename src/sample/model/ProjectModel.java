@@ -3,11 +3,16 @@ package sample.model;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.ArrayList;
+
 public class ProjectModel {
 
     private ProjectModel project;
+
     private SimpleStringProperty nom, description, email_proprio;
     private SimpleIntegerProperty id_projet, id_proprio;
+
+    private PersonTable listMembres;
 
 
     public ProjectModel(int id_projet, int id_proprio, String nom, String description, String email_proprio){
@@ -16,6 +21,19 @@ public class ProjectModel {
         this.nom = new SimpleStringProperty(nom);
         this.description = new SimpleStringProperty(description);
         this.email_proprio = new SimpleStringProperty(email_proprio);
+    }
+
+    public ProjectModel(int id_projet, int id_proprio, String nom, String description, String email_proprio, PersonTable listMembres ){
+        this.id_projet = new SimpleIntegerProperty(id_projet);
+        this.id_proprio = new SimpleIntegerProperty(id_proprio);
+        this.nom = new SimpleStringProperty(nom);
+        this.description = new SimpleStringProperty(description);
+        this.email_proprio = new SimpleStringProperty(email_proprio);
+        this.listMembres = listMembres;
+    }
+
+    public PersonTable getListMembres() {
+        return listMembres;
     }
 
     public String getEmail_proprio() {

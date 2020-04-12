@@ -15,9 +15,9 @@
    <children>
       <AnchorPane layoutX="118.0" layoutY="67.0" prefHeight="667.0" prefWidth="765.0">
          <children>
-            <AnchorPane layoutX="169.0" layoutY="84.0" prefHeight="144.0" prefWidth="427.0">
+            <AnchorPane layoutY="62.0" prefHeight="144.0" prefWidth="773.0">
                <children>
-                  <Label id="labelTitle" fx:id="labelTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="144.0" prefWidth="427.0" text="Ressources" wrapText="true" />
+                  <Label id="labelTitle" fx:id="labelTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="144.0" prefWidth="773.0" text="Ressources" wrapText="true" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="220.0" layoutY="229.0" prefHeight="438.0" prefWidth="324.0">

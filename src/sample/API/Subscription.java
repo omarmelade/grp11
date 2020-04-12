@@ -47,6 +47,7 @@ public class Subscription implements Runnable{
                     String sql = "INSERT INTO utilisateurs (email, nom, prenom, password) VALUES ('" + this.email + "' , '" + this.nom + "' , '" + this.prenom + "' , '" + this.pass + "')";
                     stmt.executeUpdate(sql);
                     this.sub = true;
+                    stmt.close();
                     loadUser(this.email, this.pass);
                 } catch (SQLException sq) {
                     System.err.println(sq);

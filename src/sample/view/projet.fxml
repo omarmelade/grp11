@@ -54,7 +54,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label alignment="CENTER" layoutX="402.0" layoutY="3.0" prefHeight="111.0" prefWidth="196.0" text="PROJET">
+      <Label alignment="CENTER" layoutX="356.0" layoutY="3.0" prefHeight="111.0" prefWidth="288.0" text="PROJETS">
          <font>
             <Font name="Yu Gothic Regular" size="52.0" />
          </font>
@@ -66,8 +66,10 @@
                 <AnchorPane fx:id="projetlist" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
-            <Tab fx:id="userProject" text="Mes projets" />
-            <Tab fx:id="userPartProject" text="Participation aux projets" />
+            <Tab fx:id="userProject" text="Mes projets">
+            </Tab>
+            <Tab fx:id="userPartProject" text="Participation aux projets">
+            </Tab>
             <Tab fx:id="createProject" text="Créer un projet">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -90,7 +92,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <JFXTextField id="nomField" fx:id="emailField11" focusColor="WHITE" prefHeight="40.0" prefWidth="300.0" promptText="Nom de projet" unFocusColor="#931621" GridPane.rowIndex="1">
+                              <JFXTextField id="nomField" fx:id="nomNewProj" focusColor="WHITE" prefHeight="40.0" prefWidth="300.0" promptText="Nom de projet" unFocusColor="#931621" GridPane.rowIndex="1">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -103,7 +105,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <JFXTextField id="objectifField" fx:id="nomField11" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="Description" text="" unFocusColor="#931621" GridPane.rowIndex="3">
+                              <JFXTextField id="objectifField" fx:id="descNewProj" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="Description" text="" unFocusColor="#931621" GridPane.rowIndex="3">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -116,7 +118,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <JFXTextField id="langageField" fx:id="prenomField11" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="HTML, PHP, CSS" text="" unFocusColor="#931621" GridPane.rowIndex="5">
+                              <JFXTextField id="langageField" fx:id="languageNewProj" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="HTML, PHP, CSS" text="" unFocusColor="#931621" GridPane.rowIndex="5">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -126,7 +128,7 @@
                               </JFXTextField>
                            </children>
                         </GridPane>
-                        <JFXButton layoutX="439.0" layoutY="467.0" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: #28464B;" text="Créer" textFill="WHITE" />
+                        <JFXButton fx:id="creation" layoutX="439.0" layoutY="467.0" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: #28464B;" text="Créer" textFill="WHITE" />
                      </children></AnchorPane>
               </content>
             </Tab>
