@@ -85,23 +85,56 @@ public class OneProjectScreen implements Initializable {
 
     private void afficheMembre() throws SQLException {
 
-        if(this.user.getId() == this.projet.getId_proprio()) {
             //System.out.println("je suis proprio !!!!!!");
             Project p = new Project("getUser", this.projet.getId_projet());
             p.run();
             PersonTable membres = p.getMembersProjet();
             GridPane gp = new GridPane();
-
-            gp.add(new Label("Les membres du projet : \n"), 0, 1);
             int i = 2;
+            int boucle = 0;
+            if(this.user.getId() == this.projet.getId_proprio()) {
+                for (PersonModel pm : membres.getTablePersonModels()) {
+                    if (i == 2) {
+                        gp.add(new Label("Chef de projet : \n"), 1, 1);
+                        gp.add((new Label("Vous même ! " )), 2, i);
+                        i++;
+                    }
+                    if (i == 3) {
+                        gp.add(new Label("Membres du projet : \n"), 1, 3);
+                        i++;
+                    } else {
+                        gp.add((new Label(pm.getPrenom() +" "+ pm.getNom())), 2, i);
+                        gp.add((new Label((pm.getValide() == 1 ? "Validé" : "non-Validé"))), 4, i);
+                        i++;
+                    }
+                }
+            }
+            else{
+                for (PersonModel pm : membres.getTablePersonModels()) {
+                    if (i == 2) {
+                        gp.add(new Label("Chef de projet : \n"), 1, 1);
+                        for (PersonModel pmb : membres.getTablePersonModels()) {
+                            System.out.println(pmb);
+                            if(pmb.getId() == this.projet.getId_proprio()){
+                                gp.add((new Label(pmb.getNom() + " " + pmb.getPrenom())), 2, i);
+                            }
+                        }
+                        i++; }
 
-            for (PersonModel pm : membres.getTablePersonModels()) {
+                    else if (i == 3) {
+                        gp.add(new Label("Membres du projet : \n"), 1, 3);
+                        i++;
+                    }
+                        if(pm.getId() != this.projet.getId_proprio()) {
+                            gp.add((new Label(pm.getPrenom() + " " + pm.getNom())), 2, i);
+                            gp.add((new Label((pm.getValide() == 1 ? "" : "En attente de validation"))), 4, i);
+                            i++;
+                        }
+                }
 
-                gp.add((new Label(pm.getPrenom() + "  validé : " + pm.getValide())), 0, i);
-
-                i++;
             }
             listMembres.setContent(gp);
-        }
+
+
     }
 }

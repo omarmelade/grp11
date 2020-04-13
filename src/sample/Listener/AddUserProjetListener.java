@@ -22,7 +22,7 @@ public class AddUserProjetListener implements EventHandler {
 
     @Override
     public void handle(Event event) {
-        AddUserProjet aup = new AddUserProjet(this.projet, this.user);
+        AddUserProjet aup = new AddUserProjet(this.projet, this.user, "");
         aup.run();
         if(aup.inserted){
             this.joinProj.setText("REJOINDRE LE PROJET");
