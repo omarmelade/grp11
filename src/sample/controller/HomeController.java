@@ -60,11 +60,16 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // creation de l'espace d'affichage du Tab
+        // creation de l'espace d'affichage Personnalisé
         String name = this.pm.getPrenom().substring(0,1).toUpperCase() + this.pm.getPrenom().substring(1);
+
         nameHello.setText(nameHello.getText() + " " + name + ",");
-        
+        // creation du bouton deconnexion
         deconnexion.addEventHandler(MouseEvent.MOUSE_RELEASED, new DecoListener(this.anchorBack));
+
+
+
+        comptebtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new AccountListener(this.anchorBack, "../view/compte.fxml", getPm()));
 
         projetbtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
             @Override
@@ -72,7 +77,7 @@ public class HomeController implements Initializable {
                 try { loadProjectScreen(); } catch (IOException e) { e.printStackTrace(); System.out.println("ff"); }}}
         );
 
-        comptebtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new AccountListener(this.anchorBack, "../view/compte.fxml", getPm()));
+
 
         agenda.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
             @Override
@@ -97,13 +102,9 @@ public class HomeController implements Initializable {
                     e.printStackTrace();
                 }
 
-
-
-
             }
         });
     }
-
 
 
 

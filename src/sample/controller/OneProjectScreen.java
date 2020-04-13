@@ -84,6 +84,7 @@ public class OneProjectScreen implements Initializable {
     }
 
     private void afficheMembre() throws SQLException {
+
         if(this.user.getId() == this.projet.getId_proprio()) {
             //System.out.println("je suis proprio !!!!!!");
             Project p = new Project("getUser", this.projet.getId_projet());
@@ -102,6 +103,5 @@ public class OneProjectScreen implements Initializable {
             }
             listMembres.setContent(gp);
         }
-
     }
 }

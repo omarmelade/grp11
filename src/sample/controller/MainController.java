@@ -1,14 +1,10 @@
 package sample.controller;
 
 import com.jfoenix.controls.*;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,14 +14,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 
 import javafx.stage.Stage;
 import sample.API.Login;
-import sample.Main;
 import sample.model.PersonModel;
 
-import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

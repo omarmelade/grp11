@@ -6,10 +6,7 @@ import sample.model.PersonTable;
 import sample.model.ProjectModel;
 import sample.model.ProjectTable;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Project implements Runnable {
 
@@ -128,14 +125,35 @@ public class Project implements Runnable {
 
     // cree un projet
     public void insertProj() throws SQLException {
+
         if(!this.nomNewProj.equals("") && !this.descNewProj.equals("")) {
-            Statement stmt = cx.createStatement();
-            String sql = "INSERT INTO projet (nom_projet, description, id_proprio) VALUES ('" + this.nomNewProj + "', '" + this.descNewProj + "', '" + this.new_id_proprio + "')";
+            PreparedStatement stmt;
+
+            stmt = cx.prepareStatement("INSERT INTO projet (nom_projet, description, id_proprio) VALUES (?, ?, ?)");
+            stmt.setString(1, this.nomNewProj);
+            stmt.setString(2, this.descNewProj);
+            stmt.setInt(3, this.new_id_proprio);
             try {
-                int response = stmt.executeUpdate(sql);
+                int response = stmt.executeUpdate();
                 // si il retourne 1 tout s'est bien passé
                 if (response == 1) {
-                    this.inserted = true;
+                    stmt = cx.prepareStatement("SELECT id_projet FROM projet ORDER BY id_projet DESC LIMIT 1");
+                    ResultSet rsIdProj = stmt.executeQuery();
+
+                    rsIdProj.first();
+                    int indexOfProject = rsIdProj.getInt("id_projet");
+
+                    stmt = cx.prepareStatement("INSERT INTO projet_membre (id_projet, id_membre, valide) VALUES (?, ?, ?)");
+                    stmt.setInt(1, indexOfProject);
+                    stmt.setInt(2, this.new_id_proprio);
+                    stmt.setInt(3, 1);
+
+                    int reponseInsertProprio = stmt.executeUpdate();
+
+                    if(reponseInsertProprio == 1){
+                        this.inserted = true;
+                    }
+
                 } else {
                     this.inserted = false;
                 }
@@ -143,10 +161,10 @@ public class Project implements Runnable {
                 e.printStackTrace();
             }
             stmt.close();
+            this.cx.close();
         }else {
             this.inserted = false;
         }
-        this.cx.close();
     }
 
 

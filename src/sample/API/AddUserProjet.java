@@ -5,6 +5,7 @@ import sample.model.PersonModel;
 import sample.model.ProjectModel;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -18,12 +19,23 @@ public class AddUserProjet implements Runnable {
 
     public boolean inserted;
 
+    public boolean updated;
+    private String demande;
+
     public AddUserProjet(ProjectModel projet, PersonModel user) {
         this.projet = projet;
         this.user = user;
+        this.inserted = false;
     }
 
-    public void addUser() throws SQLException {
+    public AddUserProjet(ProjectModel projet, PersonModel user, String demande){
+        this.projet = projet;
+        this.user = user;
+        this.demande = demande;
+        this.updated = false;
+    }
+
+    private void addUser() throws SQLException {
         if(!(this.user == null) || !(this.projet == null)) {
             Statement stmt = cx.createStatement();
             int id_proj = this.projet.getId_projet();
@@ -50,17 +62,36 @@ public class AddUserProjet implements Runnable {
                 this.inserted = false;
             }
             stmt.close();
+            this.cx.close();
         }else {
             this.inserted = false;
         }
     }
 
+    private void updateUserValid() throws SQLException{
+        if(!(this.user == null) || !(this.projet == null)) {
+            PreparedStatement stmt = cx.prepareStatement("UPDATE projet_membre SET valide = ? WHERE id_projet = ? AND id_membre = ?");
+            stmt.setInt(1,1);
+            stmt.setInt(2,this.projet.getId_projet());
+            stmt.setInt(3,this.user.getId());
+            int reponse = stmt.executeUpdate();
+            // met updated en fonction de la reponse de la requete.
+            updated = reponse == 1;
+            stmt.close();
+        }
+        this.updated = false;
+        cx.close();
+    }
 
     @Override
     public void run() {
         try {
             this.cx = Connexion.getConnection();
-            addUser();
+            if(this.demande.equals("update")){
+                updateUserValid();
+            }else{
+                addUser();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

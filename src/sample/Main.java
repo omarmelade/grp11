@@ -10,7 +10,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
-import java.io.IOException;
 
 
 
@@ -36,29 +35,6 @@ public class Main extends Application{
         Scene scene = new Scene(root);
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
-        primaryStage.show();
-
-        // ecran de connexion
-//        Platform.runLater(new Runnable() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        loadScreen(primaryStage);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//        });
-    }
-
-    public void loadScreen(Stage primaryStage) throws IOException {
-        StackPane sp = new StackPane();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
-        Parent main = loader.load();
-        sp.getChildren().add(main);
-        Scene sc = root.getScene();
-        sc.getStylesheets().add(getClass().getResource("../css/Subscript.css").toExternalForm());
-        primaryStage.setScene(sc);
         primaryStage.show();
     }
 

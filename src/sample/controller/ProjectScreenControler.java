@@ -1,8 +1,6 @@
 package sample.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTabPane;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +14,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import sample.API.Project;
 import sample.Listener.DecoListener;
@@ -111,18 +110,17 @@ public class ProjectScreenControler<var> implements Initializable {
         Project apiProj = new Project(nomNewProj.getText(),descNewProj.getText(),pm.getId(), "put", this.pm);
 
         apiProj.run();
+        Alert a;
         if(apiProj.inserted){
-            Alert a = new Alert(Alert.AlertType.INFORMATION,"Le projet `"+ nomNewProj.getText().toUpperCase() +"` a bien été créé.");
+            a = new Alert(Alert.AlertType.INFORMATION, "Le projet `" + nomNewProj.getText().toUpperCase() + "` a bien été créé.");
             a.setHeaderText("Vous êtes maintenant chef de projet.");
-            a.showAndWait();
         }else {
-            Alert a = new Alert(Alert.AlertType.ERROR);
+            a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText("Impossible de créer le projet `"+ nomNewProj.getText().toUpperCase() + "`.");
             a.setContentText("Remplissez correctement les champs OU Appelez le software developper.");
-            a.showAndWait();
         }
+        a.showAndWait();
     }
-
 
 
     void loadProjects() throws SQLException, IOException {
