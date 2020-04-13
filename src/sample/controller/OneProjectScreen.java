@@ -105,7 +105,9 @@ public class OneProjectScreen implements Initializable {
                     }
                     if(pm.getId() != this.projet.getId_proprio()) {
                         gp.add((new Label(pm.getPrenom() +" "+ pm.getNom())), 2, i);
-                        gp.add((new Label((pm.getValide() == 1 ? "Validé" : "non-Validé"))), 4, i);
+                        if (pm.getValide() == 0) {
+                            gp.add((new Label( )), 4, i);
+                        }
                         i++;
                     }
                 }
@@ -128,11 +130,10 @@ public class OneProjectScreen implements Initializable {
                     }
                         if(pm.getId() != this.projet.getId_proprio()) {
                             gp.add((new Label(pm.getPrenom() + " " + pm.getNom())), 2, i);
-                            gp.add((new Label((pm.getValide() == 1 ? "" : "En attente de validation"))), 4, i);
+                            gp.add((new Label((pm.getValide() == 1 ? " " : "En attente de validation"))), 4, i);
                             i++;
                         }
                 }
-
             }
             listMembres.setContent(gp);
 
