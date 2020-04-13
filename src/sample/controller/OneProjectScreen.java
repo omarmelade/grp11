@@ -84,19 +84,24 @@ public class OneProjectScreen implements Initializable {
     }
 
     private void afficheMembre() throws SQLException {
-        Project p = new Project("getUser", this.projet.getId_projet());
-        p.run();
-        PersonTable membres = p.getMembersProjet();
-        GridPane gp = new GridPane();
-        gp.add(new Label("Les membres du projet : \n"),0,0);
-        int i = 1;
+        if(this.user.getId() == this.projet.getId_proprio()) {
+            //System.out.println("je suis proprio !!!!!!");
+            Project p = new Project("getUser", this.projet.getId_projet());
+            p.run();
+            PersonTable membres = p.getMembersProjet();
+            GridPane gp = new GridPane();
 
-        for (PersonModel pm: membres.getTablePersonModels()) {
+            gp.add(new Label("Les membres du projet : \n"), 0, 1);
+            int i = 2;
 
-            gp.add((new Label(pm.getPrenom())), 0, i);
+            for (PersonModel pm : membres.getTablePersonModels()) {
 
-            i++;
+                gp.add((new Label(pm.getPrenom() + "  validé : " + pm.getValide())), 0, i);
+
+                i++;
+            }
+            listMembres.setContent(gp);
         }
-        listMembres.setContent(gp);
+
     }
 }

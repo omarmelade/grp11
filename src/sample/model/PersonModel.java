@@ -12,6 +12,7 @@ public class PersonModel {
     private StringProperty email;
     private StringProperty nom;
     private StringProperty prenom;
+    private IntegerProperty valide;
 
 
     public PersonModel(int id, String email, String nom, String prenom){
@@ -26,6 +27,15 @@ public class PersonModel {
         this.email = new SimpleStringProperty(email);
         this.nom = new SimpleStringProperty(nom);
         this.prenom = new SimpleStringProperty(prenom);
+        this.valide = new SimpleIntegerProperty(valide);
+    }
+
+    public int getValide() {
+        return valide.get();
+    }
+
+    public IntegerProperty valideProperty() {
+        return valide;
     }
 
     public int getId() { return id.get(); }

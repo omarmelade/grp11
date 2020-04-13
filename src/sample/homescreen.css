@@ -3,10 +3,6 @@
 	src: url("ressources/font/Amethyst.ttf");
 }
 
-.titreLabel {
-	-fx-font-family: "Wolu";
-}
-
 #anchorBack{
 	-fx-background-color: #326771;
 	-fx-font-color: #d6d6d6;
