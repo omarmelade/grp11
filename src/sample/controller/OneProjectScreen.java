@@ -102,7 +102,8 @@ public class OneProjectScreen implements Initializable {
                     if (i == 3) {
                         gp.add(new Label("Membres du projet : \n"), 1, 3);
                         i++;
-                    } else {
+                    }
+                    if(pm.getId() != this.projet.getId_proprio()) {
                         gp.add((new Label(pm.getPrenom() +" "+ pm.getNom())), 2, i);
                         gp.add((new Label((pm.getValide() == 1 ? "Validé" : "non-Validé"))), 4, i);
                         i++;
