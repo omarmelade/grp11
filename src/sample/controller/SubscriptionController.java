@@ -46,15 +46,8 @@ public class SubscriptionController implements Initializable {
     private JFXButton registerButton;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        adminBool.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println(adminBool.isArmed());
-            }});
 
         connexion.addEventHandler(MouseEvent.MOUSE_RELEASED, new DecoListener(this.anchorBack));
 
@@ -91,6 +84,7 @@ public class SubscriptionController implements Initializable {
 
 
     public void loadSubscription(){
+        int admin = adminBool.isSelected() ? 1 : 0;
         String email = emailField.getText();
         String nom = nomField.getText();
         String prenom = prenomField.getText();
@@ -100,7 +94,7 @@ public class SubscriptionController implements Initializable {
         if(!email.equals("") && !pass.equals("")) {
             if (sub.sub) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/connectmembre.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/connectmembre.fxml"));
 
                     HomeController hm = new HomeController(sub.getNewUser());
                     loader.setController(hm);

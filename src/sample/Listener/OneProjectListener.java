@@ -26,7 +26,7 @@ public class OneProjectListener implements EventHandler {
 
     @Override
     public void handle(Event event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/projetclic.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/projetclic.fxml"));
         Parent root = null;
         try {
             loader.setController(new OneProjectScreen(this.user , this.projet));

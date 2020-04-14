@@ -2,15 +2,15 @@ package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
-import com.sun.javafx.scene.control.skin.LabeledText;
+
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -18,8 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+
 import sample.API.Project;
 import sample.Listener.AddUserProjetListener;
 import sample.Listener.ValidOrRemoveListener;
@@ -27,7 +26,6 @@ import sample.model.PersonModel;
 import sample.model.PersonTable;
 import sample.model.ProjectModel;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
@@ -66,8 +64,8 @@ public class OneProjectScreen implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         projTitle.setText(projet.getNom().toUpperCase());
-        infoGenerale.getStylesheets().add(getClass().getResource("../css/Vbox.css").toExternalForm());
-        projetBase.getStylesheets().add(getClass().getResource("../css/Vbox.css").toExternalForm());
+        infoGenerale.getStylesheets().add(getClass().getResource("/sample/css/Vbox.css").toExternalForm());
+        projetBase.getStylesheets().add(getClass().getResource("/sample/css/Vbox.css").toExternalForm());
         infoGenerale.getChildren().add(new Label(projet.getDescription()));
 
         planningTab.setContent(new Label("Le planning des projets n'est pas encore disponible."));
@@ -119,8 +117,8 @@ public class OneProjectScreen implements Initializable {
                     if(pm.getId() != this.projet.getId_proprio()) {
                         gp.add((new Label(pm.getPrenom() +" "+ pm.getNom())), 2, i);
                         if (pm.getValide() == 0) {
-                            InputStream input = this.getClass().getResourceAsStream("../ressources/2x/round_check_circle_black_48dp.png");
-                            InputStream input2 = this.getClass().getResourceAsStream("../ressources/2x/round_remove_circle_black_48dp.png");
+                            InputStream input = this.getClass().getResourceAsStream("/sample/ressources/2x/round_check_circle_black_48dp.png");
+                            InputStream input2 = this.getClass().getResourceAsStream("/sample/ressources/2x/round_remove_circle_black_48dp.png");
                             ImageView check = new ImageView( new Image(input, 40, 40    , true, true));
                             ImageView remove = new ImageView(new Image(input2, 40, 40, true, true));
                             JFXButton validation = new JFXButton();

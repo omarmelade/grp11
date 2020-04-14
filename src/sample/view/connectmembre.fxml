@@ -101,7 +101,7 @@
          </cursor>
       </JFXButton>
       <Label layoutX="793.0" layoutY="759.0" prefHeight="27.0" prefWidth="193.0" text="2019 -2020_Copyright Ressource©" />
-      <JFXButton fx:id="projetbtn1" contentDisplay="TOP" layoutX="379.0" layoutY="511.0" prefHeight="0.0" prefWidth="242.0" ripplerFill="BLACK" text="Messagerie" textFill="#cacaaa" wrapText="true">
+      <JFXButton fx:id="messagerie" contentDisplay="TOP" layoutX="379.0" layoutY="511.0" prefHeight="0.0" prefWidth="242.0" ripplerFill="BLACK" text="Messagerie" textFill="#cacaaa" wrapText="true">
          <graphic>
             <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="181.0" fitWidth="219.0" pickOnBounds="true" preserveRatio="true">
                <image>

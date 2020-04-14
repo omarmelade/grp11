@@ -43,10 +43,13 @@ public class MainController implements Initializable {
 
     PersonModel pm;
 
-
+    private URL location;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.location = location;
+        System.out.println(location);
+
         inscription.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -99,11 +102,16 @@ public class MainController implements Initializable {
                         // insctanciation du controller et passage de user en param
                     HomeController hm = new HomeController(this.pm);
                         // on charge la vue
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/connectmembre.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/connectmembre.fxml"));
+
                         // on charge le controller
                     loader.setController(hm);
                         // on charge le parent
+                    //loader.setLocation();
+                    //System.out.println(loader.getLocation());
                     Parent blah = loader.load();
+                    //System.out.println(blah.getId());
+
                         // ancienne maneire de faire (sans charger de controller)
                         // ne permet pas d'avoir un constructeur
                         //Parent blah = FXMLLoader.load(getClass().getResource("../sceneHome.fxml"));
@@ -134,9 +142,9 @@ public class MainController implements Initializable {
     private void loadSubscription() {
         Parent subscription = null;
         try {
-            subscription = FXMLLoader.load(getClass().getResource("../homeSubscription.fxml"));
+            subscription = FXMLLoader.load(getClass().getResource("/sample/homeSubscription.fxml"));
             Scene sub = new Scene(subscription);
-            sub.getStylesheets().add(getClass().getResource("../css/Subscript.css").toExternalForm());
+            sub.getStylesheets().add(getClass().getResource("/sample/css/Subscript.css").toExternalForm());
             Stage stage = (Stage) anchorBack.getScene().getWindow();
             stage.setScene(sub);
             stage.show();

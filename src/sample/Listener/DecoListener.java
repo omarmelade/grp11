@@ -33,9 +33,9 @@ public class DecoListener implements EventHandler {
     private void loadConnectScreen(AnchorPane root) throws IOException {
         Parent connect = null;
         try {
-            connect = FXMLLoader.load(getClass().getResource("../home.fxml"));
+            connect = FXMLLoader.load(getClass().getResource("/sample/home.fxml"));
             Scene sub = new Scene(connect);
-            sub.getStylesheets().add(getClass().getResource("../css/Subscript.css").toExternalForm());
+            sub.getStylesheets().add(getClass().getResource("/sample/css/Subscript.css").toExternalForm());
             Stage stage = (Stage) this.root.getScene().getWindow();
             stage.setScene(sub);
             stage.show();

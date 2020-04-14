@@ -49,6 +49,8 @@ public class HomeController implements Initializable {
     private JFXButton projetbtn;
     @FXML
     private JFXButton comptebtn;
+    @FXML
+    private JFXButton messagerie;
 
     PersonModel pm;
 
@@ -68,7 +70,7 @@ public class HomeController implements Initializable {
         // creation du bouton deconnexion
         deconnexion.addEventHandler(MouseEvent.MOUSE_RELEASED, new DecoListener(this.anchorBack));
 
-        comptebtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new AccountListener(this.anchorBack, "../view/compte.fxml", getPm()));
+        comptebtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new AccountListener(this.anchorBack, "/sample/view/compte.fxml", getPm()));
 
         projetbtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
             @Override
@@ -76,33 +78,33 @@ public class HomeController implements Initializable {
                 try { loadProjectScreen(); } catch (IOException e) { e.printStackTrace(); System.out.println("ff"); }}}
         );
 
-
-
-        agenda.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Label secondLabel = new Label("I'm a Label on new Window");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/projetclic.fxml"));
-                Parent root = null;
-                try {
-                    root = loader.load();
-                    Scene secondScene = new Scene(root, 1000, 800);
-                    // New window (Stage)
-                    Stage newWindow = new Stage();
-                    newWindow.setTitle("Second Stage");
-                    newWindow.setScene(secondScene);
-
-                    // Set position of second window, related to primary window.
-                    newWindow.setX(getStage().getX() + 200);
-                    newWindow.setY(getStage().getY() + 100);
-
-                    newWindow.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
+        messagerie.setDisable(true);
+        agenda.setDisable(true);
+//        agenda.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                Label secondLabel = new Label("I'm a Label on new Window");
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/projetclic.fxml"));
+//                Parent root = null;
+//                try {
+//                    root = loader.load();
+//                    Scene secondScene = new Scene(root, 1000, 800);
+//                    // New window (Stage)
+//                    Stage newWindow = new Stage();
+//                    newWindow.setTitle("Second Stage");
+//                    newWindow.setScene(secondScene);
+//
+//                    // Set position of second window, related to primary window.
+//                    newWindow.setX(getStage().getX() + 200);
+//                    newWindow.setY(getStage().getY() + 100);
+//
+//                    newWindow.show();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        });
     }
 
 
@@ -110,7 +112,7 @@ public class HomeController implements Initializable {
 
     public void loadProjectScreen() throws IOException {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/projet.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/projet.fxml"));
             loader.setController(new ProjectScreenControler(getPm()));
             Parent proj = loader.load();
             Scene sub = new Scene(proj);

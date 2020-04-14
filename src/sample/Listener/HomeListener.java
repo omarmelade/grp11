@@ -33,7 +33,7 @@ public class HomeListener implements EventHandler {
 
     private void loadHomeScreen(AnchorPane root) throws IOException {
         // on charge la vue
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/connectmembre.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/connectmembre.fxml"));
         // on charge le controller
         loader.setController(new HomeController(this.pm));
         // on charge le parent

@@ -67,7 +67,7 @@ public class ProjectScreenControler implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tabPane.getStylesheets().add(getClass().getResource("../css/Vbox.css").toExternalForm());
+        tabPane.getStylesheets().add(getClass().getResource("/sample/css/Vbox.css").toExternalForm());
 
         deconnexion.addEventHandler(MouseEvent.MOUSE_RELEASED, new DecoListener(this.root));
         accueil.addEventHandler(MouseEvent.MOUSE_RELEASED, new HomeListener(this.root, this.pm));
@@ -87,8 +87,6 @@ public class ProjectScreenControler implements Initializable {
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
-
-
 
     }
 
@@ -132,7 +130,7 @@ public class ProjectScreenControler implements Initializable {
 
         while (i + userI < projectTable.getNbProj()){
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/cardProj.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/cardProj.fxml"));
             Node nodeItem = (Node) loader.load();
             JFXButton btnProj = new JFXButton();
             btnProj.setGraphic(nodeItem);
@@ -159,6 +157,7 @@ public class ProjectScreenControler implements Initializable {
                 i++;
             }
         }
+
         ScrollPane spuser = new ScrollPane(gpAll);
         spuser.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         spuser.setContent(gpUser);
