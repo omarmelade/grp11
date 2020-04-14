@@ -1,10 +1,7 @@
 package sample.model;
 
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class PersonModel {
 
@@ -13,6 +10,7 @@ public class PersonModel {
     private StringProperty nom;
     private StringProperty prenom;
     private IntegerProperty valide;
+    private IntegerProperty admin;
 
 
     public PersonModel(int id, String email, String nom, String prenom){
@@ -22,12 +20,22 @@ public class PersonModel {
         this.prenom = new SimpleStringProperty(prenom);
     }
 
-    public PersonModel(int id, String email, String nom, String prenom, int valide){
+    public PersonModel(int id, String email, String nom, String prenom, int valide, int admin){
         this.id = new SimpleIntegerProperty(id);
         this.email = new SimpleStringProperty(email);
         this.nom = new SimpleStringProperty(nom);
         this.prenom = new SimpleStringProperty(prenom);
         this.valide = new SimpleIntegerProperty(valide);
+        this.admin = new SimpleIntegerProperty(admin);
+    }
+
+
+    public int getAdmin() {
+        return admin.get();
+    }
+
+    public IntegerProperty adminProperty() {
+        return admin;
     }
 
     public int getValide() {

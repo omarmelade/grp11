@@ -22,16 +22,11 @@ public class AddUserProjet implements Runnable {
     public boolean updated;
     private String demande;
 
-    public AddUserProjet(ProjectModel projet, PersonModel user) {
-        this.projet = projet;
-        this.user = user;
-        this.inserted = false;
-    }
-
     public AddUserProjet(ProjectModel projet, PersonModel user, String demande){
         this.projet = projet;
         this.user = user;
         this.demande = demande;
+        this.inserted = false;
         this.updated = false;
     }
 
@@ -78,8 +73,24 @@ public class AddUserProjet implements Runnable {
             // met updated en fonction de la reponse de la requete.
             updated = reponse == 1;
             stmt.close();
+        }else{
+            this.updated = false;
         }
-        this.updated = false;
+        cx.close();
+    }
+
+    private void deleteUserValid() throws SQLException{
+        if(!(this.user == null) || !(this.projet == null)) {
+            PreparedStatement stmt = cx.prepareStatement("DELETE FROM projet_membre WHERE id_projet = ? AND id_membre = ?");
+            stmt.setInt(1,this.projet.getId_projet());
+            stmt.setInt(2,this.user.getId());
+            int reponse = stmt.executeUpdate();
+            // met updated en fonction de la reponse de la requete.
+            this.updated = reponse == 1;
+            stmt.close();
+        }else {
+            this.updated = false;
+        }
         cx.close();
     }
 
@@ -89,7 +100,9 @@ public class AddUserProjet implements Runnable {
             this.cx = Connexion.getConnection();
             if(this.demande.equals("update")){
                 updateUserValid();
-            }else{
+            }else if(this.demande.equals("delete")){
+                deleteUserValid();
+            }else {
                 addUser();
             }
         } catch (SQLException e) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -20,7 +21,7 @@
                   <Label id="labelTitle" fx:id="labelTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="144.0" prefWidth="773.0" text="Ressources" wrapText="true" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="220.0" layoutY="229.0" prefHeight="438.0" prefWidth="324.0">
+            <AnchorPane layoutX="225.0" layoutY="199.0" prefHeight="468.0" prefWidth="324.0">
                <children>
                   <GridPane layoutY="2.0" prefHeight="323.0" prefWidth="324.0">
                     <columnConstraints>
@@ -43,30 +44,31 @@
                               <Cursor fx:constant="TEXT" />
                            </cursor></JFXTextField>
                         <Label id="passLabel" fx:id="nomLabel" text="NOM" GridPane.rowIndex="2" />
-                        <JFXTextField id="nomField" fx:id="nomField" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#931621" GridPane.rowIndex="3">
+                        <JFXTextField id="nomField" fx:id="nomField" focusColor="WHITE" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#931621" GridPane.rowIndex="3">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor></JFXTextField>
                         <Label id="passLabel" fx:id="prenomLabel" text="PRENOM" GridPane.rowIndex="4" />
-                        <JFXTextField id="prenomField" fx:id="prenomField" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#931621" GridPane.rowIndex="5">
+                        <JFXTextField id="prenomField" fx:id="prenomField" focusColor="WHITE" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#931621" GridPane.rowIndex="5">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </JFXTextField>
                         <Label id="passLabel" fx:id="passLabel" text="MOT DE PASSE" GridPane.rowIndex="6" />
-                        <JFXPasswordField id="passField" fx:id="passField" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#931621" GridPane.rowIndex="7">
+                        <JFXPasswordField id="passField" fx:id="passField" focusColor="WHITE" prefHeight="39.0" prefWidth="310.0" text="" unFocusColor="#931621" GridPane.rowIndex="7">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </JFXPasswordField>
                      </children>
                   </GridPane>
-                  <Label fx:id="connexion" accessibleRole="BUTTON" alignment="CENTER" layoutX="97.0" layoutY="415.0" prefHeight="18.0" prefWidth="130.0" style="-fx-text-fill: #fff;" text="J'ai un compte" />
-                  <JFXButton id="registerButton" fx:id="registerButton" contentDisplay="TOP" layoutX="57.0" layoutY="350.0" minWidth="13.0" onAction="#loadSubscription" prefHeight="45.0" prefWidth="211.0" ripplerFill="#fff" text="Inscription" textAlignment="CENTER">
+                  <Label fx:id="connexion" accessibleRole="BUTTON" alignment="CENTER" layoutX="97.0" layoutY="436.0" prefHeight="18.0" prefWidth="130.0" style="-fx-text-fill: #fff;" text="J'ai un compte" />
+                  <JFXButton id="registerButton" fx:id="registerButton" contentDisplay="TOP" layoutX="57.0" layoutY="384.0" minWidth="13.0" onAction="#loadSubscription" prefHeight="45.0" prefWidth="211.0" ripplerFill="#fff" text="Inscription" textAlignment="CENTER">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
+                  <JFXCheckBox fx:id="adminBool" checkedColor="#931621" layoutX="7.0" layoutY="347.0" style="-fx-text-fill: #fff;" text="Directeur" unCheckedColor="WHITE" />
                </children>
             </AnchorPane>
          </children>

@@ -1,26 +1,21 @@
 package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import sample.API.Subscription;
 import sample.Listener.DecoListener;
@@ -28,6 +23,8 @@ import sample.Listener.DecoListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+
 
 public class SubscriptionController implements Initializable {
 
@@ -44,20 +41,21 @@ public class SubscriptionController implements Initializable {
     @FXML
     private JFXPasswordField passField;
     @FXML
+    private JFXCheckBox adminBool;
+    @FXML
     private JFXButton registerButton;
 
 
 
-    /**
-     * Called to initialize a controller after its root element has been
-     * completely processed.
-     *
-     * @param location  The location used to resolve relative paths for the root object, or
-     *                  <tt>null</tt> if the location is not known.
-     * @param resources The resources used to localize the root object, or <tt>null</tt> if
-     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        adminBool.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println(adminBool.isArmed());
+            }});
+
         connexion.addEventHandler(MouseEvent.MOUSE_RELEASED, new DecoListener(this.anchorBack));
 
         connexion.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
@@ -66,6 +64,7 @@ public class SubscriptionController implements Initializable {
                 connexion.getStyleClass().add("hover-btn");
             }
         });
+
         connexion.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -82,13 +81,13 @@ public class SubscriptionController implements Initializable {
 
         anchorBack.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
-            public void handle(KeyEvent event) {
-                if(event.getCode() == KeyCode.ENTER){
-                    loadSubscription();
-                }
-            }
+            public void handle(KeyEvent event) { if(event.getCode() == KeyCode.ENTER){ loadSubscription(); }}
         });
+
+
+
     }
+
 
 
     public void loadSubscription(){
@@ -132,7 +131,6 @@ public class SubscriptionController implements Initializable {
             alert.showAndWait();
         }
     }
-
 
 
 }

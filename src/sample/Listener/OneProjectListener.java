@@ -40,7 +40,7 @@ public class OneProjectListener implements EventHandler {
             // Set position of second window, related to primary window.
             newWindow.setX(root.getScene().getWindow().getX() + 200);
             newWindow.setY(root.getScene().getWindow().getX() + 100);
-
+            newWindow.setResizable(false);
             newWindow.show();
         } catch (IOException e) {
             e.printStackTrace();

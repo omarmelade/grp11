@@ -96,7 +96,7 @@ public class Project implements Runnable {
 
     public PersonTable getUserofProjet(int id_proj) throws SQLException {
         Statement stmt = cx.createStatement();
-        String sql = "SELECT u.id_user, u.email, u.nom, u.prenom, pm.valide FROM projet_membre pm " +
+        String sql = "SELECT u.id_user, u.email, u.nom, u.prenom, pm.valide, u.admin FROM projet_membre pm " +
                 "JOIN utilisateurs u ON pm.id_membre = u.id_user WHERE pm.id_projet = "+ id_proj;
         try {
 
@@ -106,11 +106,12 @@ public class Project implements Runnable {
 
                 int idmembre = rs.getInt("u.id_user");
                 int valide = rs.getInt("pm.valide");
+                int admin = rs.getInt("u.admin");
                 String nom = rs.getString("u.nom");
                 String prenom = rs.getString("u.prenom");
                 String email = rs.getString("u.email");
 
-                PersonModel userMembre = new PersonModel(idmembre, email, nom, prenom, valide);
+                PersonModel userMembre = new PersonModel(idmembre, email, nom, prenom, valide, admin);
                 userMembreTable.add(userMembre);
             }
 

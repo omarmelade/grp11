@@ -7,15 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import sample.API.Project;
 import sample.Listener.DecoListener;
 import sample.Listener.HomeListener;
@@ -23,14 +20,12 @@ import sample.Listener.OneProjectListener;
 import sample.model.PersonModel;
 import sample.model.ProjectModel;
 import sample.model.ProjectTable;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class ProjectScreenControler<var> implements Initializable {
+public class ProjectScreenControler implements Initializable {
 
 
     @FXML
