@@ -8,9 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
-
-
+import sample.API.Ressources;
 
 
 public class Main extends Application{
