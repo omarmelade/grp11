@@ -15,10 +15,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="800.0" maxWidth="1000.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #326771;" stylesheets="@../css/projettab.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" maxHeight="800.0" maxWidth="1000.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #326771;" stylesheets="@../css/projettab.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label prefHeight="116.0" prefWidth="1000.0" style="-fx-background-color: #CACAAA;" />
-      <JFXButton fx:id="homeButton1" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="0.0" layoutX="14.0" layoutY="7.0" prefHeight="103.0" prefWidth="88.0" ripplerFill="BLACK" text="Accueil" textOverrun="CLIP" wrapText="true">
+      <JFXButton fx:id="homebtn" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="0.0" layoutX="14.0" layoutY="7.0" prefHeight="103.0" prefWidth="88.0" ripplerFill="BLACK" text="Accueil" textOverrun="CLIP" wrapText="true">
          <graphic>
             <ImageView cache="true" cacheHint="SCALE_AND_ROTATE" depthTest="DISABLE" fitHeight="66.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -36,7 +36,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="homeButton11" buttonType="RAISED" contentDisplay="TOP" layoutX="877.0" layoutY="6.0" prefHeight="103.0" prefWidth="123.0" ripplerFill="BLACK" text="Déconnexion" textOverrun="CLIP" wrapText="true">
+      <JFXButton fx:id="deconnexionbtn" buttonType="RAISED" contentDisplay="TOP" layoutX="877.0" layoutY="6.0" prefHeight="103.0" prefWidth="123.0" ripplerFill="BLACK" text="Déconnexion" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -57,13 +57,13 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXTabPane layoutX="-1.0" layoutY="116.0" prefHeight="686.0" prefWidth="1000.0">
+      <JFXTabPane fx:id="tabPane" layoutX="-1.0" layoutY="116.0" prefHeight="686.0" prefWidth="1000.0">
          <tabs>
-            <Tab text="Liste des ressources">
+            <Tab fx:id="listRes" text="Liste des ressources">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="1150.0" stylesheets="@../css/projettab.css" />
+                  <AnchorPane fx:id="listroot" prefHeight="200.0" prefWidth="1150.0" stylesheets="@../css/projettab.css" />
                </content></Tab>
-            <Tab text="Ajout d'une ressource">
+            <Tab fx:id="formRes" text="Ajout d'une ressource">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -89,7 +89,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <JFXTextField id="nomField" fx:id="emailField1" focusColor="WHITE" prefHeight="40.0" prefWidth="300.0" promptText="Chartreuse" unFocusColor="#931621" GridPane.rowIndex="1">
+                              <JFXTextField id="batName" fx:id="batName" focusColor="WHITE" prefHeight="40.0" prefWidth="300.0" promptText="Chartreuse" unFocusColor="#931621" GridPane.rowIndex="1">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -97,12 +97,12 @@
                                     <Font size="18.0" />
                                  </font>
                               </JFXTextField>
-                              <Label id="passLabel" fx:id="nomLabel1" text="NUMERO DE SALLE" textFill="WHITE" GridPane.rowIndex="2">
+                              <Label id="passLabel" fx:id="nomLabel1" text="NOM DE LA SALLE" textFill="WHITE" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <JFXTextField id="objectifField" fx:id="nomField1" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="65" text="" unFocusColor="#931621" GridPane.rowIndex="3">
+                              <JFXTextField id="nomSalle" fx:id="nomSalle" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="CHATOYANT" unFocusColor="#931621" GridPane.rowIndex="3">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -115,7 +115,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <JFXTextField id="langageField" fx:id="prenomField12" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="25" text="" unFocusColor="#931621" GridPane.rowIndex="5">
+                              <JFXTextField id="nbPlace" fx:id="nbPlace" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="25" text="" unFocusColor="#931621" GridPane.rowIndex="5">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -128,7 +128,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <JFXTextField id="langageField" fx:id="prenomField1" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="1" text="" unFocusColor="#931621" GridPane.rowIndex="7">
+                              <JFXTextField id="videoProj" fx:id="videoProj" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="1" text="" unFocusColor="#931621" GridPane.rowIndex="7">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -141,7 +141,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <JFXTextField id="langageField" fx:id="prenomField13" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="15" text="" unFocusColor="#931621" GridPane.rowIndex="9">
+                              <JFXTextField id="pc" fx:id="pc" focusColor="#fcfcfc" prefHeight="39.0" prefWidth="310.0" promptText="15" text="" unFocusColor="#931621" GridPane.rowIndex="9">
                                  <cursor>
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
@@ -151,7 +151,7 @@
                               </JFXTextField>
                            </children>
                         </GridPane>
-                        <JFXButton id="registerButton" fx:id="registerButton1" contentDisplay="TOP" layoutX="423.0" layoutY="513.0" minWidth="13.0" prefHeight="45.0" prefWidth="157.0" ripplerFill="#fff" style="-fx-background-color: #28464B;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
+                        <JFXButton id="createRes" fx:id="createRes" contentDisplay="TOP" layoutX="423.0" layoutY="513.0" minWidth="13.0" prefHeight="45.0" prefWidth="157.0" ripplerFill="#fff" style="-fx-background-color: #28464B;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>

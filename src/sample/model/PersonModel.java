@@ -29,9 +29,17 @@ public class PersonModel {
         this.admin = new SimpleIntegerProperty(admin);
     }
 
+    public PersonModel(int id, String email, String nom, String prenom, int admin) {
+        this.id = new SimpleIntegerProperty(id);
+        this.email = new SimpleStringProperty(email);
+        this.nom = new SimpleStringProperty(nom);
+        this.prenom = new SimpleStringProperty(prenom);
+        this.admin = new SimpleIntegerProperty(admin);
+    }
 
-    public int getAdmin() {
-        return admin.get();
+
+    public boolean estAdmin() {
+        return admin.get() == 1 ;
     }
 
     public IntegerProperty adminProperty() {

@@ -100,10 +100,9 @@ public class MainController implements Initializable {
                         // recuperation de l'utilisateur connnecté
                     this.pm = login.getPm();
                         // insctanciation du controller et passage de user en param
-                    HomeController hm = new HomeController(this.pm);
+                        HomeController hm = new HomeController(this.pm);
                         // on charge la vue
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/connectmembre.fxml"));
-
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/connectmembre.fxml"));
                         // on charge le controller
                     loader.setController(hm);
                         // on charge le parent

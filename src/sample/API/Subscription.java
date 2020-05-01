@@ -13,15 +13,17 @@ public class Subscription implements Runnable{
 
     private Connection cx;
     private String email, nom, prenom, pass;
+    private int admin;
     public String res;
     public boolean sub;
     private PersonModel newUser;
 
-    public Subscription(String email, String nom, String prenom, String pass) {
+    public Subscription(String email, String nom, String prenom, String pass, int admin) {
         this.email = email;
         this.nom = nom;
         this.prenom = prenom;
         this.pass = pass;
+        this.admin = admin;
     }
 
     public boolean emailExist(String emailtest) throws SQLException {
@@ -44,10 +46,11 @@ public class Subscription implements Runnable{
                 System.out.println("L'email n'existe pas dans la base");
                 try (Statement stmt = cx.createStatement()) {
                     System.out.println("on execute l'insertion");
-                    String sql = "INSERT INTO utilisateurs (email, nom, prenom, password) VALUES ('" + this.email + "' , '" + this.nom + "' , '" + this.prenom + "' , '" + this.pass + "')";
+                    String sql = "INSERT INTO utilisateurs (email, nom, prenom, password, admin) VALUES ('" + this.email + "' , '" + this.nom + "' , '" + this.prenom + "' , '" + this.pass + "', '" + this.admin + "')";
                     stmt.executeUpdate(sql);
                     this.sub = true;
                     stmt.close();
+                    cx.close();
                     loadUser(this.email, this.pass);
                 } catch (SQLException sq) {
                     System.err.println(sq);

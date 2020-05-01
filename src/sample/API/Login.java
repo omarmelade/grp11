@@ -12,7 +12,7 @@ public class Login implements Runnable{
 
     private Connection cx;
     private String email, password, nom, prenom;
-    private int id;
+    private int id, admin;
     public boolean connected;
     private PersonModel pm;
 
@@ -40,6 +40,7 @@ public class Login implements Runnable{
                         this.nom = rs.getString("nom");
                         this.prenom = rs.getString("prenom");
                         this.id = rs.getInt("id_user");
+                        this.admin = rs.getInt("admin");
                     }
 
                 }
@@ -63,6 +64,6 @@ public class Login implements Runnable{
     }
 
     public PersonModel getPm() {
-        return new PersonModel(this.id, this.email, this.nom, this.prenom);
+        return new PersonModel(this.id, this.email, this.nom, this.prenom, this.admin);
     }
 }
