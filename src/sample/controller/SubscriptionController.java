@@ -89,11 +89,14 @@ public class SubscriptionController implements Initializable {
         String nom = nomField.getText();
         String prenom = prenomField.getText();
         String pass = passField.getText();
-        Subscription sub = new Subscription(email, nom, prenom, pass);
+        Subscription sub = new Subscription(email, nom, prenom, pass, admin);
         sub.run();
         if(!email.equals("") && !pass.equals("")) {
             if (sub.sub) {
                 try {
+                    if(admin == 1){
+                        System.out.println("il est admin");
+                    }
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/connectmembre.fxml"));
 
                     HomeController hm = new HomeController(sub.getNewUser());

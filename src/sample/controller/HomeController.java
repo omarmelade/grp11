@@ -1,36 +1,22 @@
 package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTabPane;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sample.Listener.AccountListener;
 import sample.Listener.DecoListener;
+import sample.Listener.RessourcesListener;
 import sample.model.PersonModel;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -78,33 +64,13 @@ public class HomeController implements Initializable {
                 try { loadProjectScreen(); } catch (IOException e) { e.printStackTrace(); System.out.println("ff"); }}}
         );
 
-        messagerie.setDisable(true);
         agenda.setDisable(true);
-//        agenda.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                Label secondLabel = new Label("I'm a Label on new Window");
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/projetclic.fxml"));
-//                Parent root = null;
-//                try {
-//                    root = loader.load();
-//                    Scene secondScene = new Scene(root, 1000, 800);
-//                    // New window (Stage)
-//                    Stage newWindow = new Stage();
-//                    newWindow.setTitle("Second Stage");
-//                    newWindow.setScene(secondScene);
-//
-//                    // Set position of second window, related to primary window.
-//                    newWindow.setX(getStage().getX() + 200);
-//                    newWindow.setY(getStage().getY() + 100);
-//
-//                    newWindow.show();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        });
+        messagerie.setVisible(false);
+        if(this.pm.estAdmin()){
+            messagerie.setVisible(true);
+            messagerie.addEventHandler(MouseEvent.MOUSE_RELEASED, new RessourcesListener(this.anchorBack, "/sample/view/gestionressources.fxml", getPm()));
+        }
+
     }
 
 

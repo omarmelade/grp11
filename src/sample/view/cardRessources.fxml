@@ -8,27 +8,48 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="152.0" prefWidth="554.0" style="-fx-background-color: #CACAAA;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="140.0" prefWidth="574.0" style="-fx-background-color: #CACAAA;" styleClass="card" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="nomProj" layoutX="14.0" layoutY="14.0" prefHeight="41.0" prefWidth="260.0" style="-fx-font-size: 29; -fx-text-fill: #000;" text="Batiment :" />
-      <Label fx:id="descriptionProj" layoutX="14.0" layoutY="70.0" prefHeight="57.0" prefWidth="137.0" style="-fx-font-size: 12; -fx-text-fill: #000;" text="Video-projecteur : " />
-      <Label fx:id="chefProj" layoutX="306.0" layoutY="15.0" prefHeight="41.0" prefWidth="193.0" style="-fx-font-size: 15; -fx-text-fill: #000;" text="Salle n° : " />
-      <Label fx:id="descriptionProj1" layoutX="193.0" layoutY="70.0" prefHeight="57.0" prefWidth="131.0" style="-fx-font-size: 12; -fx-text-fill: #000;" text="Place :" />
-      <Label fx:id="descriptionProj11" layoutX="337.0" layoutY="70.0" prefHeight="57.0" prefWidth="131.0" style="-fx-font-size: 12; -fx-text-fill: #000;" text="PC :" />
-      <JFXButton contentDisplay="CENTER" layoutX="520.0" prefHeight="29.0" prefWidth="31.0" text="." textFill="RED">
-         <graphic>
-            <ImageView fitHeight="95.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../ressources/ongletressources/croix.png" />
-               </image>
-            </ImageView>
-         </graphic>
+      <Label fx:id="nomSalle" layoutX="24.0" layoutY="11.0" prefHeight="41.0" prefWidth="432.0" style="-fx-font-size: 29; -fx-text-fill: #000;" />
+      <Label fx:id="nomBat" layoutX="24.0" layoutY="59.0" prefHeight="22.0" prefWidth="252.0" style="-fx-font-size: 18; -fx-text-fill: #000;" text="Batiment :" />
+      <ImageView fitHeight="41.0" fitWidth="46.0" layoutX="48.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ressources/ongletressources/videoproj.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="videoproj" alignment="CENTER" layoutX="97.0" layoutY="98.0" prefHeight="29.0" prefWidth="46.0" style="-fx-font-size: 18; -fx-text-fill: #000;" text="0" />
+      <ImageView fitHeight="41.0" fitWidth="46.0" layoutX="179.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ressources/ongletressources/nbperson.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nbplaces" alignment="CENTER" layoutX="227.0" layoutY="98.0" prefHeight="29.0" prefWidth="46.0" style="-fx-font-size: 18; -fx-text-fill: #000;" text="0" />
+      <ImageView fitHeight="41.0" fitWidth="46.0" layoutX="307.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ressources/ongletressources/laptop.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="ordi" alignment="CENTER" layoutX="353.0" layoutY="98.0" prefHeight="29.0" prefWidth="46.0" style="-fx-font-size: 18; -fx-text-fill: #000;" text="0" />
+      <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="433.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ressources/ongletressources/porte.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="numSalle" layoutX="480.0" layoutY="92.0" prefHeight="41.0" prefWidth="46.0" style="-fx-font-size: 18; -fx-text-fill: #000;" text="N° : " />
+      <JFXButton fx:id="suppr" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="572.0" layoutY="11.0" minWidth="41.0" prefHeight="29.0" prefWidth="41.0" textFill="RED" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
          <font>
             <Font size="1.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <graphic>
+            <ImageView fitHeight="95.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ressources/ongletressources/cross.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </JFXButton>
    </children>
    <cursor>
