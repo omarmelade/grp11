@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="737.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Pane layoutX="-52.0" prefHeight="737.0" prefWidth="804.0" style="-fx-background-color: #326771;"
+              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+              AnchorPane.topAnchor="0.0">
+            <children>
+                <GridPane fx:id="agendaPane" gridLinesVisible="true" layoutX="-1.0" layoutY="173.0" prefHeight="564.0"
+                          prefWidth="834.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="113.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cacaca;"/>
+                    </children>
+                    <padding>
+                        <Insets left="67.0"/>
+                    </padding>
+                </GridPane>
+                <Label fx:id="lundiLabel" layoutX="73.0" layoutY="139.0" prefHeight="28.0" prefWidth="143.0"
+                       style="-fx-font-size: 20;" text="LUNDI"/>
+                <Label fx:id="mardiLabel" layoutX="222.0" layoutY="139.0" prefHeight="30.0" prefWidth="154.0"
+                       style="-fx-font-size: 20;" text="MARDI"/>
+                <Label fx:id="mercrediLabel" layoutX="382.0" layoutY="139.0" prefHeight="30.0" prefWidth="154.0"
+                       style="-fx-font-size: 20;" text="MERCREDI"/>
+                <Label fx:id="jeudiLabel" layoutX="532.0" layoutY="139.0" prefHeight="30.0" prefWidth="143.0"
+                       style="-fx-font-size: 20;" text="JEUDI"/>
+                <Label fx:id="venLabel" layoutX="682.0" layoutY="139.0" prefHeight="30.0" prefWidth="154.0"
+                       style="-fx-font-size: 20;" text="VENDREDI"/>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="187.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="8H"/>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="224.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="10H"/>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="292.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="10H"/>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="322.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="12H"/>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="381.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="12H"/>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="411.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="14H"/>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="473.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="14H"/>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="503.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="16H"/>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="560.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="16H"/>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="598.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="18H"/>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="655.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="18H"/>
+                <Label accessibleRole="BUTTON" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="5.0"
+                       layoutY="693.0" prefHeight="30.0" prefWidth="58.0" style="-fx-font-size: 25;" text="20H"/>
+                <JFXButton fx:id="semaineMoins" cache="true" cacheHint="SCALE" layoutX="272.0" layoutY="80.0"
+                           minWidth="53.0" prefHeight="24.0" prefWidth="53.0" ripplerFill="#cacaca"
+                           style="-fx-background-color: #326771;">
+                    <graphic>
+                        <ImageView fitHeight="90.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ressources/agenda/arrow_left_black_48dp.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="semainePlus" contentDisplay="GRAPHIC_ONLY" layoutX="503.0" layoutY="80.0"
+                           minWidth="53.0" prefHeight="24.0" prefWidth="58.0" ripplerFill="#cacaca"
+                           style="-fx-background-color: #326771;" wrapText="true">
+                    <graphic>
+                        <ImageView fitHeight="44.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ressources/agenda/arrow_right_black_48dp.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <Label fx:id="nSemaine" layoutX="337.0" layoutY="92.0"
+                       style="-fx-font-size: 20; -fx-text-fill: #cacaca;" text="SEMAINE "/>
+                <Label fx:id="moisLabel" layoutX="342.0" layoutY="32.0" prefHeight="32.0" prefWidth="169.0"
+                       style="-fx-font-size: 20; -fx-text-fill: #cacaca;" text="MOIS"/>
+                <JFXButton fx:id="moisPlus" contentDisplay="GRAPHIC_ONLY" layoutX="503.0" layoutY="24.0" minWidth="53.0"
+                           prefHeight="24.0" prefWidth="58.0" ripplerFill="#cacaca"
+                           style="-fx-background-color: #326771;" wrapText="true">
+                    <graphic>
+                        <ImageView fitHeight="44.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ressources/agenda/arrow_right_black_48dp.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="moisMoins" cache="true" cacheHint="SCALE" layoutX="272.0" layoutY="24.0"
+                           minWidth="53.0" prefHeight="24.0" prefWidth="53.0" ripplerFill="#cacaca"
+                           style="-fx-background-color: #326771;">
+                    <graphic>
+                        <ImageView fitHeight="90.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ressources/agenda/arrow_left_black_48dp.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <Label fx:id="anneeLabel" layoutX="622.0" layoutY="34.0" prefHeight="32.0" prefWidth="169.0"
+                       style="-fx-font-size: 50; -fx-text-fill: #183136;" text="ANNEE"/>
+                <JFXButton fx:id="todayBtn" buttonType="RAISED" layoutX="34.0" layoutY="38.0"
+                           nodeOrientation="LEFT_TO_RIGHT" prefHeight="52.0" prefWidth="169.0" ripplerFill="#bbcacd"
+                           style="-fx-background-color: #326771; -fx-border-radius: 5em;" text="AUJOURD'HUI"
+                           textOverrun="CLIP" wrapText="true">
+                    <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../ressources/agenda/replay_white_48dp.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <Label alignment="CENTER" layoutX="5.0" layoutY="685.0" prefHeight="30.0" prefWidth="58.0"
+                       style="-fx-font-size: 25;" text="20H"/>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
