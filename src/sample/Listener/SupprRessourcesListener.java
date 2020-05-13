@@ -3,13 +3,10 @@ package sample.Listener;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
 import sample.API.Ressources;
 import sample.controller.RessourcesController;
 import sample.model.RessourcesModel;
 import sample.model.RessourcesTable;
-
-import java.util.Observable;
 
 public class SupprRessourcesListener implements EventHandler {
 

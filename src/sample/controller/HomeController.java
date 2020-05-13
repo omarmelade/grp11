@@ -12,11 +12,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sample.Listener.AccountListener;
+import sample.Listener.AgendaListener;
 import sample.Listener.DecoListener;
 import sample.Listener.RessourcesListener;
 import sample.model.PersonModel;
 
-import java.awt.event.MouseAdapter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -59,14 +59,22 @@ public class HomeController implements Initializable {
         comptebtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new AccountListener(this.anchorBack, "/sample/view/compte.fxml", getPm()));
 
         projetbtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                try { loadProjectScreen(); } catch (IOException e) { e.printStackTrace(); System.out.println("ff"); }}}
+                    @Override
+                    public void handle(MouseEvent event) {
+                        try {
+                            loadProjectScreen();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.println("ff");
+                        }
+                    }
+                }
         );
 
-        agenda.setDisable(true);
+        agenda.setDisable(false);
+        agenda.addEventHandler(MouseEvent.MOUSE_RELEASED, new AgendaListener(this.anchorBack, "/sample/view/mainAgenda.fxml"));
         messagerie.setVisible(false);
-        if(this.pm.estAdmin()){
+        if (this.pm.estAdmin()) {
             messagerie.setVisible(true);
             messagerie.addEventHandler(MouseEvent.MOUSE_RELEASED, new RessourcesListener(this.anchorBack, "/sample/view/gestionressources.fxml", getPm()));
         }
