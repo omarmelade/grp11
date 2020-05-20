@@ -28,10 +28,10 @@ public class AgendaListener implements EventHandler {
 
     @Override
     public void handle(Event event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/agenda.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/mainAgenda.fxml"));
         Parent root = null;
         try {
-            loader.setController(new AgendaController());
+            loader.setController(new MainAgendaController());
             root = loader.load();
             Scene secondScene = new Scene(root);
             // New window (Stage)
@@ -39,8 +39,8 @@ public class AgendaListener implements EventHandler {
             newWindow.setScene(secondScene);
 
             // Set position of second window, related to primary window.
-            newWindow.setX(root.getScene().getWindow().getX() + 200);
-            newWindow.setY(root.getScene().getWindow().getX() + 100);
+            newWindow.setX(root.getScene().getWindow().getX() + 40);
+            newWindow.setY(root.getScene().getWindow().getY() + 20);
             newWindow.setResizable(false);
             newWindow.show();
         } catch (IOException e) {
