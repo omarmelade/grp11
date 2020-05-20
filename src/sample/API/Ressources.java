@@ -76,11 +76,11 @@ public class Ressources implements Runnable {
         }
     }
 
-/* On doit crée les classes
-* @RessourcesTable et
-* @RessoucresModel avant. "../model"w
-*/
-     private void getRessourcesMain() throws SQLException{
+    /* On doit crée les classes
+     * @RessourcesTable et
+     * @RessoucresModel avant. "../model"w
+     */
+    private void getRessourcesMain() throws SQLException{
         PreparedStatement stmt = cx.prepareStatement("SELECT * FROM salle");
         ResultSet rs = stmt.executeQuery();
 

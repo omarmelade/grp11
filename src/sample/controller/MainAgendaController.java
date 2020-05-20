@@ -57,5 +57,7 @@ public class MainAgendaController implements Initializable {
         reunionGroup.getItems().add(new Label("GROUPE AEROPORT"));
         reunionGroup.getItems().add(new Label("GROUPE MAIRIE"));
     }
+
+
 }
 

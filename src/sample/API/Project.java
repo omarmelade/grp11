@@ -7,6 +7,7 @@ import sample.model.ProjectModel;
 import sample.model.ProjectTable;
 
 import java.sql.*;
+import java.util.Date;
 
 public class Project implements Runnable {
 
@@ -26,6 +27,7 @@ public class Project implements Runnable {
     // attributs pour insereer
     private String nomNewProj, descNewProj;
     private int new_id_proprio;
+    private Date dateFin;
     private PersonModel user;
 
     // attributs pour recup les membres
@@ -48,12 +50,13 @@ public class Project implements Runnable {
 
 
     // pour cree un projet
-    public Project(String nomNewProj, String descNewProj, int new_id_proprio, String demande, PersonModel user) {
+    public Project(String nomNewProj, String descNewProj, int new_id_proprio, String demande, PersonModel user, Date dateFin) {
         this.nomNewProj = nomNewProj;
         this.descNewProj = descNewProj;
         this.new_id_proprio = new_id_proprio;
         this.demande = demande;
         this.user = user;
+        this.dateFin=dateFin;
     }
 
 
@@ -71,6 +74,7 @@ public class Project implements Runnable {
                 String nom_proj = rs.getString("p.nom_projet");
                 String desc = rs.getString("p.description");
                 String email_proprio = rs.getString("u.email");
+                Date dateFin = rs.getDate("p.dateFin");
 
                 //on recuperer les membres
                 PersonTable membreProj = getUserofProjet(id_proj);

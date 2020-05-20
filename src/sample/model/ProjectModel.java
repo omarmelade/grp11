@@ -3,31 +3,36 @@ package sample.model;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.Date;
+
 public class ProjectModel {
 
     private ProjectModel project;
 
     private SimpleStringProperty nom, description, email_proprio;
     private SimpleIntegerProperty id_projet, id_proprio;
+    private Date dateFin;
 
     private PersonTable listMembres;
 
 
-    public ProjectModel(int id_projet, int id_proprio, String nom, String description, String email_proprio){
+    public ProjectModel(int id_projet, int id_proprio, String nom, String description, String email_proprio,Date dateFin ){
         this.id_projet = new SimpleIntegerProperty(id_projet);
         this.id_proprio = new SimpleIntegerProperty(id_proprio);
         this.nom = new SimpleStringProperty(nom);
         this.description = new SimpleStringProperty(description);
         this.email_proprio = new SimpleStringProperty(email_proprio);
+        this.dateFin = new Date(String.valueOf(dateFin));
     }
 
-    public ProjectModel(int id_projet, int id_proprio, String nom, String description, String email_proprio, PersonTable listMembres ){
+    public ProjectModel(int id_projet, int id_proprio, String nom, String description, String email_proprio, PersonTable listMembres,Date dateFin  ){
         this.id_projet = new SimpleIntegerProperty(id_projet);
         this.id_proprio = new SimpleIntegerProperty(id_proprio);
         this.nom = new SimpleStringProperty(nom);
         this.description = new SimpleStringProperty(description);
         this.email_proprio = new SimpleStringProperty(email_proprio);
         this.listMembres = listMembres;
+        this.dateFin = new Date(String.valueOf(dateFin));
     }
 
     public PersonTable getListMembres() {
@@ -74,6 +79,14 @@ public class ProjectModel {
         return id_proprio;
     }
 
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+
     // retourne le projet en tant qu'object
     public ProjectModel getProjet(){
         return this.project;
@@ -86,6 +99,7 @@ public class ProjectModel {
                 ", description=" + description +
                 ", id_projet=" + id_projet +
                 ", id_proprio=" + id_proprio +
+                ", date de fin =" + dateFin +
                 '}';
     }
 }
