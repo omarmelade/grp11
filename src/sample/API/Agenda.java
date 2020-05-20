@@ -89,16 +89,16 @@ public class Agenda implements Runnable {
         ResultSet rs = stmt.executeQuery();
 
         AgendaTable at = new AgendaTable();
-        while(rs.next()){
-            Label reunionName = rs.getString("reunionName");
-            JFXComboBox<Label> reunionGroup = rs.getString("reunionGroup");
-            JFXDatePicker reunionDate = rs.getString("reunionDate");
-            JFXTimePicker debutHoraire= rs.getString("debutHoraire");
-            JFXTimePicker finHoraire = rs.getString("finHoraire");
+        //while(rs.next()){
+          //  Label reunionName = rs.getString("reunionName");
+          //  JFXComboBox<Label> reunionGroup = rs.getString("reunionGroup");
+          //  JFXDatePicker reunionDate = rs.getString("reunionDate");
+          //  JFXTimePicker debutHoraire= rs.getString("debutHoraire");
+          //  JFXTimePicker finHoraire = rs.getString("finHoraire");
 
-            AgendaModel am = new AgendaModel(reunionName, reunionGroup, reunionDate, debutHoraire, finHoraire);
-            this.at.ajouteAgenda(am);
-        }
+          //  AgendaModel am = new AgendaModel(reunionName, reunionGroup, reunionDate, debutHoraire, finHoraire);
+          //  this.at.ajouteAgenda(am);
+       // }
         rs.close();
         stmt.close();
         cx.close();
