@@ -105,9 +105,6 @@ public class AgendaController extends Observable implements Initializable {
 
     // ajoute une reunion sur la grille
     public void addToGpt(String nomReunion, LocalDate dateReu, LocalTime startH, LocalTime endH) {
-        if (weekNumEquals(today, dateReu)) {
-
-        }
     }
 
     // met le jour a "aujourd'hui"

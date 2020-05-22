@@ -85,7 +85,7 @@ public class Agenda implements Runnable {
 
 
     private void getAgendaMain() throws SQLException{
-        PreparedStatement stmt = cx.prepareStatement("SELECT * FROM agenda");
+        PreparedStatement stmt = cx.prepareStatement("SELECT * FROM agenda ORDER BY reunionDate");
         ResultSet rs = stmt.executeQuery();
 
         while(rs.next()) {

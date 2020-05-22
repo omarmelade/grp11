@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import org.controlsfx.control.PopOver;
 import sample.constantes.Constantes;
 import sample.model.AgendaModel;
@@ -45,9 +46,18 @@ public class GridPaneTrackController implements Initializable, Observer {
         initialize();
     }
 
-    public LocalDate dataToDate(AgendaModel data) {
-        String date = data.getDateReu();
+    public LocalDate dataToDate(AgendaModel m) {
+        String date = m.getDateReu();
         return LocalDate.parse(date, formatter);
+    }
+
+    public LocalDateTime dataTotime(AgendaModel m) {
+        String date = m.getDateReu();
+        String time = m.getDebutReu().toString();
+        // on enleve les secondes
+        time = time.substring(0, 5);
+        //System.out.println(time);
+        return LocalDateTime.parse(date + " " + time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     public boolean memeSemaine(String date1, String date2) {
@@ -55,15 +65,19 @@ public class GridPaneTrackController implements Initializable, Observer {
     }
 
     public void initialize() {
+        this.grid.setMaxSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
 
         for (int i = 0; i <= numCols; i++) {
             ColumnConstraints colConstraints = new ColumnConstraints();
+            colConstraints.setPercentWidth(22);
+            colConstraints.setFillWidth(true);
             colConstraints.setHgrow(Priority.SOMETIMES);
             this.grid.getColumnConstraints().add(colConstraints);
         }
 
         for (int i = 0; i <= numRows; i++) {
             RowConstraints rowConstraints = new RowConstraints();
+            rowConstraints.setFillHeight(true);
             rowConstraints.setVgrow(Priority.SOMETIMES);
             this.grid.getRowConstraints().add(rowConstraints);
         }
@@ -72,6 +86,7 @@ public class GridPaneTrackController implements Initializable, Observer {
     }
 
     private void paneOnGrid() {
+
         for (int i = 0; i <= numCols; i++) {
             for (int j = 0; j <= numRows; j++) {
                 addPane(i, j);
@@ -84,17 +99,30 @@ public class GridPaneTrackController implements Initializable, Observer {
         LocalDateTime debut = arr.get(0);
         LocalDateTime fin = arr.get(1);
         Label lblName = new Label(debut.toLocalTime().toString());
+
         Label lblStreet = new Label(fin.toLocalTime().toString());
         Label date = new Label(debut.toLocalDate().toString());
         VBox vBox = new VBox(lblName, lblStreet, date);
         HBox hBox = new HBox(vBox);
 
         PopOver popOver = new PopOver(hBox);
+        Pane pane = new Pane(new Label(""));
 
-        Pane pane = new Pane(new Label("Clique."));
+        if (debut.toLocalDate().toString().equals(dataToDate(this.data.getArrayAgenda().get(0)).toString())) {
+            if (debut.toLocalTime().toString().equals(dataTotime(this.data.getArrayAgenda().get(0)).toLocalTime().toString())) {
+                AgendaModel a = this.data.getArrayAgenda().get(0);
+                Label name = new Label("REUNION : " + a.getNomreu());
+                name.setTextFill(Paint.valueOf("fff"));
+                name.setWrapText(true);
+                pane = new Pane(name);
+                //System.err.println( debut.toLocalDate() + " EGAL " + dataToDate(this.data.getArrayAgenda().get(0)));
+            }
 
+        }
+
+        Pane finalPane = pane;
         pane.setOnMouseEntered(e -> {
-            popOver.show(pane);
+            popOver.show(finalPane);
         });
         pane.setOnMouseExited(e -> {
             popOver.hide();
@@ -103,7 +131,8 @@ public class GridPaneTrackController implements Initializable, Observer {
         try {
             this.grid.add(pane, colIndex, rowIndex);
         } catch (NullPointerException e) {
-            System.out.println(colIndex + "  " + rowIndex);
+            //System.out.println(colIndex + "  " + rowIndex);
+            //e.printStackTrace();
         }
     }
 
@@ -141,6 +170,5 @@ public class GridPaneTrackController implements Initializable, Observer {
         System.out.println(caseToDate(0, 0));
         paneOnGrid();
     }
-
 
 }
