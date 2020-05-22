@@ -1,27 +1,28 @@
 package sample.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTimePicker;
+import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class MainAgendaController implements Initializable {
 
     @FXML
-    public Label reunionName;
+    public JFXTextField reunionName;
     @FXML
     public JFXComboBox<Label> reunionGroup;
+    @FXML
+    public JFXComboBox<Label> salleChoix;
     @FXML
     public JFXDatePicker reunionDate;
     @FXML
@@ -35,8 +36,13 @@ public class MainAgendaController implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
-    private Pane agendapane;
+    private AnchorPane agendapane;
 
+    private AgendaController ac;
+
+    public MainAgendaController() {
+        ac = new AgendaController();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -45,11 +51,12 @@ public class MainAgendaController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        reunionAdd.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> addReunion());
     }
 
     private void initAgenda() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/agenda.fxml"));
-        loader.setController(new AgendaController());
+        loader.setController(ac);
         Node nodeitem = loader.load();
         agendapane.getChildren().add(nodeitem);
         debutHoraire._24HourViewProperty().setValue(true);
@@ -57,5 +64,38 @@ public class MainAgendaController implements Initializable {
         reunionGroup.getItems().add(new Label("GROUPE AEROPORT"));
         reunionGroup.getItems().add(new Label("GROUPE MAIRIE"));
     }
+
+    private void addReunion() {
+        String nomGroupe = getReunionGroupe();
+        String nomReunion = getReunionName();
+        LocalDate dateReu = getReunionDate();
+        LocalTime startH = getReunionStart();
+        LocalTime endH = getReunionEnd();
+        System.out.println(nomReunion + " pour le " + nomGroupe + " le " + dateReu.toString()
+                + " à partir de : " + startH + " jusqu'à : " + endH + ".");
+        ac.addToGpt(nomReunion, dateReu, startH, endH);
+    }
+
+    private LocalTime getReunionEnd() {
+        return finHoraire.getValue();
+    }
+
+    private LocalTime getReunionStart() {
+        return debutHoraire.getValue();
+    }
+
+    private LocalDate getReunionDate() {
+        return reunionDate.getValue();
+    }
+
+    private String getReunionName() {
+        return reunionName.getText();
+    }
+
+    private String getReunionGroupe() {
+        return reunionGroup.getValue().getText();
+    }
+
+
 }
 

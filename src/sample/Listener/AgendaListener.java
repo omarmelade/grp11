@@ -27,7 +27,6 @@ public class AgendaListener implements EventHandler {
             loadScreen(this.root, this.uri);
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println(e);
         }
     }
 
@@ -37,7 +36,7 @@ public class AgendaListener implements EventHandler {
         loader.setController(new MainAgendaController());
         Parent def = loader.load();
         Scene s = new Scene(def);
-        Stage appStage = (Stage) root.getScene().getWindow();
+        Stage appStage = new Stage();
         appStage.setScene(s);
         appStage.show();
     }

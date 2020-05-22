@@ -1,77 +1,75 @@
 package sample.model;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTimePicker;
-import javafx.scene.control.Label;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
+import java.sql.Time;
 
 public class AgendaModel {
 
-    private AgendaModel am;
+    private SimpleIntegerProperty id_reu, id_projet;
+    private SimpleStringProperty nomreu, dateReu;
+    private Time debutReu, finReu;
 
-    public Label reunionName;
-    public JFXComboBox<Label> reunionGroup;
-    private JFXDatePicker reunionDate;
-    public JFXTimePicker debutHoraire;
-    private JFXTimePicker finHoraire;
 
-    public AgendaModel(Label reunionName, JFXComboBox<Label> reunionGroup, JFXDatePicker reunionDate, JFXTimePicker debutHoraire, JFXTimePicker finHoraire){
-        this.reunionName = reunionName;
-        this.reunionGroup = reunionGroup;
-        this.reunionDate = reunionDate;
-        this.debutHoraire = debutHoraire;
-        this.finHoraire = finHoraire;
+    public AgendaModel(int id_reu, int id_projet, String nomreu, String dateReu, Time debutReu, Time finReu) {
+        this.id_reu = new SimpleIntegerProperty(id_reu);
+        this.id_projet = new SimpleIntegerProperty(id_projet);
+        this.nomreu = new SimpleStringProperty(nomreu);
+        this.dateReu = new SimpleStringProperty(dateReu);
+        this.debutReu = debutReu;
+        this.finReu = finReu;
     }
 
-    public Label getReunionName() {
-        return reunionName;
+    public int getId_reu() {
+        return id_reu.get();
     }
 
-    public void setReunionName(Label reunionName) {
-        this.reunionName = reunionName;
+    public SimpleIntegerProperty id_reuProperty() {
+        return id_reu;
     }
 
-    public JFXComboBox<Label> getReunionGroup() {
-        return reunionGroup;
+    public int getId_projet() {
+        return id_projet.get();
     }
 
-    public void setReunionGroup(JFXComboBox<Label> reunionGroup) {
-        this.reunionGroup = reunionGroup;
+    public SimpleIntegerProperty id_projetProperty() {
+        return id_projet;
     }
 
-    public JFXDatePicker getReunionDate() {
-        return reunionDate;
+    public String getNomreu() {
+        return nomreu.get();
     }
 
-    public void setReunionDate(JFXDatePicker reunionDate) {
-        this.reunionDate = reunionDate;
+    public SimpleStringProperty nomreuProperty() {
+        return nomreu;
     }
 
-    public JFXTimePicker getDebutHoraire() {
-        return debutHoraire;
+    public String getDateReu() {
+        return dateReu.get();
     }
 
-    public void setDebutHoraire(JFXTimePicker debutHoraire) {
-        this.debutHoraire = debutHoraire;
+    public SimpleStringProperty dateReuProperty() {
+        return dateReu;
     }
 
-    public JFXTimePicker getFinHoraire() {
-        return finHoraire;
+    public Time getDebutReu() {
+        return debutReu;
     }
 
-    public void setFinHoraire(JFXTimePicker finHoraire) {
-        this.finHoraire = finHoraire;
+    public Time getFinReu() {
+        return finReu;
     }
 
     @Override
     public String toString() {
         return "AgendaModel{" +
-                "am=" + am +
-                ", reunionName=" + reunionName +
-                ", reunionGroup=" + reunionGroup +
-                ", reunionDate=" + reunionDate +
-                ", debutHoraire=" + debutHoraire +
-                ", finHoraire=" + finHoraire +
+                "id_reu=" + id_reu +
+                ", id_projet=" + id_projet +
+                ", nomreu=" + nomreu +
+                ", dateReu=" + dateReu +
+                ", debutReu=" + debutReu +
+                ", finReu=" + finReu +
                 '}';
     }
 }

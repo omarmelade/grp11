@@ -1,16 +1,11 @@
 package sample.API;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTimePicker;
-import javafx.scene.control.Label;
-
 import sample.Connexion;
 import sample.model.AgendaModel;
 import sample.model.AgendaTable;
 
-import java.sql.Connection;
 import java.sql.*;
+import java.time.LocalTime;
 
 public class Agenda implements Runnable {
 
@@ -22,35 +17,40 @@ public class Agenda implements Runnable {
     private AgendaModel am;
 
     // attrubuts d'objets agenda
-    public Label reunionName;
-    public JFXComboBox<Label> reunionGroup;
-    private JFXDatePicker reunionDate;
-    public JFXTimePicker debutHoraire;
-    private JFXTimePicker finHoraire;
+    private String reunionName;
+    private String reunionGroup;
+    private int id_projet;
+    private int id_reunion;
+    private String reunionDate;
+    private LocalTime debutHoraire;
+    private LocalTime finHoraire;
+
+    public Agenda(String reunionName, String reunionGroup, int id_projet,
+                  int id_reunion, String reunionDate, LocalTime debutHoraire, LocalTime finHoraire) {
+        this.reunionName = reunionName;
+        this.reunionGroup = reunionGroup;
+        this.id_projet = id_projet;
+        this.id_reunion = id_reunion;
+        this.reunionDate = reunionDate;
+        this.debutHoraire = debutHoraire;
+        this.finHoraire = finHoraire;
+    }
 
     // attributs de succes de l'insertion
     public boolean inserted;
 
-    public Agenda(AgendaModel am, String demande){
-        this.am=am;
-        this.demande=demande;
-    }
-
-    public Agenda(Label reunionName, JFXComboBox<Label> reunionGroup, JFXDatePicker reunionDate, JFXTimePicker debutHoraire, JFXTimePicker finHoraire, String demande){
-        this.reunionName = reunionName;
-        this.reunionGroup = reunionGroup;
-        this.reunionDate = reunionDate;
-        this.debutHoraire = debutHoraire;
-        this.finHoraire = finHoraire;
+    public Agenda(AgendaModel am, String demande) {
+        this.am = am;
         this.demande = demande;
     }
 
-    public Agenda(String demande){
+
+    public Agenda(String demande) {
         this.at = new AgendaTable();
         this.demande = demande;
     }
 
-    private void addMainAgenda() throws SQLException{
+    private void addMainAgenda() throws SQLException {
         this.inserted = false;
         if(reunionName != null && reunionDate != null){
             PreparedStatement stmt = cx.prepareStatement("INSERT INTO agenda (reunionName, reunionGroup, reunionDate, debutHoraire, finHoraire) VALUES (?, ?, ?, ?, ?)");
@@ -73,7 +73,7 @@ public class Agenda implements Runnable {
     private void supprAgenda() throws SQLException{
         PreparedStatement stmt = cx.prepareStatement("DELETE FROM salle WHERE reunionName = ? ");
         if(this.am != null){
-            stmt.setString(1, String.valueOf(this.am.getReunionName()));
+            stmt.setString(1, String.valueOf(this.am.getNomreu()));
             int reponse = stmt.executeUpdate();
             if(reponse == 1){
                 this.inserted = true;
@@ -88,15 +88,17 @@ public class Agenda implements Runnable {
         PreparedStatement stmt = cx.prepareStatement("SELECT * FROM agenda");
         ResultSet rs = stmt.executeQuery();
 
-        AgendaTable at = new AgendaTable();
-        while(rs.next()){
-            Label reunionName = rs.getString("reunionName");
-            JFXComboBox<Label> reunionGroup = rs.getString("reunionGroup");
-            JFXDatePicker reunionDate = rs.getString("reunionDate");
-            JFXTimePicker debutHoraire= rs.getString("debutHoraire");
-            JFXTimePicker finHoraire = rs.getString("finHoraire");
+        while(rs.next()) {
 
-            AgendaModel am = new AgendaModel(reunionName, reunionGroup, reunionDate, debutHoraire, finHoraire);
+            int id_reu = rs.getInt("id_reunion");
+            int id_projet = rs.getInt("id_projet");
+            String nomreu = rs.getString("reunionName");
+            String dateReu = rs.getString("reunionDate");
+            Time debutReu = rs.getTime("debutHoraire");
+            Time finReu = rs.getTime("finHoraire");
+
+
+            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu);
             this.at.ajouteAgenda(am);
         }
         rs.close();

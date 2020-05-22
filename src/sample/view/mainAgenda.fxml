@@ -8,26 +8,31 @@
             prefHeight="740.0" prefWidth="1214.0" style="-fx-background-color: #cacaca;"
             xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="agendapane" layoutX="-73.0" layoutY="-14.0" prefHeight="740.0" prefWidth="838.0"
-            style="-fx-background-color: #326771;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-            AnchorPane.rightAnchor="376.0" AnchorPane.topAnchor="0.0"/>
+      <AnchorPane fx:id="agendapane" layoutX="-73.0" layoutY="-14.0" prefHeight="740.0" prefWidth="838.0"
+                  style="-fx-background-color: #326771;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="376.0" AnchorPane.topAnchor="0.0"/>
       <Label alignment="CENTER" layoutX="864.0" layoutY="33.0" prefHeight="54.0" prefWidth="296.0"
-             style="-fx-font-size: 30; -fx-text-fill: #326771;" text="NOUVELLE REUNION"/>
-      <JFXTextField focusColor="#326771" layoutX="887.0" layoutY="145.0" prefHeight="46.0" prefWidth="250.0"
-                    promptText="NOM REUNION"/>
-      <JFXComboBox fx:id="reunionGroup" focusColor="#326771" layoutX="887.0" layoutY="227.0" prefHeight="46.0"
-                   prefWidth="250.0" promptText="PROJET"/>
-      <JFXDatePicker fx:id="reunionDate" defaultColor="#326771" layoutX="887.0" layoutY="475.0" prefHeight="46.0"
-                     prefWidth="250.0" promptText="DATE REUNION" showWeekNumbers="true"/>
+             style="-fx-font-size: 30; -fx-text-fill: #326771;" text="NOUVELLE REUNION" AnchorPane.rightAnchor="54.0"/>
+      <JFXTextField fx:id="reunionName" focusColor="#326771" layoutX="887.0" layoutY="108.0" prefHeight="46.0"
+                    prefWidth="250.0" promptText="NOM REUNION" AnchorPane.rightAnchor="77.0"/>
+      <JFXComboBox fx:id="reunionGroup" focusColor="#326771" layoutX="887.0" layoutY="188.0" prefHeight="46.0"
+                   prefWidth="250.0" promptText="PROJET" AnchorPane.rightAnchor="77.0"/>
+      <JFXDatePicker fx:id="reunionDate" defaultColor="#326771" layoutX="886.0" layoutY="478.0" prefHeight="46.0"
+                     prefWidth="250.0" promptText="DATE REUNION" showWeekNumbers="true" AnchorPane.bottomAnchor="216.0"
+                     AnchorPane.rightAnchor="78.0"/>
       <JFXButton fx:id="reunionAdd" layoutX="1021.0" layoutY="647.0" prefHeight="46.0" prefWidth="150.0"
-                 style="-fx-background-color: #326771; -fx-background-radius: 5em;" text="Ajouter"/>
+                 style="-fx-background-color: #326771; -fx-background-radius: 5em;" text="Ajouter"
+                 AnchorPane.bottomAnchor="47.0" AnchorPane.rightAnchor="43.0"/>
       <JFXButton fx:id="reunionCancel" layoutX="854.0" layoutY="647.0" prefHeight="46.0" prefWidth="150.0"
                  style="-fx-background-color: #cacaca; -fx-background-radius: 5em; -fx-border-color: #326771; -fx-border-radius: 5em; -fx-border-width: 0.1em;"
-                 text="Annuler"/>
-      <Separator layoutX="862.0" layoutY="614.0" prefHeight="3.0" prefWidth="306.0"/>
-      <JFXTimePicker fx:id="debutHoraire" layoutX="887.0" layoutY="308.0" prefHeight="46.0" prefWidth="250.0"
-                     promptText="DEBUT"/>
-      <JFXTimePicker fx:id="finHoraire" defaultColor="#8f0200" layoutX="887.0" layoutY="395.0" prefHeight="46.0"
-                     prefWidth="250.0" promptText="FIN"/>
+                 text="Annuler" AnchorPane.bottomAnchor="47.0" AnchorPane.rightAnchor="210.0"/>
+      <Separator layoutX="862.0" layoutY="589.0" prefHeight="3.0" prefWidth="306.0" AnchorPane.bottomAnchor="148.0"
+                 AnchorPane.rightAnchor="46.0"/>
+      <JFXTimePicker fx:id="debutHoraire" layoutX="886.0" layoutY="333.0" prefHeight="46.0" prefWidth="250.0"
+                     promptText="DEBUT" AnchorPane.bottomAnchor="361.0" AnchorPane.rightAnchor="78.0"/>
+      <JFXTimePicker fx:id="finHoraire" defaultColor="#8f0200" layoutX="887.0" layoutY="401.0" prefHeight="46.0"
+                     prefWidth="250.0" promptText="FIN" AnchorPane.bottomAnchor="293.0" AnchorPane.rightAnchor="78.0"/>
+      <JFXComboBox fx:id="salleChoix" focusColor="#326771" layoutX="887.0" layoutY="260.0" prefHeight="46.0"
+                   prefWidth="250.0" promptText="SALLE" AnchorPane.rightAnchor="77.0"/>
    </children>
 </AnchorPane>
