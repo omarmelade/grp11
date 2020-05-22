@@ -108,7 +108,9 @@ public class GridPaneTrackController implements Initializable, Observer {
         PopOver popOver = new PopOver(hBox);
         Pane pane = new Pane(new Label(""));
 
+        // on verifie que la date est égal a la date de la reunion dans la base de données
         if (debut.toLocalDate().toString().equals(dataToDate(this.data.getArrayAgenda().get(0)).toString())) {
+            //  si l'heure est également coherente on ajoute
             if (debut.toLocalTime().toString().equals(dataTotime(this.data.getArrayAgenda().get(0)).toLocalTime().toString())) {
                 AgendaModel a = this.data.getArrayAgenda().get(0);
                 Label name = new Label("REUNION : " + a.getNomreu());
