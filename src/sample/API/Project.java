@@ -71,6 +71,7 @@ public class Project implements Runnable {
             while (rs.next()){
                 int id_proj = rs.getInt("p.id_projet");
                 int id_proprio = rs.getInt("p.id_proprio");
+                int notes = rs.getInt("p.note");
                 String nom_proj = rs.getString("p.nom_projet");
                 String desc = rs.getString("p.description");
                 String email_proprio = rs.getString("u.email");
@@ -79,7 +80,7 @@ public class Project implements Runnable {
                 //on recuperer les membres
                 PersonTable membreProj = getUserofProjet(id_proj);
                 // on ajoute le projet a la table et ses membres
-                ProjectModel pm = new ProjectModel(id_proj, id_proprio, nom_proj, desc, email_proprio, membreProj);
+                ProjectModel pm = new ProjectModel(id_proj, id_proprio, nom_proj, desc, email_proprio, membreProj,notes);
                 this.pt.ajouteProj(pm);
 
                 // la connexion a été effectué

@@ -1,5 +1,6 @@
 package sample.model;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -11,29 +12,33 @@ public class ProjectModel {
 
     private SimpleStringProperty nom, description, email_proprio;
     private SimpleIntegerProperty id_projet, id_proprio;
+    private SimpleDoubleProperty note;
     //private Date dateFin;
 
     private PersonTable listMembres;
 
 
-    public ProjectModel(int id_projet, int id_proprio, String nom, String description, String email_proprio ){
+    public ProjectModel(int id_projet, int id_proprio, double notes, String nom, String description, String email_proprio ){
         this.id_projet = new SimpleIntegerProperty(id_projet);
         this.id_proprio = new SimpleIntegerProperty(id_proprio);
         this.nom = new SimpleStringProperty(nom);
         this.description = new SimpleStringProperty(description);
         this.email_proprio = new SimpleStringProperty(email_proprio);
+        this.note = new SimpleDoubleProperty(notes);
        // this.dateFin = new Date(String.valueOf(dateFin));
     }
 
-    public ProjectModel(int id_projet, int id_proprio, String nom, String description, String email_proprio, PersonTable listMembres  ){
+    public ProjectModel(int id_projet, int id_proprio, String nom, String description, String email_proprio, PersonTable listMembres,double notes  ){
         this.id_projet = new SimpleIntegerProperty(id_projet);
         this.id_proprio = new SimpleIntegerProperty(id_proprio);
         this.nom = new SimpleStringProperty(nom);
         this.description = new SimpleStringProperty(description);
         this.email_proprio = new SimpleStringProperty(email_proprio);
         this.listMembres = listMembres;
+        this.note = new SimpleDoubleProperty(notes);
         //this.dateFin = new Date(String.valueOf(dateFin));
     }
+    public double getNote(){ return note.get(); };
 
     public PersonTable getListMembres() {
         return listMembres;
