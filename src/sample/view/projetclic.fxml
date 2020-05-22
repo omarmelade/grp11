@@ -44,7 +44,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
- v                       <JFXButton fx:id="joinProj" buttonType="RAISED" layoutX="269.0" layoutY="238.0" prefHeight="87.0" prefWidth="463.0" style="-fx-background-color: #CACAAA;" text="REJOINDRE LE PROJET">
+                        <JFXButton fx:id="joinProj" buttonType="RAISED" layoutX="269.0" layoutY="238.0" prefHeight="87.0" prefWidth="463.0" style="-fx-background-color: #CACAAA;" text="REJOINDRE LE PROJET">
                            <font>
                               <Font size="39.0" />
                            </font>
