@@ -53,8 +53,8 @@ public class OneProjectScreen implements Initializable {
 
 
 
-    private PersonModel user;
-    private ProjectModel projet;
+    public PersonModel user;
+    public ProjectModel projet;
 
     public OneProjectScreen(PersonModel user, ProjectModel projet) {
         this.user = user;
