@@ -20,20 +20,19 @@ public class Agenda implements Runnable {
     private String reunionName;
     private String reunionGroup;
     private int id_projet;
-    private int id_reunion;
     private String reunionDate;
     private LocalTime debutHoraire;
     private LocalTime finHoraire;
 
-    public Agenda(String reunionName, String reunionGroup, int id_projet,
-                  int id_reunion, String reunionDate, LocalTime debutHoraire, LocalTime finHoraire) {
+    public Agenda(int id_projet, String reunionName, String reunionGroup,
+                  String reunionDate, LocalTime debutHoraire, LocalTime finHoraire, String demande) {
         this.reunionName = reunionName;
         this.reunionGroup = reunionGroup;
         this.id_projet = id_projet;
-        this.id_reunion = id_reunion;
         this.reunionDate = reunionDate;
         this.debutHoraire = debutHoraire;
         this.finHoraire = finHoraire;
+        this.demande = demande;
     }
 
     // attributs de succes de l'insertion
@@ -52,17 +51,18 @@ public class Agenda implements Runnable {
 
     private void addMainAgenda() throws SQLException {
         this.inserted = false;
-        if(reunionName != null && reunionDate != null){
-            PreparedStatement stmt = cx.prepareStatement("INSERT INTO agenda (reunionName, reunionGroup, reunionDate, debutHoraire, finHoraire) VALUES (?, ?, ?, ?, ?)");
-            stmt.setString(1, String.valueOf(reunionName));
-            stmt.setString(2, String.valueOf(reunionGroup));
-            stmt.setString(3, String.valueOf(reunionDate));
-            stmt.setString(4, String.valueOf(debutHoraire));
-            stmt.setString(5, String.valueOf(finHoraire));
+        if(reunionName != null && reunionDate != null) {
+            PreparedStatement stmt = cx.prepareStatement("INSERT INTO agenda (id_projet, reunionName, reunionGroup, reunionDate, debutHoraire, finHoraire) VALUES (?, ?, ?, ?, ?, ?)");
+            stmt.setInt(1, id_projet);
+            stmt.setString(2, String.valueOf(reunionName));
+            stmt.setString(3, String.valueOf(reunionGroup));
+            stmt.setString(4, String.valueOf(reunionDate));
+            stmt.setString(5, String.valueOf(debutHoraire));
+            stmt.setString(6, String.valueOf(finHoraire));
 
             int reponse = stmt.executeUpdate();
             System.out.println(reponse + " est la reponse a l'insertion dans l'agenda");
-            if(reponse == 1){
+            if (reponse == 1) {
                 this.inserted = true;
             }
             stmt.close();

@@ -51,6 +51,7 @@ public class Login implements Runnable{
             }
         }
         stmt.close();
+        cx.close();
         return connected;
     }
 

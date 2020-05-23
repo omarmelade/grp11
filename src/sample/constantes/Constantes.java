@@ -18,10 +18,14 @@ public class Constantes {
     public static final List<String> hours = Collections.unmodifiableList(
             new ArrayList<String>() {{
                 add("8");
+                add("9");
                 add("10");
+                add("11");
                 add("12");
+                add("13");
                 add("14");
+                add("15");
                 add("16");
-                add("18");
+                add("17");
             }});
 }

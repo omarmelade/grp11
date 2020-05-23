@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
 import org.controlsfx.control.PopOver;
 import sample.constantes.Constantes;
 import sample.model.AgendaModel;
@@ -15,6 +14,7 @@ import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 public class GridPaneTrackController implements Initializable, Observer {
 
     final int numCols = 4;
-    int numRows = 5;
+    int numRows = 9;
 
     @FXML
     private GridPane grid;
@@ -47,6 +47,7 @@ public class GridPaneTrackController implements Initializable, Observer {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initialize();
+        grid.getStylesheets().add("/sample/css/pane.css");
     }
 
     public LocalDate dataToDate(AgendaModel m) {
@@ -57,6 +58,15 @@ public class GridPaneTrackController implements Initializable, Observer {
     public LocalDateTime dataTotime(AgendaModel m) {
         String date = m.getDateReu();
         String time = m.getDebutReu().toString();
+        // on enleve les secondes
+        time = time.substring(0, 5);
+        //System.out.println(time);
+        return LocalDateTime.parse(date + " " + time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
+
+    public LocalDateTime dataToEnd(AgendaModel m) {
+        String date = m.getDateReu();
+        String time = m.getFinReu().toString();
         // on enleve les secondes
         time = time.substring(0, 5);
         //System.out.println(time);
@@ -122,18 +132,36 @@ public class GridPaneTrackController implements Initializable, Observer {
         PopOver popOver = new PopOver(hBox);
         Pane pane = new Pane(new Label(""));
 
-        // on verifie que la date est égal a la date de la reunion dans la base de données
-        if (debut.toLocalDate().toString().equals(dataToDate(this.data.getArrayAgenda().get(0)).toString())) {
-            //  si l'heure est également coherente on ajoute
-            if (debut.toLocalTime().toString().equals(dataTotime(this.data.getArrayAgenda().get(0)).toLocalTime().toString())) {
-                AgendaModel a = this.data.getArrayAgenda().get(0);
-                Label name = new Label("REUNION : " + a.getNomreu());
-                name.setTextFill(Paint.valueOf("fff"));
-                name.setWrapText(true);
-                pane = new Pane(name);
+        for (int i = 0; i < this.data.getNbRes(); i++) {
+            LocalDate debutReun = dataToDate(this.data.getArrayAgenda().get(i));
+            LocalTime debutReunTime = dataTotime(this.data.getArrayAgenda().get(i)).toLocalTime();
+            // on verifie que la date est égal a la date de la reunion dans la base de données
+            if (debut.toLocalDate().toString().equals(debutReun.toString())) {
+                //  si l'heure est également coherente on ajoute
+                if (debut.toLocalTime().toString().equals(debutReunTime.toString())) {
 
-                //System.err.println( debut.toLocalDate() + " EGAL " + dataToDate(this.data.getArrayAgenda().get(0)));
+                    AgendaModel a = this.data.getArrayAgenda().get(i);
+                    Label name = new Label("REUNION : " + a.getNomreu());
+                    name.getStyleClass().add("label");
+                    pane = new Pane(name);
+                    pane.getStyleClass().add("reun");
+                    //System.err.println( debut.toLocalDate() + " EGAL " + dataToDate(this.data.getArrayAgenda().get(i)));
+                }
+
+                LocalTime finReun = dataToEnd(this.data.getArrayAgenda().get(i)).toLocalTime();
+                if (finReun.toString().equals(fin.toLocalTime().toString())) {
+                    AgendaModel a = this.data.getArrayAgenda().get(i);
+                    Label name = new Label("REUNION : " + a.getNomreu());
+                    Label hours = new Label(a.getDebutReu().toLocalTime().toString() + " - " + a.getFinReu().toLocalTime().toString());
+                    name.getStyleClass().add("label");
+                    pane = new Pane(new VBox(name, hours));
+                    pane.getStyleClass().add("reun");
+                    //System.err.println( debut.toLocalDate() + " EGAL " + dataToDate(this.data.getArrayAgenda().get(i)));
+                }
             }
+
+
+            System.out.println(i);
         }
 
         Pane finalPane = pane;
@@ -172,7 +200,7 @@ public class GridPaneTrackController implements Initializable, Observer {
         int horairedebut = Integer.parseInt(heure);
 
         LocalDateTime heureReu = jourdieu.atTime(horairedebut, 0);
-        LocalDateTime finReu = heureReu.plusHours(2);
+        LocalDateTime finReu = heureReu.plusHours(1);
 
         // renvoie le debut et la fin de la reunion
         arr.add(heureReu);

@@ -62,7 +62,7 @@ public class AgendaController extends Observable implements Initializable {
     public LocalDate ld;
     public final LocalDate today;
 
-    private final GridPaneTrackController gptControl;
+    public final GridPaneTrackController gptControl;
 
     public AgendaController() {
         this.ld = LocalDate.now();
@@ -105,6 +105,7 @@ public class AgendaController extends Observable implements Initializable {
 
     // ajoute une reunion sur la grille
     public void addToGpt(String nomReunion, LocalDate dateReu, LocalTime startH, LocalTime endH) {
+
     }
 
     // met le jour a "aujourd'hui"

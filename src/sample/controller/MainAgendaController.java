@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import sample.API.Agenda;
 import sample.API.Project;
 import sample.API.Ressources;
 import sample.model.ProjectTable;
@@ -18,9 +19,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
-public class MainAgendaController implements Initializable {
+public class MainAgendaController extends Observable implements Initializable {
 
     @FXML
     public JFXTextField reunionName;
@@ -44,9 +46,15 @@ public class MainAgendaController implements Initializable {
     private AnchorPane agendapane;
 
     private AgendaController ac;
+    private ProjectTable projectTable;
+    private RessourcesTable rt;
+
+    public final GridPaneTrackController gptControl;
 
     public MainAgendaController() {
         ac = new AgendaController();
+        this.gptControl = new GridPaneTrackController(ac);
+        addObserver(gptControl);
     }
 
     @Override
@@ -57,6 +65,7 @@ public class MainAgendaController implements Initializable {
             e.printStackTrace();
         }
         reunionAdd.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> addReunion());
+
     }
 
 
@@ -70,17 +79,16 @@ public class MainAgendaController implements Initializable {
         finHoraire._24HourViewProperty().setValue(true);
 
         initComboBox();
-
     }
 
     private void initComboBox() throws SQLException {
         Project apiProj = new Project("get");
         apiProj.run();
-        ProjectTable projectTable = apiProj.getPt();
+        projectTable = apiProj.getPt();
 
         Ressources apiRes = new Ressources("get");
         apiRes.run();
-        RessourcesTable rt = apiRes.getRt();
+        rt = apiRes.getRt();
 
 
 //        reunionGroup.setItems(FXCollections.observableList(projectTable.ListNProj()));
@@ -88,36 +96,40 @@ public class MainAgendaController implements Initializable {
 
         salleChoix.setItems(FXCollections.observableArrayList(rt.ListNameId().values()));
 
-        salleChoix.setOnMouseClicked(e -> {
-            try {
-                System.out.println(ProjectTable.getKey(rt.ListNameId(), salleChoix.getValue()));
-            } catch (NullPointerException ignored) {
-            }
-        });
 
-        ////// A MODIFIER //////
-        reunionGroup.setOnMouseClicked(e -> {
-            // affiche l'id de l'item selectionné
-            try {
-                System.out.println(
-                        ProjectTable.getKey(
-                                projectTable.ListNameId(), reunionGroup.getValue()));
-            } catch (NullPointerException ignored) {
-            }
-        });
-        /////////////////////
     }
 
+    public int getSalleKey() {
+        try {
+            return ProjectTable.getKey(rt.ListNameId(), salleChoix.getValue());
+        } catch (NullPointerException ignored) {
+        }
+        return -1;
+    }
+
+    public int getReunionKey() {
+        try {
+            return ProjectTable.getKey(
+                    projectTable.ListNameId(), reunionGroup.getValue());
+        } catch (NullPointerException ignored) {
+        }
+        return -1;
+    }
 
     private void addReunion() {
-        String nomGroupe = getReunionGroupe();
-        String nomReunion = getReunionName();
-        LocalDate dateReu = getReunionDate();
-        LocalTime startH = getReunionStart();
-        LocalTime endH = getReunionEnd();
-        System.out.println(nomReunion + " pour le " + nomGroupe + " le " + dateReu.toString()
-                + " à partir de : " + startH + " jusqu'à : " + endH + ".");
-        ac.addToGpt(nomReunion, dateReu, startH, endH);
+        if (getReunionKey() != -1 || getSalleKey() != -1) {
+            String nomGroupe = getReunionGroupe();
+            String nomReunion = getReunionName();
+            LocalDate dateReu = getReunionDate();
+            LocalTime startH = getReunionStart();
+            LocalTime endH = getReunionEnd();
+//        System.out.println(nomReunion + " pour le " + nomGroupe + " le " + dateReu.toString()
+//                + " à partir de : " + startH + " jusqu'à : " + endH + ".");
+//        ac.addToGpt(nomReunion, dateReu, startH, endH);
+            Agenda a = new Agenda(getReunionKey(), nomReunion, nomGroupe, dateReu.toString(), startH, endH, "insert");
+            a.run();
+            notifyObservers();
+        }
     }
 
     private LocalTime getReunionEnd() {

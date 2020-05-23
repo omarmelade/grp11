@@ -5,8 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0"
-            prefWidth="834.0" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1">
+            prefWidth="834.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Pane fx:id="pane" layoutX="-52.0" prefHeight="737.0" prefWidth="804.0" style="-fx-background-color: #326771;"
               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
@@ -22,30 +21,18 @@
                        style="-fx-font-size: 20;" text="JEUDI"/>
                 <Label fx:id="venLabel" layoutX="682.0" layoutY="139.0" prefHeight="30.0" prefWidth="154.0"
                        style="-fx-font-size: 20;" text="VENDREDI"/>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="187.0" prefHeight="30.0" prefWidth="58.0"
+                <Label alignment="CENTER" layoutX="5.0" layoutY="162.0" prefHeight="30.0" prefWidth="58.0"
                        style="-fx-font-size: 25;" text="8H"/>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="224.0" prefHeight="30.0" prefWidth="58.0"
+                <Label alignment="CENTER" layoutX="5.0" layoutY="263.0" prefHeight="30.0" prefWidth="58.0"
                        style="-fx-font-size: 25;" text="10H"/>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="292.0" prefHeight="30.0" prefWidth="58.0"
-                       style="-fx-font-size: 25;" text="10H"/>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="322.0" prefHeight="30.0" prefWidth="58.0"
+                <Label alignment="CENTER" layoutX="5.0" layoutY="373.0" prefHeight="30.0" prefWidth="58.0"
                        style="-fx-font-size: 25;" text="12H"/>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="381.0" prefHeight="30.0" prefWidth="58.0"
-                       style="-fx-font-size: 25;" text="12H"/>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="411.0" prefHeight="30.0" prefWidth="58.0"
+                <Label alignment="CENTER" layoutX="5.0" layoutY="488.0" prefHeight="30.0" prefWidth="58.0"
                        style="-fx-font-size: 25;" text="14H"/>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="473.0" prefHeight="30.0" prefWidth="58.0"
-                       style="-fx-font-size: 25;" text="14H"/>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="503.0" prefHeight="30.0" prefWidth="58.0"
+                <Label alignment="CENTER" layoutX="5.0" layoutY="603.0" prefHeight="30.0" prefWidth="58.0"
                        style="-fx-font-size: 25;" text="16H"/>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="560.0" prefHeight="30.0" prefWidth="58.0"
-                       style="-fx-font-size: 25;" text="16H"/>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="598.0" prefHeight="30.0" prefWidth="58.0"
+                <Label alignment="CENTER" layoutX="5.0" layoutY="715.0" prefHeight="30.0" prefWidth="58.0"
                        style="-fx-font-size: 25;" text="18H"/>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="655.0" prefHeight="30.0" prefWidth="58.0"
-                       style="-fx-font-size: 25;" text="18H"/>
-                <Label accessibleRole="BUTTON" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="5.0"
-                       layoutY="693.0" prefHeight="30.0" prefWidth="58.0" style="-fx-font-size: 25;" text="20H"/>
                 <JFXButton fx:id="semaineMoins" cache="true" cacheHint="SCALE" layoutX="272.0" layoutY="80.0"
                            minWidth="53.0" prefHeight="24.0" prefWidth="53.0" ripplerFill="#cacaca"
                            style="-fx-background-color: #326771;">
@@ -108,8 +95,6 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <Label alignment="CENTER" layoutX="5.0" layoutY="685.0" prefHeight="30.0" prefWidth="58.0"
-                       style="-fx-font-size: 25;" text="20H"/>
             </children>
         </Pane>
     </children>
