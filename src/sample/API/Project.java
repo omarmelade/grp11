@@ -199,4 +199,5 @@ public class Project implements Runnable {
     // envoie la liste des membres d'un projet
 
     public PersonTable getMembersProjet() throws SQLException { this.cx.close(); return userProject; }
+
 }
