@@ -4,6 +4,7 @@ package sample.model;
 import java.util.ArrayList;
 
 public class PersonTable {
+
     private ArrayList<PersonModel> tablePersonModels;
     private int nbPerson;
 

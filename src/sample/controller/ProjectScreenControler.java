@@ -148,7 +148,7 @@ public class ProjectScreenControler implements Initializable {
             Label nomProj = (Label) loader.getNamespace().get("nomProj");
             Label descriptionProj = (Label) loader.getNamespace().get("descriptionProj");
             Label nomProprio = (Label) loader.getNamespace().get("chefProj");
-            Label note = (Label) loader.getNamespace().get("note");
+            Rating note = (Rating) loader.getNamespace().get("note");
 
             ProjectModel projm = projectTable.getArrayProject().get(i+userI);
 
@@ -156,7 +156,7 @@ public class ProjectScreenControler implements Initializable {
             nomProj.setText(projm.getNom().toUpperCase());
             descriptionProj.setText(projm.getDescription());
             nomProprio.setText(nomProprio.getText() + " " + projm.getEmail_proprio());
-            rating.setRating(projm.getNote());
+            note.setRating(projm.getNote());
 
 
             if(projm.getId_proprio() == pm.getId()){

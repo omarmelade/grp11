@@ -7,7 +7,6 @@ import sample.model.ProjectModel;
 import sample.model.ProjectTable;
 
 import java.sql.*;
-import java.util.Date;
 
 public class Project implements Runnable {
 
@@ -80,7 +79,7 @@ public class Project implements Runnable {
                 //on recuperer les membres
                 PersonTable membreProj = getUserofProjet(id_proj);
                 // on ajoute le projet a la table et ses membres
-                ProjectModel pm = new ProjectModel(id_proj, id_proprio, nom_proj, desc, email_proprio, membreProj,notes);
+                ProjectModel pm = new ProjectModel(id_proj, id_proprio, nom_proj, desc, email_proprio, membreProj, notes);
                 this.pt.ajouteProj(pm);
 
                 // la connexion a été effectué
@@ -175,7 +174,6 @@ public class Project implements Runnable {
 
 
     // cree un thread a part pour ne pas trop ralentir le logiciel
-
     @Override
     public void run() {
         try {

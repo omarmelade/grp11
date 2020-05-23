@@ -2,6 +2,7 @@ package sample.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
@@ -34,11 +35,13 @@ public class GridPaneTrackController implements Initializable, Observer {
     private AgendaTable data;
     private AgendaController agendaController;
     public DateTimeFormatter formatter;
+    private int advancements;
 
     public GridPaneTrackController(AgendaController agendaController) {
         this.agendaController = agendaController;
         this.data = agendaController.getData();
         this.formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.advancements = 0;
     }
 
     @Override
@@ -81,7 +84,7 @@ public class GridPaneTrackController implements Initializable, Observer {
             rowConstraints.setVgrow(Priority.SOMETIMES);
             this.grid.getRowConstraints().add(rowConstraints);
         }
-
+        this.advancements = 1;
         paneOnGrid();
     }
 
@@ -94,7 +97,18 @@ public class GridPaneTrackController implements Initializable, Observer {
         }
     }
 
+
+    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
+        for (Node node : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+                return node;
+            }
+        }
+        return null;
+    }
+
     private void addPane(int colIndex, int rowIndex) {
+
         ArrayList<LocalDateTime> arr = caseToDate(colIndex, rowIndex);
         LocalDateTime debut = arr.get(0);
         LocalDateTime fin = arr.get(1);
@@ -117,9 +131,9 @@ public class GridPaneTrackController implements Initializable, Observer {
                 name.setTextFill(Paint.valueOf("fff"));
                 name.setWrapText(true);
                 pane = new Pane(name);
+
                 //System.err.println( debut.toLocalDate() + " EGAL " + dataToDate(this.data.getArrayAgenda().get(0)));
             }
-
         }
 
         Pane finalPane = pane;
@@ -170,6 +184,9 @@ public class GridPaneTrackController implements Initializable, Observer {
     @Override
     public void update(Observable o, Object arg) {
         System.out.println(caseToDate(0, 0));
+        if (advancements == 1) {
+            this.grid.getChildren().retainAll(grid.getChildren().get(0));
+        }
         paneOnGrid();
     }
 
