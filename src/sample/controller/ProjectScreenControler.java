@@ -1,6 +1,8 @@
 package sample.controller;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,7 +14,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import org.controlsfx.control.Rating;
 import sample.API.Project;
 import sample.Listener.DecoListener;
 import sample.Listener.HomeListener;
@@ -20,6 +25,7 @@ import sample.Listener.OneProjectListener;
 import sample.model.PersonModel;
 import sample.model.ProjectModel;
 import sample.model.ProjectTable;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -59,6 +65,8 @@ public class ProjectScreenControler implements Initializable {
     private JFXTextField languageNewProj;
 
     private PersonModel pm;
+
+    final Rating rating = new Rating();
 
 
     public ProjectScreenControler(PersonModel pm){
@@ -140,6 +148,7 @@ public class ProjectScreenControler implements Initializable {
             Label nomProj = (Label) loader.getNamespace().get("nomProj");
             Label descriptionProj = (Label) loader.getNamespace().get("descriptionProj");
             Label nomProprio = (Label) loader.getNamespace().get("chefProj");
+            Label note = (Label) loader.getNamespace().get("note");
 
             ProjectModel projm = projectTable.getArrayProject().get(i+userI);
 
@@ -147,6 +156,8 @@ public class ProjectScreenControler implements Initializable {
             nomProj.setText(projm.getNom().toUpperCase());
             descriptionProj.setText(projm.getDescription());
             nomProprio.setText(nomProprio.getText() + " " + projm.getEmail_proprio());
+            rating.setRating(projm.getNote());
+
 
             if(projm.getId_proprio() == pm.getId()){
                 JFXButton newBtn = btnProj;
