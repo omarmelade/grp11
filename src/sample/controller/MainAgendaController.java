@@ -1,22 +1,23 @@
 package sample.controller;
+
 import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import sample.API.Project;
+import sample.API.Ressources;
 import sample.model.ProjectTable;
+import sample.model.RessourcesTable;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainAgendaController implements Initializable {
@@ -26,7 +27,7 @@ public class MainAgendaController implements Initializable {
     @FXML
     public JFXComboBox<String> reunionGroup;
     @FXML
-    public JFXComboBox<Label> salleChoix;
+    public JFXComboBox<String> salleChoix;
     @FXML
     public JFXDatePicker reunionDate;
     @FXML
@@ -67,12 +68,45 @@ public class MainAgendaController implements Initializable {
         agendapane.getChildren().add(nodeitem);
         debutHoraire._24HourViewProperty().setValue(true);
         finHoraire._24HourViewProperty().setValue(true);
+
+        initComboBox();
+
+    }
+
+    private void initComboBox() throws SQLException {
         Project apiProj = new Project("get");
         apiProj.run();
         ProjectTable projectTable = apiProj.getPt();
-        reunionGroup.setItems(FXCollections.observableList(projectTable.ListNProj()));
-    }
 
+        Ressources apiRes = new Ressources("get");
+        apiRes.run();
+        RessourcesTable rt = apiRes.getRt();
+
+
+//        reunionGroup.setItems(FXCollections.observableList(projectTable.ListNProj()));
+        reunionGroup.setItems(FXCollections.observableArrayList(projectTable.ListNameId().values()));
+
+        salleChoix.setItems(FXCollections.observableArrayList(rt.ListNameId().values()));
+
+        salleChoix.setOnMouseClicked(e -> {
+            try {
+                System.out.println(ProjectTable.getKey(rt.ListNameId(), salleChoix.getValue()));
+            } catch (NullPointerException ignored) {
+            }
+        });
+
+        ////// A MODIFIER //////
+        reunionGroup.setOnMouseClicked(e -> {
+            // affiche l'id de l'item selectionné
+            try {
+                System.out.println(
+                        ProjectTable.getKey(
+                                projectTable.ListNameId(), reunionGroup.getValue()));
+            } catch (NullPointerException ignored) {
+            }
+        });
+        /////////////////////
+    }
 
 
     private void addReunion() {

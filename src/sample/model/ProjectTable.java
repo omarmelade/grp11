@@ -1,11 +1,8 @@
 package sample.model;
 
-import sample.API.Project;
-
-import java.sql.Array;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProjectTable {
 
@@ -18,22 +15,37 @@ public class ProjectTable {
     }
 
 
-    public void ajouteProj(ProjectModel pm){
+    public void ajouteProj(ProjectModel pm) {
         this.arrayProject.add(pm);
         this.nbProj += 1;
     }
 
+    public static <K, V> K getKey(Map<K, V> map, V value) {
+        return map.keySet()
+                .stream()
+                .filter(key -> value.equals(map.get(key)))
+                .findFirst().get();
+    }
 
-    public ArrayList<String> ListNProj() throws SQLException {
+    public Map<Integer, String> ListNameId() {
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        for (ProjectModel p : arrayProject) {
+            map.put(p.getId_projet(), p.getNom());
+        }
+        return map;
+    }
+
+    public ArrayList<String> ListNProj() {
         ArrayList<String> projets = new ArrayList<String>();
         for (ProjectModel p : arrayProject) {
             projets.add(p.getNom());
 
         }
-        return(projets);
+        return (projets);
 
     }
-    public void deleteProj(int index){
+
+    public void deleteProj(int index) {
         this.arrayProject.remove(index);
         this.nbProj -= 1;
     }

@@ -1,6 +1,8 @@
 package sample.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class RessourcesTable {
@@ -16,6 +18,14 @@ public class RessourcesTable {
     public void ajouteRes(RessourcesModel rm) {
         this.arrayRessources.add(rm);
         this.nbRes++;
+    }
+
+    public Map<Integer, String> ListNameId() {
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        for (RessourcesModel r : arrayRessources) {
+            map.put(r.getId_salle(), r.getNom_salle());
+        }
+        return map;
     }
 
     public void deleteRes(RessourcesModel rm) {
