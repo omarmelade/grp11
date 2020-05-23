@@ -1,5 +1,6 @@
 package sample.model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -21,6 +22,16 @@ public class RessourcesTable {
     public void deleteRes(RessourcesModel rm) {
         this.arrayRessources.remove(rm);
         this.nbRes--;
+    }
+
+    public ArrayList<String> ListNSalle() throws SQLException {
+        ArrayList<String> salles = new ArrayList<String>();
+        for (RessourcesModel r : arrayRessources) {
+            salles.add(r.getNom_salle());
+
+        }
+        return(salles);
+
     }
 
     public ArrayList<RessourcesModel> getArrayRessources() {

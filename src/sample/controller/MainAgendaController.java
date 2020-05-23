@@ -9,7 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import sample.API.Project;
+import sample.API.Ressources;
 import sample.model.ProjectTable;
+import sample.model.RessourcesTable;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +28,7 @@ public class MainAgendaController implements Initializable {
     @FXML
     public JFXComboBox<String> reunionGroup;
     @FXML
-    public JFXComboBox<Label> salleChoix;
+    public JFXComboBox<String> salleChoix;
     @FXML
     public JFXDatePicker reunionDate;
     @FXML
@@ -71,6 +73,10 @@ public class MainAgendaController implements Initializable {
         apiProj.run();
         ProjectTable projectTable = apiProj.getPt();
         reunionGroup.setItems(FXCollections.observableList(projectTable.ListNProj()));
+        Ressources apiRess = new Ressources("get");
+        apiRess.run();
+        RessourcesTable ressourcesTable = apiRess.getRt();
+        salleChoix.setItems(FXCollections.observableList(ressourcesTable.ListNSalle()));
     }
 
 
