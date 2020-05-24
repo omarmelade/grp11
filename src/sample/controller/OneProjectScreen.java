@@ -2,12 +2,15 @@ package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTextArea;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -16,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import org.controlsfx.control.Rating;
 import sample.API.Project;
 import sample.Listener.AddUserProjetListener;
 import sample.Listener.AgendaProjetListener;
@@ -64,14 +68,18 @@ public class OneProjectScreen implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/cardProj.fxml"));
         projTitle.setText(projet.getNom().toUpperCase());
         infoGenerale.getStylesheets().add(getClass().getResource("/sample/css/Vbox.css").toExternalForm());
         projetBase.getStylesheets().add(getClass().getResource("/sample/css/Vbox.css").toExternalForm());
+        Rating note = new Rating ((int) projet.getNote());
+        note.setMax((int) projet.getNote());
+        note.setRating((int) projet.getNote());
+        note.setDisable(true);
         infoGenerale.getChildren().add(new VBox
-                (new Label(projet.getDescription()), new Label("DEBUT : " + projet.getDateCrea()), new Label("FIN : " + projet.getDateFin())));
+                (new Label(projet.getDescription()), new Label("DEBUT : " + projet.getDateCrea()), new Label("FIN : " + projet.getDateFin()), new Label("PRIORITÉ : "), note));
 
         planningBtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new AgendaProjetListener(agenda, projet));
-
         joinTab.setOnSelectionChanged(new EventHandler<Event>() {
             @Override
             public void handle(Event t) {

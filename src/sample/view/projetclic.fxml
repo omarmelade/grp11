@@ -75,9 +75,9 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-            <Tab text="Changement de priorité">
+            <Tab fx:id="priorite" text="Changement de priorité">
                <content>
-                  <AnchorPane fx:id="infoGenerale1" prefHeight="200.0" prefWidth="1000.0">
+                  <AnchorPane fx:id="changementPrioAnch" prefHeight="200.0" prefWidth="1000.0">
                      <children>
                         <JFXButton layoutX="432.0" layoutY="444.0" prefHeight="39.0" prefWidth="137.0" style="-fx-background-color: #CACAAA;" text="Sauvegarder" textFill="WHITE">
                            <font>
@@ -87,8 +87,8 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <Label layoutX="327.0" layoutY="236.0" prefHeight="102.0" prefWidth="348.0" />
-                        <Label layoutX="327.0" layoutY="64.0" prefHeight="102.0" prefWidth="348.0" />
+                        <Label fx:id="priorite1" layoutX="327.0" layoutY="236.0" prefHeight="102.0" prefWidth="348.0" />
+                        <Label fx:id="priorite2" layoutX="327.0" layoutY="64.0" prefHeight="102.0" prefWidth="348.0" />
                         <Text layoutX="202.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priorité actuel :" wrappingWidth="124.11328125">
                            <font>
                               <Font size="18.0" />
