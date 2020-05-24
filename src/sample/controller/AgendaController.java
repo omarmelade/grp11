@@ -1,6 +1,9 @@
 package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,8 +12,11 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import sample.API.Agenda;
+import sample.API.Ressources;
 import sample.model.AgendaTable;
+import sample.model.PersonModel;
 import sample.model.ProjectModel;
+import sample.model.RessourcesTable;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,6 +47,8 @@ public class AgendaController extends Observable implements Initializable {
     private JFXButton moisMoins;
     @FXML
     private JFXButton todayBtn;
+    @FXML
+    private JFXComboBox<String> salleAffiche;
 
     @FXML
     private Pane pane;
@@ -65,14 +73,8 @@ public class AgendaController extends Observable implements Initializable {
 
     public final GridPaneTrackController gptControl;
     private ProjectModel pm;
+    private PersonModel personm;
     private String demande = "";
-
-    public AgendaController() {
-        this.ld = LocalDate.now();
-        this.today = ld;
-        this.gptControl = new GridPaneTrackController(this);
-        addObserver(gptControl);
-    }
 
     public AgendaController(ProjectModel proj, String demande) {
         this.demande = demande;
@@ -83,12 +85,22 @@ public class AgendaController extends Observable implements Initializable {
         addObserver(gptControl);
     }
 
+    public AgendaController(PersonModel personm, String demande) {
+        this.demande = demande;
+        this.personm = personm;
+        this.ld = LocalDate.now();
+        this.today = ld;
+        this.gptControl = new GridPaneTrackController(this);
+        addObserver(gptControl);
+    }
 
     public AgendaTable getData() {
         if (this.demande.equals("proj")) {
             agendaAPI = new Agenda("proj", pm);
-        } else {
+        } else if (this.personm.estAdmin()) {
             agendaAPI = new Agenda("get");
+        } else {
+            agendaAPI = new Agenda("person", personm);
         }
         agendaAPI.run();
         return agendaAPI.getAt();
@@ -104,11 +116,33 @@ public class AgendaController extends Observable implements Initializable {
         moisPlus.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> monthPlus());
         todayBtn.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> setToday());
 
+        initCombo();
+
         try {
             initPane();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void initCombo() {
+        Ressources apiRes = new Ressources("get");
+        apiRes.run();
+        RessourcesTable rt = apiRes.getRt();
+
+        salleAffiche.setItems(FXCollections.observableArrayList(rt.ListNameId().values()));
+
+        salleAffiche.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    initPane();
+                    System.out.println("MMMM");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     // affiche la grille du planning

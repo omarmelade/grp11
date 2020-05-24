@@ -81,7 +81,7 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <Label fx:id="anneeLabel" layoutX="622.0" layoutY="34.0" prefHeight="32.0" prefWidth="169.0"
+                <Label fx:id="anneeLabel" layoutX="623.0" layoutY="18.0" prefHeight="32.0" prefWidth="169.0"
                        style="-fx-font-size: 50; -fx-text-fill: #183136;" text="ANNEE"/>
                 <JFXButton fx:id="todayBtn" buttonType="RAISED" layoutX="34.0" layoutY="38.0"
                            nodeOrientation="LEFT_TO_RIGHT" prefHeight="52.0" prefWidth="169.0" ripplerFill="#bbcacd"
@@ -95,6 +95,8 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
+                <JFXComboBox fx:id="salleAffiche" focusColor="WHITE" layoutX="626.0" layoutY="90.0" prefHeight="28.0"
+                             prefWidth="162.0" promptText="SALLE" unFocusColor="BLACK"/>
             </children>
         </Pane>
     </children>

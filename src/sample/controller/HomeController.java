@@ -72,7 +72,7 @@ public class HomeController implements Initializable {
         );
 
         agenda.setDisable(false);
-        agenda.addEventHandler(MouseEvent.MOUSE_RELEASED, new AgendaListener(this.anchorBack, "/sample/view/mainAgenda.fxml"));
+        agenda.addEventHandler(MouseEvent.MOUSE_RELEASED, new AgendaListener(this.anchorBack, "/sample/view/mainAgenda.fxml", getPm()));
         messagerie.setVisible(false);
         if (this.pm.estAdmin()) {
             messagerie.setVisible(true);

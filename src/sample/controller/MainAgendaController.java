@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import sample.API.Agenda;
 import sample.API.Project;
 import sample.API.Ressources;
+import sample.model.PersonModel;
 import sample.model.ProjectTable;
 import sample.model.RessourcesTable;
 
@@ -43,16 +44,20 @@ public class MainAgendaController extends Observable implements Initializable {
     @FXML
     private AnchorPane root;
     @FXML
+    private JFXColorPicker colorPicker;
+    @FXML
     private AnchorPane agendapane;
 
     private AgendaController ac;
     private ProjectTable projectTable;
     private RessourcesTable rt;
+    private PersonModel pm;
 
     public final GridPaneTrackController gptControl;
 
-    public MainAgendaController() {
-        ac = new AgendaController();
+    public MainAgendaController(PersonModel pm) {
+        this.pm = pm;
+        ac = new AgendaController(pm, "person");
         this.gptControl = new GridPaneTrackController(ac);
         addObserver(gptControl);
     }
@@ -123,10 +128,12 @@ public class MainAgendaController extends Observable implements Initializable {
             LocalDate dateReu = getReunionDate();
             LocalTime startH = getReunionStart();
             LocalTime endH = getReunionEnd();
+            String hex = "#" + Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6);
+
 //        System.out.println(nomReunion + " pour le " + nomGroupe + " le " + dateReu.toString()
 //                + " à partir de : " + startH + " jusqu'à : " + endH + ".");
 //        ac.addToGpt(nomReunion, dateReu, startH, endH);
-            Agenda a = new Agenda(getReunionKey(), nomReunion, nomGroupe, dateReu.toString(), startH, endH, "insert");
+            Agenda a = new Agenda(getReunionKey(), nomReunion, nomGroupe, dateReu.toString(), startH, endH, hex, "insert");
             a.run();
             notifyObservers();
         }

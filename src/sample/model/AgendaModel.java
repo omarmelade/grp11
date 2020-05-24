@@ -10,15 +10,25 @@ public class AgendaModel {
     private SimpleIntegerProperty id_reu, id_projet;
     private SimpleStringProperty nomreu, dateReu;
     private Time debutReu, finReu;
+    private SimpleStringProperty color;
 
 
-    public AgendaModel(int id_reu, int id_projet, String nomreu, String dateReu, Time debutReu, Time finReu) {
+    public AgendaModel(int id_reu, int id_projet, String nomreu, String dateReu, Time debutReu, Time finReu, String color) {
         this.id_reu = new SimpleIntegerProperty(id_reu);
         this.id_projet = new SimpleIntegerProperty(id_projet);
         this.nomreu = new SimpleStringProperty(nomreu);
         this.dateReu = new SimpleStringProperty(dateReu);
         this.debutReu = debutReu;
         this.finReu = finReu;
+        this.color = new SimpleStringProperty(color);
+    }
+
+    public String getColor() {
+        return color.get();
+    }
+
+    public SimpleStringProperty colorProperty() {
+        return color;
     }
 
     public int getId_reu() {

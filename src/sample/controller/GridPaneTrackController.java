@@ -133,10 +133,13 @@ public class GridPaneTrackController implements Initializable, Observer {
                 if (debut.toLocalTime().toString().equals(debutReunTime.toString())) {
 
                     AgendaModel a = this.data.getArrayAgenda().get(i);
-                    Label name = new Label("REUNION : " + a.getNomreu());
+                    Label name = new Label("  " + a.getNomreu());
                     name.getStyleClass().add("label");
                     pane = new Pane(name);
                     pane.getStyleClass().add("reun");
+                    if (a.getColor() != null) {
+                        pane.setStyle("-fx-background-color: " + a.getColor() + ";");
+                    }
                     //System.err.println( debut.toLocalDate() + " EGAL " + dataToDate(this.data.getArrayAgenda().get(i)));
 
                 } else if ((finReun.isAfter(fin.toLocalTime()) && debutReunTime.isBefore(debut.toLocalTime()))
@@ -144,15 +147,18 @@ public class GridPaneTrackController implements Initializable, Observer {
                         finReun.toString().equals(fin.toLocalTime().toString())) {
 
                     AgendaModel a = this.data.getArrayAgenda().get(i);
-                    Label name = new Label("REUNION : " + a.getNomreu());
-                    Label hours = new Label(a.getDebutReu().toLocalTime().toString() + " - " + a.getFinReu().toLocalTime().toString());
+                    Label name = new Label("  " + a.getNomreu());
+                    Label hours = new Label("  " + a.getDebutReu().toLocalTime().toString() + " - " + a.getFinReu().toLocalTime().toString());
                     name.getStyleClass().add("label");
                     pane = new Pane(new VBox(name, hours));
                     pane.getStyleClass().add("reun");
                     //System.err.println( debut.toLocalDate() + " EGAL " + dataToDate(this.data.getArrayAgenda().get(i)));
+                    if (a.getColor() != null) {
+                        pane.setStyle("-fx-background-color: " + a.getColor() + ";");
+                    }
                 }
             }
-            System.out.println(i);
+            //System.out.println(i);
         }
 
         Pane finalPane = pane;
@@ -202,7 +208,8 @@ public class GridPaneTrackController implements Initializable, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println(caseToDate(0, 0));
+        System.out.println("M.A.J");
+        //System.out.println(caseToDate(0, 0));
         if (advancements == 1) {
             this.grid.getChildren().retainAll(grid.getChildren().get(0));
         }
