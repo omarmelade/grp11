@@ -2,23 +2,20 @@ package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
-
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
 import sample.API.Project;
 import sample.Listener.AddUserProjetListener;
 import sample.Listener.ValidOrRemoveListener;
@@ -66,7 +63,7 @@ public class OneProjectScreen implements Initializable {
         projTitle.setText(projet.getNom().toUpperCase());
         infoGenerale.getStylesheets().add(getClass().getResource("/sample/css/Vbox.css").toExternalForm());
         projetBase.getStylesheets().add(getClass().getResource("/sample/css/Vbox.css").toExternalForm());
-        infoGenerale.getChildren().add(new Label(projet.getDescription()));
+        infoGenerale.getChildren().add(new VBox(new Label(projet.getDescription()), new Label("DEBUT : " + projet.getDateCrea()), new Label("FIN : " + projet.getDateFin())));
 
         planningTab.setContent(new Label("Le planning des projets n'est pas encore disponible."));
 

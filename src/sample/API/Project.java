@@ -7,6 +7,7 @@ import sample.model.ProjectModel;
 import sample.model.ProjectTable;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class Project implements Runnable {
 
@@ -26,7 +27,7 @@ public class Project implements Runnable {
     // attributs pour insereer
     private String nomNewProj, descNewProj;
     private int new_id_proprio;
-    //private Date dateFin;
+    private String dateFin;
     private PersonModel user;
 
     // attributs pour recup les membres
@@ -49,13 +50,13 @@ public class Project implements Runnable {
 
 
     // pour cree un projet
-    public Project(String nomNewProj, String descNewProj, int new_id_proprio, String demande, PersonModel user) {
+    public Project(String nomNewProj, String descNewProj, int new_id_proprio, String demande, PersonModel user, String dateFin) {
         this.nomNewProj = nomNewProj;
         this.descNewProj = descNewProj;
         this.new_id_proprio = new_id_proprio;
         this.demande = demande;
         this.user = user;
-       // this.dateFin=dateFin;
+        this.dateFin = dateFin;
     }
 
 
@@ -67,19 +68,20 @@ public class Project implements Runnable {
         try {
             ResultSet rs = stmt.executeQuery(sql);
 
-            while (rs.next()){
+            while (rs.next()) {
                 int id_proj = rs.getInt("p.id_projet");
                 int id_proprio = rs.getInt("p.id_proprio");
                 int notes = rs.getInt("p.note");
                 String nom_proj = rs.getString("p.nom_projet");
                 String desc = rs.getString("p.description");
                 String email_proprio = rs.getString("u.email");
-                //Date dateFin = rs.getDate("p.dateFin");
+                String dateCrea = rs.getString("p.date_crea");
+                String dateFin = rs.getString("p.date_fin");
 
                 //on recuperer les membres
                 PersonTable membreProj = getUserofProjet(id_proj);
                 // on ajoute le projet a la table et ses membres
-                ProjectModel pm = new ProjectModel(id_proj, id_proprio, nom_proj, desc, email_proprio, membreProj, notes);
+                ProjectModel pm = new ProjectModel(id_proj, id_proprio, nom_proj, desc, email_proprio, membreProj, notes, dateCrea, dateFin);
                 this.pt.ajouteProj(pm);
 
                 // la connexion a été effectué
@@ -134,10 +136,12 @@ public class Project implements Runnable {
         if(!this.nomNewProj.equals("") && !this.descNewProj.equals("")) {
             PreparedStatement stmt;
 
-            stmt = cx.prepareStatement("INSERT INTO projet (nom_projet, description, id_proprio) VALUES (?, ?, ?)");
+            stmt = cx.prepareStatement("INSERT INTO projet (nom_projet, description, id_proprio, date_crea, date_fin) VALUES (?, ?, ?, ?, ?)");
             stmt.setString(1, this.nomNewProj);
             stmt.setString(2, this.descNewProj);
             stmt.setInt(3, this.new_id_proprio);
+            stmt.setString(4, LocalDate.now().toString());
+            stmt.setString(5, this.dateFin);
             try {
                 int response = stmt.executeUpdate();
                 // si il retourne 1 tout s'est bien passé

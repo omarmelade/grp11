@@ -4,31 +4,30 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.util.Date;
-
 public class ProjectModel {
 
     private ProjectModel project;
 
-    private SimpleStringProperty nom, description, email_proprio;
+    private SimpleStringProperty nom, description, email_proprio, dateCrea, dateFin;
     private SimpleIntegerProperty id_projet, id_proprio;
     private SimpleDoubleProperty note;
-    //private Date dateFin;
+
 
     private PersonTable listMembres;
 
 
-    public ProjectModel(int id_projet, int id_proprio, double notes, String nom, String description, String email_proprio ){
+    public ProjectModel(int id_projet, int id_proprio, double notes, String nom, String description, String email_proprio, String dateCrea, String dateFin) {
         this.id_projet = new SimpleIntegerProperty(id_projet);
         this.id_proprio = new SimpleIntegerProperty(id_proprio);
         this.nom = new SimpleStringProperty(nom);
         this.description = new SimpleStringProperty(description);
         this.email_proprio = new SimpleStringProperty(email_proprio);
         this.note = new SimpleDoubleProperty(notes);
-       // this.dateFin = new Date(String.valueOf(dateFin));
+        this.dateCrea = new SimpleStringProperty(dateCrea);
+        this.dateFin = new SimpleStringProperty(dateFin);
     }
 
-    public ProjectModel(int id_projet, int id_proprio, String nom, String description, String email_proprio, PersonTable listMembres,double notes  ){
+    public ProjectModel(int id_projet, int id_proprio, String nom, String description, String email_proprio, PersonTable listMembres, double notes, String dateCrea, String dateFin) {
         this.id_projet = new SimpleIntegerProperty(id_projet);
         this.id_proprio = new SimpleIntegerProperty(id_proprio);
         this.nom = new SimpleStringProperty(nom);
@@ -36,9 +35,19 @@ public class ProjectModel {
         this.email_proprio = new SimpleStringProperty(email_proprio);
         this.listMembres = listMembres;
         this.note = new SimpleDoubleProperty(notes);
-        //this.dateFin = new Date(String.valueOf(dateFin));
+        this.dateCrea = new SimpleStringProperty(dateCrea);
+        this.dateFin = new SimpleStringProperty(dateFin);
     }
-    public double getNote(){ return note.get(); };
+
+    public double getNote() {
+        return note.get();
+    }
+
+    ;
+
+    public SimpleDoubleProperty noteProperty() {
+        return note;
+    }
 
     public PersonTable getListMembres() {
         return listMembres;
@@ -84,27 +93,26 @@ public class ProjectModel {
         return id_proprio;
     }
 
-    //public Date getDateFin() {
-      //  return dateFin;
-    //}
+    public String getDateCrea() {
+        return dateCrea.get();
+    }
 
-    //public void setDateFin(Date dateFin) {
-     //   this.dateFin = dateFin;
-    //}
+    public SimpleStringProperty dateCreaProperty() {
+        return dateCrea;
+    }
+
+    public String getDateFin() {
+        return dateFin.get();
+    }
+
+    public SimpleStringProperty dateFinProperty() {
+        return dateFin;
+    }
 
     // retourne le projet en tant qu'object
-    public ProjectModel getProjet(){
+    public ProjectModel getProjet() {
         return this.project;
     }
 
-    @Override
-    public String toString() {
-        return "ProjectModel{" +
-                "nom=" + nom +
-                ", description=" + description +
-                ", id_projet=" + id_projet +
-                ", id_proprio=" + id_proprio +
-               // ", date de fin =" + dateFin +
-                '}';
-    }
+
 }

@@ -1,6 +1,7 @@
 package sample.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.Event;
@@ -63,13 +64,15 @@ public class ProjectScreenControler implements Initializable {
     private JFXTextField descNewProj;
     @FXML
     private JFXTextField languageNewProj;
+    @FXML
+    private JFXDatePicker dateFin;
 
     private PersonModel pm;
 
     final Rating rating = new Rating();
 
 
-    public ProjectScreenControler(PersonModel pm){
+    public ProjectScreenControler(PersonModel pm) {
         this.pm = pm;
     }
 
@@ -108,7 +111,7 @@ public class ProjectScreenControler implements Initializable {
     }
 
     private void creeprojet() {
-        Project apiProj = new Project(nomNewProj.getText(),descNewProj.getText(),pm.getId(), "put", this.pm);
+        Project apiProj = new Project(nomNewProj.getText(), descNewProj.getText(), pm.getId(), "put", this.pm, dateFin.getValue().toString());
 
         apiProj.run();
         Alert a;
