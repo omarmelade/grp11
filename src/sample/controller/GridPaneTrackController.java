@@ -179,6 +179,7 @@ public class GridPaneTrackController implements Initializable, Observer {
         }
     }
 
+
     public ArrayList<LocalDateTime> caseToDate(int colIndex, int rowIndex) {
         ArrayList<LocalDateTime> arr = new ArrayList<>();
 

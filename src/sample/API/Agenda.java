@@ -77,6 +77,7 @@ public class Agenda implements Runnable {
         this.id_salle = id_salle;
     }
 
+
     private void addMainAgenda() throws SQLException {
         this.inserted = false;
         if (reunionName != null && reunionDate != null) {

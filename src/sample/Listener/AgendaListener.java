@@ -24,6 +24,7 @@ public class AgendaListener implements EventHandler {
         this.pm = pm;
     }
 
+
     @Override
     public void handle(Event event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/mainAgenda.fxml"));
