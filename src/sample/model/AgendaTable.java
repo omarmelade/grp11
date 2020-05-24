@@ -2,7 +2,7 @@ package sample.model;
 
 import java.util.ArrayList;
 
-public class AgendaTable {
+public class  AgendaTable {
 
     private ArrayList<AgendaModel> arrayAgenda;
     private int nbRes;

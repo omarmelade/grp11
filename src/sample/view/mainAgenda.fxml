@@ -29,7 +29,7 @@
       <Separator layoutX="862.0" layoutY="589.0" prefHeight="3.0" prefWidth="306.0" AnchorPane.bottomAnchor="148.0"
                  AnchorPane.rightAnchor="46.0"/>
       <JFXTimePicker fx:id="debutHoraire" layoutX="886.0" layoutY="333.0" prefHeight="46.0" prefWidth="250.0"
-                     promptText="DEBUT" AnchorPane.bottomAnchor="361.0" AnchorPane.rightAnchor="78.0"/>
+                     promptText="DEBUT" AnchorPane.bottomAnchor="361.0" AnchorPane.rightAnchor="78.0" />
       <JFXTimePicker fx:id="finHoraire" defaultColor="#8f0200" layoutX="887.0" layoutY="401.0" prefHeight="46.0"
                      prefWidth="250.0" promptText="FIN" AnchorPane.bottomAnchor="293.0" AnchorPane.rightAnchor="78.0"/>
       <JFXComboBox fx:id="salleChoix" focusColor="#326771" layoutX="887.0" layoutY="260.0" prefHeight="46.0"
