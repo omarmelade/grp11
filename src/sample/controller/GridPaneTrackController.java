@@ -2,7 +2,6 @@ package sample.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import org.controlsfx.control.PopOver;
@@ -108,15 +107,6 @@ public class GridPaneTrackController implements Initializable, Observer {
     }
 
 
-    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
-        for (Node node : gridPane.getChildren()) {
-            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
-                return node;
-            }
-        }
-        return null;
-    }
-
     private void addPane(int colIndex, int rowIndex) {
 
         ArrayList<LocalDateTime> arr = caseToDate(colIndex, rowIndex);
@@ -135,7 +125,9 @@ public class GridPaneTrackController implements Initializable, Observer {
         for (int i = 0; i < this.data.getNbRes(); i++) {
             LocalDate debutReun = dataToDate(this.data.getArrayAgenda().get(i));
             LocalTime debutReunTime = dataTotime(this.data.getArrayAgenda().get(i)).toLocalTime();
+            LocalTime finReun = dataToEnd(this.data.getArrayAgenda().get(i)).toLocalTime();
             // on verifie que la date est égal a la date de la reunion dans la base de données
+
             if (debut.toLocalDate().toString().equals(debutReun.toString())) {
                 //  si l'heure est également coherente on ajoute
                 if (debut.toLocalTime().toString().equals(debutReunTime.toString())) {
@@ -146,10 +138,11 @@ public class GridPaneTrackController implements Initializable, Observer {
                     pane = new Pane(name);
                     pane.getStyleClass().add("reun");
                     //System.err.println( debut.toLocalDate() + " EGAL " + dataToDate(this.data.getArrayAgenda().get(i)));
-                }
 
-                LocalTime finReun = dataToEnd(this.data.getArrayAgenda().get(i)).toLocalTime();
-                if (finReun.toString().equals(fin.toLocalTime().toString())) {
+                } else if ((finReun.isAfter(fin.toLocalTime()) && debutReunTime.isBefore(debut.toLocalTime()))
+                        ||
+                        finReun.toString().equals(fin.toLocalTime().toString())) {
+
                     AgendaModel a = this.data.getArrayAgenda().get(i);
                     Label name = new Label("REUNION : " + a.getNomreu());
                     Label hours = new Label(a.getDebutReu().toLocalTime().toString() + " - " + a.getFinReu().toLocalTime().toString());
@@ -159,8 +152,6 @@ public class GridPaneTrackController implements Initializable, Observer {
                     //System.err.println( debut.toLocalDate() + " EGAL " + dataToDate(this.data.getArrayAgenda().get(i)));
                 }
             }
-
-
             System.out.println(i);
         }
 
