@@ -57,7 +57,7 @@ public class MainAgendaController extends Observable implements Initializable {
 
     public MainAgendaController(PersonModel pm) {
         this.pm = pm;
-        ac = new AgendaController(pm, "person", -1);
+        this.ac = new AgendaController(pm, "person", -1);
         this.gptControl = new GridPaneTrackController(ac);
         addObserver(gptControl);
     }

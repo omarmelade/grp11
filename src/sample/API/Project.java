@@ -33,6 +33,8 @@ public class Project implements Runnable {
     // attributs pour recup les membres
     private PersonTable userProject;
     private int numproj;
+    private int id_projet;
+    private double note;
 
     /////////////////// CONSTRUCTEUR ///////////////////
 
@@ -48,6 +50,11 @@ public class Project implements Runnable {
         this.numproj = numproj;
     }
 
+    public Project(String demande, int id_projet, double note) {
+        this.demande = demande;
+        this.id_projet = id_projet;
+        this.note = note;
+    }
 
     // pour cree un projet
     public Project(String nomNewProj, String descNewProj, int new_id_proprio, String demande, PersonModel user, String dateFin) {
@@ -171,23 +178,48 @@ public class Project implements Runnable {
             }
             stmt.close();
             this.cx.close();
-        }else {
+        } else {
             this.inserted = false;
         }
     }
 
+
+    private void modifyNote() throws SQLException {
+        if (this.note > 0 && this.id_projet > 0) {
+            PreparedStatement stmt;
+            try {
+                stmt = cx.prepareStatement("UPDATE projet SET note = ? WHERE id_projet = ?");
+                stmt.setDouble(1, this.note);
+                stmt.setInt(2, this.id_projet);
+                int res = stmt.executeUpdate();
+                if (res == 0) {
+                    this.inserted = true;
+                }
+                stmt.close();
+                this.cx.close();
+            } catch (SQLException s) {
+                s.getErrorCode();
+            }
+        }
+    }
 
     // cree un thread a part pour ne pas trop ralentir le logiciel
     @Override
     public void run() {
         try {
             this.cx = Connexion.getConnection();
-            if(this.demande.equals("get")){
-                getProjet();
-            }else if(this.demande.equals("put")){
-                insertProj();
-            }else if(this.demande.equals("getUser")){
-                this.userProject = getUserofProjet(this.numproj);
+            switch (this.demande) {
+                case "get":
+                    getProjet();
+                    break;
+                case "put":
+                    insertProj();
+                    break;
+                case "getUser":
+                    this.userProject = getUserofProjet(this.numproj);
+                    break;
+                case "note":
+                    modifyNote();
             }
         } catch (SQLException e) {
             e.printStackTrace();

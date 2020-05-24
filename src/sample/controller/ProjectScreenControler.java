@@ -146,23 +146,35 @@ public class ProjectScreenControler implements Initializable {
             Node nodeItem = (Node) loader.load();
             JFXButton btnProj = new JFXButton();
             btnProj.setGraphic(nodeItem);
-            btnProj.addEventHandler(MouseEvent.MOUSE_RELEASED, new OneProjectListener(this.pm, projectTable.getArrayProject().get(i+userI), root));
+            btnProj.addEventHandler(MouseEvent.MOUSE_RELEASED, new OneProjectListener(this.pm, projectTable.getArrayProject().get(i + userI), root));
 
 
             Label nomProj = (Label) loader.getNamespace().get("nomProj");
             Label descriptionProj = (Label) loader.getNamespace().get("descriptionProj");
             Label nomProprio = (Label) loader.getNamespace().get("chefProj");
             Rating note = (Rating) loader.getNamespace().get("note");
-
+            JFXButton valid = (JFXButton) loader.getNamespace().get("validStar");
             ProjectModel projm = projectTable.getArrayProject().get(i + userI);
 
+            valid.addEventHandler(MouseEvent.MOUSE_RELEASED, event -> {
+                Project apiProjet = new Project("note", projm.getId_projet(), note.getRating());
+                apiProjet.run();
+                if (apiProj.inserted) {
+                    System.out.println("La note est effective");
+                }
+            });
 
             nomProj.setText(projm.getNom().toUpperCase());
             descriptionProj.setText(projm.getDescription());
             nomProprio.setText(nomProprio.getText() + " " + projm.getEmail_proprio());
             note.setRating(projm.getNote());
-            note.setDisable(true);
-            note.setBlendMode(BlendMode.MULTIPLY);
+            note.setPartialRating(false);
+            System.out.println("admin for sure");
+            if (!pm.estAdmin()) {
+                note.setDisable(true);
+                note.setBlendMode(BlendMode.MULTIPLY);
+                valid.isDisable();
+            }
 
 
             if (projm.getId_proprio() == pm.getId()) {
