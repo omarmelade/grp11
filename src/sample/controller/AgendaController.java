@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import sample.API.Agenda;
 import sample.model.AgendaTable;
+import sample.model.ProjectModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,6 +64,8 @@ public class AgendaController extends Observable implements Initializable {
     public final LocalDate today;
 
     public final GridPaneTrackController gptControl;
+    private ProjectModel pm;
+    private String demande = "";
 
     public AgendaController() {
         this.ld = LocalDate.now();
@@ -71,9 +74,22 @@ public class AgendaController extends Observable implements Initializable {
         addObserver(gptControl);
     }
 
+    public AgendaController(ProjectModel proj, String demande) {
+        this.demande = demande;
+        this.pm = proj;
+        this.ld = LocalDate.now();
+        this.today = ld;
+        this.gptControl = new GridPaneTrackController(this);
+        addObserver(gptControl);
+    }
+
 
     public AgendaTable getData() {
-        agendaAPI = new Agenda("get");
+        if (this.demande.equals("proj")) {
+            agendaAPI = new Agenda("proj", pm);
+        } else {
+            agendaAPI = new Agenda("get");
+        }
         agendaAPI.run();
         return agendaAPI.getAt();
     }

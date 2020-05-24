@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import sample.API.Project;
 import sample.Listener.AddUserProjetListener;
+import sample.Listener.AgendaProjetListener;
 import sample.Listener.ValidOrRemoveListener;
 import sample.model.PersonModel;
 import sample.model.PersonTable;
@@ -47,7 +48,10 @@ public class OneProjectScreen implements Initializable {
     private Tab planningTab;
     @FXML
     private JFXButton joinProj;
-
+    @FXML
+    private JFXButton planningBtn;
+    @FXML
+    AnchorPane agenda;
 
 
     public PersonModel user;
@@ -63,17 +67,25 @@ public class OneProjectScreen implements Initializable {
         projTitle.setText(projet.getNom().toUpperCase());
         infoGenerale.getStylesheets().add(getClass().getResource("/sample/css/Vbox.css").toExternalForm());
         projetBase.getStylesheets().add(getClass().getResource("/sample/css/Vbox.css").toExternalForm());
-        infoGenerale.getChildren().add(new VBox(new Label(projet.getDescription()), new Label("DEBUT : " + projet.getDateCrea()), new Label("FIN : " + projet.getDateFin())));
+        infoGenerale.getChildren().add(new VBox
+                (new Label(projet.getDescription()), new Label("DEBUT : " + projet.getDateCrea()), new Label("FIN : " + projet.getDateFin())));
 
-        planningTab.setContent(new Label("Le planning des projets n'est pas encore disponible."));
+        planningBtn.addEventHandler(MouseEvent.MOUSE_RELEASED, new AgendaProjetListener(agenda, projet));
 
-        joinTab.setOnSelectionChanged(new EventHandler<Event>() { @Override public void handle(Event t) {
-            if(joinTab.isSelected()) { setJoining(); }
-        }});
+        joinTab.setOnSelectionChanged(new EventHandler<Event>() {
+            @Override
+            public void handle(Event t) {
+                if (joinTab.isSelected()) {
+                    setJoining();
+                }
+            }
+        });
 
         joinProj.addEventHandler(MouseEvent.MOUSE_RELEASED, new AddUserProjetListener(this.projet, this.user, this.joinProj));
 
-        listMembres.setOnSelectionChanged(new EventHandler<Event>() { @Override public void handle(Event t)
+        listMembres.setOnSelectionChanged(new EventHandler<Event>() {
+            @Override
+            public void handle(Event t)
             { if(listMembres.isSelected()) {
                 try {
                     afficheMembre();
@@ -83,6 +95,7 @@ public class OneProjectScreen implements Initializable {
             }}});
 
     }
+
 
     private void setJoining() {
         if(this.projet.getListMembres().estDansListe(this.user)){
@@ -120,9 +133,13 @@ public class OneProjectScreen implements Initializable {
                             ImageView remove = new ImageView(new Image(input2, 40, 40, true, true));
                             JFXButton validation = new JFXButton();
                             JFXButton removing = new JFXButton();
-                            validation.setGraphic(check); validation.setShape(new Circle(0.5));validation.setRipplerFill(Color.web("#931621"));
-                            removing.setGraphic(remove); removing.setShape(new Circle(0.5));removing.setRipplerFill(Color.web("#931621"));
-                            validation.addEventHandler(MouseEvent.MOUSE_RELEASED, new ValidOrRemoveListener(this.user, pm, this.projet,"update", validation, removing, rootProjetView));
+                            validation.setGraphic(check);
+                            validation.setShape(new Circle(0.5));
+                            validation.setRipplerFill(Color.web("#931621"));
+                            removing.setGraphic(remove);
+                            removing.setShape(new Circle(0.5));
+                            removing.setRipplerFill(Color.web("#931621"));
+                            validation.addEventHandler(MouseEvent.MOUSE_RELEASED, new ValidOrRemoveListener(this.user, pm, this.projet, "update", validation, removing, rootProjetView));
                             removing.addEventHandler(MouseEvent.MOUSE_RELEASED, new ValidOrRemoveListener(this.user, pm, this.projet, "delete", validation, removing, rootProjetView));
                             gp.add(validation, 4, i);
                             gp.add(removing, 5, i);
@@ -130,18 +147,18 @@ public class OneProjectScreen implements Initializable {
                         i++;
                     }
                 }
-            }
-            else{
+            } else {
                 for (PersonModel pm : membres.getTablePersonModels()) {
                     if (i == 2) {
                         gp.add(new Label("Chef de projet : \n"), 1, 1);
                         for (PersonModel pmb : membres.getTablePersonModels()) {
                             System.out.println(pmb);
-                            if(pmb.getId() == this.projet.getId_proprio()){
+                            if (pmb.getId() == this.projet.getId_proprio()) {
                                 gp.add((new Label(pmb.getNom() + " " + pmb.getPrenom())), 2, i);
                             }
                         }
-                        i++; }
+                        i++;
+                    }
 
                     else if (i == 3) {
                         gp.add(new Label("Membres du projet : \n"), 1, 3);
@@ -155,7 +172,5 @@ public class OneProjectScreen implements Initializable {
                 }
             }
             listMembres.setContent(gp);
-
-
     }
 }

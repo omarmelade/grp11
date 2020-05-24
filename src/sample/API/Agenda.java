@@ -3,6 +3,7 @@ package sample.API;
 import sample.Connexion;
 import sample.model.AgendaModel;
 import sample.model.AgendaTable;
+import sample.model.ProjectModel;
 
 import java.sql.*;
 import java.time.LocalTime;
@@ -23,6 +24,8 @@ public class Agenda implements Runnable {
     private String reunionDate;
     private LocalTime debutHoraire;
     private LocalTime finHoraire;
+
+    private ProjectModel pm;
 
     public Agenda(int id_projet, String reunionName, String reunionGroup,
                   String reunionDate, LocalTime debutHoraire, LocalTime finHoraire, String demande) {
@@ -49,9 +52,15 @@ public class Agenda implements Runnable {
         this.demande = demande;
     }
 
+    public Agenda(String demande, ProjectModel pm) {
+        this.pm = pm;
+        this.at = new AgendaTable();
+        this.demande = demande;
+    }
+
     private void addMainAgenda() throws SQLException {
         this.inserted = false;
-        if(reunionName != null && reunionDate != null) {
+        if (reunionName != null && reunionDate != null) {
             PreparedStatement stmt = cx.prepareStatement("INSERT INTO agenda (id_projet, reunionName, reunionGroup, reunionDate, debutHoraire, finHoraire) VALUES (?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, id_projet);
             stmt.setString(2, String.valueOf(reunionName));
@@ -106,17 +115,42 @@ public class Agenda implements Runnable {
         cx.close();
     }
 
+    private void getAgendaProj() throws SQLException {
+        PreparedStatement stmt = cx.prepareStatement("SELECT * FROM agenda a JOIN projet p ON a.id_projet = p.id_projet WHERE a.id_projet = ?");
+        stmt.setInt(1, pm.getId_projet());
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+
+            int id_reu = rs.getInt("id_reunion");
+            int id_projet = rs.getInt("id_projet");
+            String nomreu = rs.getString("reunionName");
+            String dateReu = rs.getString("reunionDate");
+            Time debutReu = rs.getTime("debutHoraire");
+            Time finReu = rs.getTime("finHoraire");
+
+
+            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu);
+            this.at.ajouteAgenda(am);
+        }
+        rs.close();
+        stmt.close();
+        cx.close();
+    }
+
 
     @Override
     public void run() {
         try {
             this.cx = Connexion.getConnection();
-            if(demande.equals("insert")){
+            if (demande.equals("insert")) {
                 addMainAgenda();
-            }else if(demande.equals("get")){
+            } else if (demande.equals("get")) {
                 getAgendaMain();
-            }else if(demande.equals("delete")){
+            }else if (demande.equals("delete")) {
                 supprAgenda();
+            } else if (demande.equals("proj")) {
+                getAgendaProj();
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

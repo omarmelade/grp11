@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -153,21 +154,23 @@ public class ProjectScreenControler implements Initializable {
             Label nomProprio = (Label) loader.getNamespace().get("chefProj");
             Rating note = (Rating) loader.getNamespace().get("note");
 
-            ProjectModel projm = projectTable.getArrayProject().get(i+userI);
+            ProjectModel projm = projectTable.getArrayProject().get(i + userI);
 
 
             nomProj.setText(projm.getNom().toUpperCase());
             descriptionProj.setText(projm.getDescription());
             nomProprio.setText(nomProprio.getText() + " " + projm.getEmail_proprio());
             note.setRating(projm.getNote());
+            note.setDisable(true);
+            note.setBlendMode(BlendMode.MULTIPLY);
 
 
-            if(projm.getId_proprio() == pm.getId()){
+            if (projm.getId_proprio() == pm.getId()) {
                 JFXButton newBtn = btnProj;
-                gpUser.add(newBtn, 0,userI);
+                gpUser.add(newBtn, 0, userI);
                 userI++;
-            }else{
-                gpAll.add(btnProj, 0,i);
+            } else {
+                gpAll.add(btnProj, 0, i);
                 i++;
             }
         }
