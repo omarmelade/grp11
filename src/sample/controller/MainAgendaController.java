@@ -57,7 +57,7 @@ public class MainAgendaController extends Observable implements Initializable {
 
     public MainAgendaController(PersonModel pm) {
         this.pm = pm;
-        ac = new AgendaController(pm, "person");
+        ac = new AgendaController(pm, "person", -1);
         this.gptControl = new GridPaneTrackController(ac);
         addObserver(gptControl);
     }
@@ -70,7 +70,6 @@ public class MainAgendaController extends Observable implements Initializable {
             e.printStackTrace();
         }
         reunionAdd.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> addReunion());
-
     }
 
 
@@ -96,12 +95,9 @@ public class MainAgendaController extends Observable implements Initializable {
         rt = apiRes.getRt();
 
 
-//        reunionGroup.setItems(FXCollections.observableList(projectTable.ListNProj()));
         reunionGroup.setItems(FXCollections.observableArrayList(projectTable.ListNameId().values()));
 
         salleChoix.setItems(FXCollections.observableArrayList(rt.ListNameId().values()));
-
-
     }
 
     public int getSalleKey() {
@@ -129,12 +125,14 @@ public class MainAgendaController extends Observable implements Initializable {
             LocalTime startH = getReunionStart();
             LocalTime endH = getReunionEnd();
             String hex = "#" + Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6);
-
+            int id_salle = getSalleKey();
 //        System.out.println(nomReunion + " pour le " + nomGroupe + " le " + dateReu.toString()
 //                + " à partir de : " + startH + " jusqu'à : " + endH + ".");
 //        ac.addToGpt(nomReunion, dateReu, startH, endH);
-            Agenda a = new Agenda(getReunionKey(), nomReunion, nomGroupe, dateReu.toString(), startH, endH, hex, "insert");
+            Agenda a = new Agenda(getReunionKey(), nomReunion, nomGroupe, dateReu.toString(), startH, endH, hex, id_salle, "insert");
             a.run();
+
+            setChanged();
             notifyObservers();
         }
     }

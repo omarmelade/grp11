@@ -13,10 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import sample.API.Agenda;
 import sample.API.Ressources;
-import sample.model.AgendaTable;
-import sample.model.PersonModel;
-import sample.model.ProjectModel;
-import sample.model.RessourcesTable;
+import sample.model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,6 +46,8 @@ public class AgendaController extends Observable implements Initializable {
     private JFXButton todayBtn;
     @FXML
     private JFXComboBox<String> salleAffiche;
+    @FXML
+    private JFXButton validSalle;
 
     @FXML
     private Pane pane;
@@ -70,33 +69,43 @@ public class AgendaController extends Observable implements Initializable {
 
     public LocalDate ld;
     public final LocalDate today;
+    private Node grid;
 
-    public final GridPaneTrackController gptControl;
+    public GridPaneTrackController gptControl;
     private ProjectModel pm;
     private PersonModel personm;
     private String demande = "";
+    private RessourcesTable rt;
 
-    public AgendaController(ProjectModel proj, String demande) {
+    // pour afficher uniquement par salle
+    private int id_salle;
+
+
+    public AgendaController(ProjectModel proj, String demande, int id_salle) {
         this.demande = demande;
         this.pm = proj;
         this.ld = LocalDate.now();
         this.today = ld;
         this.gptControl = new GridPaneTrackController(this);
+        this.id_salle = id_salle;
         addObserver(gptControl);
     }
 
-    public AgendaController(PersonModel personm, String demande) {
+    public AgendaController(PersonModel personm, String demande, int id_salle) {
         this.demande = demande;
         this.personm = personm;
         this.ld = LocalDate.now();
         this.today = ld;
         this.gptControl = new GridPaneTrackController(this);
+        this.id_salle = id_salle;
         addObserver(gptControl);
     }
 
     public AgendaTable getData() {
         if (this.demande.equals("proj")) {
             agendaAPI = new Agenda("proj", pm);
+        } else if (this.demande.equals("salle")) {
+            agendaAPI = new Agenda("salle", this.id_salle);
         } else if (this.personm.estAdmin()) {
             agendaAPI = new Agenda("get");
         } else {
@@ -128,30 +137,48 @@ public class AgendaController extends Observable implements Initializable {
     private void initCombo() {
         Ressources apiRes = new Ressources("get");
         apiRes.run();
-        RessourcesTable rt = apiRes.getRt();
+        this.rt = apiRes.getRt();
 
         salleAffiche.setItems(FXCollections.observableArrayList(rt.ListNameId().values()));
 
-        salleAffiche.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        validSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                try {
-                    initPane();
-                    System.out.println("MMMM");
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (getSalleKey() != id_salle) {
+                    getSalleKey();
+                    try {
+                        pane.getChildren().remove(grid);
+                        System.out.println(id_salle);
+                        initPane();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
     }
 
+
+    public int getSalleKey() {
+        try {
+            this.demande = "salle";
+            this.id_salle = ProjectTable.getKey(rt.ListNameId(), salleAffiche.getValue());
+            setChanged();
+            notifyObservers();
+            return id_salle;
+        } catch (NullPointerException ignored) {
+        }
+        return -1;
+    }
+
     // affiche la grille du planning
     private void initPane() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/gridAgenda.fxml"));
-        loader.setController(gptControl);
-        Node n = loader.load();
-        pane.getChildren().add(n);
+        loader.setController(this.gptControl);
+        grid = loader.load();
+        pane.getChildren().add(grid);
     }
+
 
     // ajoute une reunion sur la grille
     public void addToGpt(String nomReunion, LocalDate dateReu, LocalTime startH, LocalTime endH) {

@@ -30,8 +30,10 @@ public class Agenda implements Runnable {
     private ProjectModel pm;
     private PersonModel personm;
 
+    private int id_salle;
+
     public Agenda(int id_projet, String reunionName, String reunionGroup,
-                  String reunionDate, LocalTime debutHoraire, LocalTime finHoraire, String color, String demande) {
+                  String reunionDate, LocalTime debutHoraire, LocalTime finHoraire, String color, int id_salle, String demande) {
         this.reunionName = reunionName;
         this.reunionGroup = reunionGroup;
         this.id_projet = id_projet;
@@ -40,6 +42,7 @@ public class Agenda implements Runnable {
         this.finHoraire = finHoraire;
         this.demande = demande;
         this.color = color;
+        this.id_salle = id_salle;
     }
 
     // attributs de succes de l'insertion
@@ -68,10 +71,16 @@ public class Agenda implements Runnable {
         this.demande = demande;
     }
 
+    public Agenda(String demande, int id_salle) {
+        this.at = new AgendaTable();
+        this.demande = demande;
+        this.id_salle = id_salle;
+    }
+
     private void addMainAgenda() throws SQLException {
         this.inserted = false;
         if (reunionName != null && reunionDate != null) {
-            PreparedStatement stmt = cx.prepareStatement("INSERT INTO agenda (id_projet, reunionName, reunionGroup, reunionDate, debutHoraire, finHoraire, couleur) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = cx.prepareStatement("INSERT INTO agenda (id_projet, reunionName, reunionGroup, reunionDate, debutHoraire, finHoraire, couleur, id_salle) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, id_projet);
             stmt.setString(2, String.valueOf(reunionName));
             stmt.setString(3, String.valueOf(reunionGroup));
@@ -79,6 +88,7 @@ public class Agenda implements Runnable {
             stmt.setString(5, String.valueOf(debutHoraire));
             stmt.setString(6, String.valueOf(finHoraire));
             stmt.setString(7, color);
+            stmt.setInt(8, id_salle);
 
             int reponse = stmt.executeUpdate();
             System.out.println(reponse + " est la reponse a l'insertion dans l'agenda");
@@ -117,8 +127,9 @@ public class Agenda implements Runnable {
             Time debutReu = rs.getTime("debutHoraire");
             Time finReu = rs.getTime("finHoraire");
             String color = rs.getString("couleur");
+            int id_salle = rs.getInt("id_salle");
 
-            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color);
+            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle);
             this.at.ajouteAgenda(am);
         }
         rs.close();
@@ -140,8 +151,9 @@ public class Agenda implements Runnable {
             Time debutReu = rs.getTime("debutHoraire");
             Time finReu = rs.getTime("finHoraire");
             String color = rs.getString("couleur");
+            int id_salle = rs.getInt("id_salle");
 
-            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color);
+            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle);
             this.at.ajouteAgenda(am);
         }
         rs.close();
@@ -170,9 +182,36 @@ public class Agenda implements Runnable {
             Time debutReu = rs.getTime("debutHoraire");
             Time finReu = rs.getTime("finHoraire");
             String color = rs.getString("couleur");
+            int id_salle = rs.getInt("id_salle");
+
+            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle);
+            this.at.ajouteAgenda(am);
+        }
+        rs.close();
+        stmt.close();
+        cx.close();
+    }
+
+    private void getAgendaSalle() throws SQLException {
+        PreparedStatement stmt =
+                cx.prepareStatement("SELECT * FROM agenda a WHERE a.id_salle =  ?");
+
+        stmt.setInt(1, this.id_salle);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+
+            int id_reu = rs.getInt("id_reunion");
+            int id_projet = rs.getInt("id_projet");
+            String nomreu = rs.getString("reunionName");
+            String dateReu = rs.getString("reunionDate");
+            Time debutReu = rs.getTime("debutHoraire");
+            Time finReu = rs.getTime("finHoraire");
+            String color = rs.getString("couleur");
+            int id_salle = rs.getInt("id_salle");
 
 
-            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color);
+            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle);
             this.at.ajouteAgenda(am);
         }
         rs.close();
@@ -199,6 +238,11 @@ public class Agenda implements Runnable {
                     break;
                 case "person":
                     getAgendaPerson();
+                    break;
+                case "salle":
+                    if (id_salle != -1) {
+                        getAgendaSalle();
+                    }
                     break;
             }
         } catch (SQLException throwables) {

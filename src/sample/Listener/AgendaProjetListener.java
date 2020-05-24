@@ -27,7 +27,7 @@ public class AgendaProjetListener implements EventHandler {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/view/agenda.fxml"));
         Parent root = null;
         try {
-            loader.setController(new AgendaController(project, "proj"));
+            loader.setController(new AgendaController(project, "proj", -1));
             root = loader.load();
             Scene secondScene = new Scene(root);
             // New window (Stage)

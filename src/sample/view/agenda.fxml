@@ -95,8 +95,10 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXComboBox fx:id="salleAffiche" focusColor="WHITE" layoutX="626.0" layoutY="90.0" prefHeight="28.0"
+                <JFXComboBox fx:id="salleAffiche" focusColor="WHITE" layoutX="594.0" layoutY="90.0" prefHeight="28.0"
                              prefWidth="162.0" promptText="SALLE" unFocusColor="BLACK"/>
+                <JFXButton fx:id="validSalle" buttonType="RAISED" layoutX="759.0" layoutY="92.0" prefHeight="29.0"
+                           prefWidth="55.0" ripplerFill="#cacaca" text="OK"/>
             </children>
         </Pane>
     </children>

@@ -26,6 +26,8 @@ public class GridPaneTrackController implements Initializable, Observer {
     final int numCols = 4;
     int numRows = 9;
 
+    int maj = 0;
+
     @FXML
     private GridPane grid;
     @FXML
@@ -208,11 +210,13 @@ public class GridPaneTrackController implements Initializable, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("M.A.J");
+        System.out.println("M.A.J " + maj++);
+        this.data = agendaController.getData();
         //System.out.println(caseToDate(0, 0));
         if (advancements == 1) {
             this.grid.getChildren().retainAll(grid.getChildren().get(0));
         }
+
         paneOnGrid();
     }
 

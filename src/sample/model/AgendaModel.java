@@ -7,13 +7,13 @@ import java.sql.Time;
 
 public class AgendaModel {
 
-    private SimpleIntegerProperty id_reu, id_projet;
+    private SimpleIntegerProperty id_reu, id_projet, id_salle;
     private SimpleStringProperty nomreu, dateReu;
     private Time debutReu, finReu;
     private SimpleStringProperty color;
 
 
-    public AgendaModel(int id_reu, int id_projet, String nomreu, String dateReu, Time debutReu, Time finReu, String color) {
+    public AgendaModel(int id_reu, int id_projet, String nomreu, String dateReu, Time debutReu, Time finReu, String color, int id_salle) {
         this.id_reu = new SimpleIntegerProperty(id_reu);
         this.id_projet = new SimpleIntegerProperty(id_projet);
         this.nomreu = new SimpleStringProperty(nomreu);
@@ -21,6 +21,15 @@ public class AgendaModel {
         this.debutReu = debutReu;
         this.finReu = finReu;
         this.color = new SimpleStringProperty(color);
+        this.id_salle = new SimpleIntegerProperty(id_salle);
+    }
+
+    public int getId_salle() {
+        return id_salle.get();
+    }
+
+    public SimpleIntegerProperty id_salleProperty() {
+        return id_salle;
     }
 
     public String getColor() {
