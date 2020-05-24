@@ -81,7 +81,7 @@ public class Agenda implements Runnable {
     private void addMainAgenda() throws SQLException {
         this.inserted = false;
         if (reunionName != null && reunionDate != null) {
-            PreparedStatement stmt = cx.prepareStatement("INSERT INTO agenda (id_projet, reunionName, reunionGroup, reunionDate, debutHoraire, finHoraire, couleur, id_salle) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = this.cx.prepareStatement("INSERT INTO agenda (id_projet, reunionName, reunionGroup, reunionDate, debutHoraire, finHoraire, couleur, id_salle) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, id_projet);
             stmt.setString(2, String.valueOf(reunionName));
             stmt.setString(3, String.valueOf(reunionGroup));
@@ -97,12 +97,12 @@ public class Agenda implements Runnable {
                 this.inserted = true;
             }
             stmt.close();
-            cx.close();
+            this.cx.close();
         }
     }
 
     private void supprAgenda() throws SQLException{
-        PreparedStatement stmt = cx.prepareStatement("DELETE FROM salle WHERE reunionName = ? ");
+        PreparedStatement stmt = this.cx.prepareStatement("DELETE FROM salle WHERE reunionName = ? ");
         if(this.am != null){
             stmt.setString(1, String.valueOf(this.am.getNomreu()));
             int reponse = stmt.executeUpdate();
@@ -110,36 +110,38 @@ public class Agenda implements Runnable {
                 this.inserted = true;
             }
             stmt.close();
-            cx.close();
+            this.cx.close();
         }
     }
 
 
-    private void getAgendaMain() throws SQLException{
-        PreparedStatement stmt = cx.prepareStatement("SELECT * FROM agenda ORDER BY reunionDate");
+    private void getAgendaMain() throws SQLException {
+        PreparedStatement stmt = this.cx.prepareStatement(
+                "SELECT a.id_reunion, a.id_projet, p.id_projet, a.reunionName, a.reunionDate, a.debutHoraire, a.finHoraire, a.couleur, a.id_salle, p.note FROM agenda a JOIN projet p ON a.id_projet = p.id_projet ORDER BY a.reunionDate");
         ResultSet rs = stmt.executeQuery();
 
-        while(rs.next()) {
+        while (rs.next()) {
 
-            int id_reu = rs.getInt("id_reunion");
-            int id_projet = rs.getInt("id_projet");
-            String nomreu = rs.getString("reunionName");
-            String dateReu = rs.getString("reunionDate");
-            Time debutReu = rs.getTime("debutHoraire");
-            Time finReu = rs.getTime("finHoraire");
-            String color = rs.getString("couleur");
-            int id_salle = rs.getInt("id_salle");
+            int id_reu = rs.getInt("a.id_reunion");
+            int id_projet = rs.getInt("a.id_projet");
+            String nomreu = rs.getString("a.reunionName");
+            String dateReu = rs.getString("a.reunionDate");
+            Time debutReu = rs.getTime("a.debutHoraire");
+            Time finReu = rs.getTime("a.finHoraire");
+            String color = rs.getString("a.couleur");
+            int id_salle = rs.getInt("a.id_salle");
+            double note = rs.getDouble("p.note");
 
-            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle);
+            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle, note);
             this.at.ajouteAgenda(am);
         }
         rs.close();
         stmt.close();
-        cx.close();
+        this.cx.close();
     }
 
     private void getAgendaProj() throws SQLException {
-        PreparedStatement stmt = cx.prepareStatement("SELECT * FROM agenda a JOIN projet p ON a.id_projet = p.id_projet WHERE a.id_projet = ?");
+        PreparedStatement stmt = this.cx.prepareStatement("SELECT * FROM agenda a JOIN projet p ON a.id_projet = p.id_projet WHERE a.id_projet = ?");
         stmt.setInt(1, pm.getId_projet());
         ResultSet rs = stmt.executeQuery();
 
@@ -153,19 +155,20 @@ public class Agenda implements Runnable {
             Time finReu = rs.getTime("finHoraire");
             String color = rs.getString("couleur");
             int id_salle = rs.getInt("id_salle");
+            double note = rs.getDouble("p.note");
 
-            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle);
+            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle, note);
             this.at.ajouteAgenda(am);
         }
         rs.close();
         stmt.close();
-        cx.close();
+        this.cx.close();
     }
 
 
     private void getAgendaPerson() throws SQLException {
         PreparedStatement stmt =
-                cx.prepareStatement("SELECT * FROM agenda a " +
+                this.cx.prepareStatement("SELECT * FROM agenda a " +
                         "JOIN projet p ON a.id_projet = p.id_projet " +
                         "JOIN projet_membre pm ON pm.id_projet = p.id_projet " +
                         "WHERE pm.id_membre = ?"
@@ -184,18 +187,19 @@ public class Agenda implements Runnable {
             Time finReu = rs.getTime("finHoraire");
             String color = rs.getString("couleur");
             int id_salle = rs.getInt("id_salle");
+            double note = rs.getDouble("p.note");
 
-            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle);
+            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle, note);
             this.at.ajouteAgenda(am);
         }
         rs.close();
         stmt.close();
-        cx.close();
+        this.cx.close();
     }
 
     private void getAgendaSalle() throws SQLException {
         PreparedStatement stmt =
-                cx.prepareStatement("SELECT * FROM agenda a WHERE a.id_salle =  ?");
+                this.cx.prepareStatement("SELECT * FROM agenda a JOIN projet p ON a.id_projet = p.id_projet WHERE a.id_salle =  ?");
 
         stmt.setInt(1, this.id_salle);
         ResultSet rs = stmt.executeQuery();
@@ -210,14 +214,20 @@ public class Agenda implements Runnable {
             Time finReu = rs.getTime("finHoraire");
             String color = rs.getString("couleur");
             int id_salle = rs.getInt("id_salle");
+            double note = rs.getDouble("p.note");
 
 
-            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle);
+            AgendaModel am = new AgendaModel(id_reu, id_projet, nomreu, dateReu, debutReu, finReu, color, id_salle, note);
             this.at.ajouteAgenda(am);
         }
         rs.close();
         stmt.close();
-        cx.close();
+        this.cx.close();
+    }
+
+
+    private void setAgendaSalle() throws SQLException {
+
     }
 
     @Override

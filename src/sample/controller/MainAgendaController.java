@@ -6,14 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import sample.API.Agenda;
 import sample.API.Project;
 import sample.API.Ressources;
-import sample.model.PersonModel;
-import sample.model.ProjectTable;
-import sample.model.RessourcesTable;
+import sample.model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -108,7 +107,7 @@ public class MainAgendaController extends Observable implements Initializable {
         return -1;
     }
 
-    public int getReunionKey() {
+    public int getProjetKey() {
         try {
             return ProjectTable.getKey(
                     projectTable.ListNameId(), reunionGroup.getValue());
@@ -118,7 +117,10 @@ public class MainAgendaController extends Observable implements Initializable {
     }
 
     private void addReunion() {
-        if (getReunionKey() != -1 || getSalleKey() != -1) {
+        int projKey = getProjetKey();
+
+        if (projKey != -1 || getSalleKey() != -1) {
+
             String nomGroupe = getReunionGroupe();
             String nomReunion = getReunionName();
             LocalDate dateReu = getReunionDate();
@@ -126,15 +128,39 @@ public class MainAgendaController extends Observable implements Initializable {
             LocalTime endH = getReunionEnd();
             String hex = "#" + Integer.toHexString(colorPicker.getValue().hashCode()).substring(0, 6);
             int id_salle = getSalleKey();
-//        System.out.println(nomReunion + " pour le " + nomGroupe + " le " + dateReu.toString()
-//                + " à partir de : " + startH + " jusqu'à : " + endH + ".");
-//        ac.addToGpt(nomReunion, dateReu, startH, endH);
-            Agenda a = new Agenda(getReunionKey(), nomReunion, nomGroupe, dateReu.toString(), startH, endH, hex, id_salle, "insert");
-            a.run();
 
-            setChanged();
-            notifyObservers();
+
+            boolean projetBool = verifProjetSup(projKey, id_salle, dateReu, startH, endH);
+            if (projetBool) {
+                Agenda a = new Agenda(projKey, nomReunion, nomGroupe, dateReu.toString(), startH, endH, hex, id_salle, "insert");
+                a.run();
+
+                setChanged();
+                notifyObservers();
+            } else {
+                System.err.println("CONFLIT !!!");
+            }
         }
+    }
+
+    private boolean verifProjetSup(int projKey, int id_salle, LocalDate date, LocalTime startH, LocalTime endH) {
+        Agenda a = new Agenda("get", id_salle);
+        a.run();
+        AgendaTable at = a.getAt();
+        for (AgendaModel am : at.getArrayAgenda()) {
+            // si la date est la même ET le debut de a est avant le debut de b
+            if (am.getDateReu().equals(date.toString())
+                    && (am.getDebutReu().toLocalTime().isBefore(startH) && am.getFinReu().toLocalTime().isAfter(startH))) {
+
+                Alert dialog = new Alert(Alert.AlertType.WARNING);
+                dialog.setHeaderText("OPERATION IMPOSSIBLE");
+                dialog.setContentText("UN PROJET PLUS IMPORTANT A DEJA PRIS CETTE SALLE");
+                dialog.showAndWait();
+
+                return false;
+            }
+        }
+        return true;
     }
 
     private LocalTime getReunionEnd() {

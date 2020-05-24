@@ -1,5 +1,6 @@
 package sample.model;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -9,11 +10,12 @@ public class AgendaModel {
 
     private SimpleIntegerProperty id_reu, id_projet, id_salle;
     private SimpleStringProperty nomreu, dateReu;
+    private SimpleDoubleProperty note;
     private Time debutReu, finReu;
     private SimpleStringProperty color;
 
 
-    public AgendaModel(int id_reu, int id_projet, String nomreu, String dateReu, Time debutReu, Time finReu, String color, int id_salle) {
+    public AgendaModel(int id_reu, int id_projet, String nomreu, String dateReu, Time debutReu, Time finReu, String color, int id_salle, double note) {
         this.id_reu = new SimpleIntegerProperty(id_reu);
         this.id_projet = new SimpleIntegerProperty(id_projet);
         this.nomreu = new SimpleStringProperty(nomreu);
@@ -22,6 +24,15 @@ public class AgendaModel {
         this.finReu = finReu;
         this.color = new SimpleStringProperty(color);
         this.id_salle = new SimpleIntegerProperty(id_salle);
+        this.note = new SimpleDoubleProperty(note);
+    }
+
+    public double getNote() {
+        return note.get();
+    }
+
+    public SimpleDoubleProperty noteProperty() {
+        return note;
     }
 
     public int getId_salle() {
