@@ -28,6 +28,7 @@ public class Agenda implements Runnable {
     private LocalTime finHoraire;
 
     private ProjectModel pm;
+    public int id_projetpm;
     private PersonModel personm;
 
     private int id_salle;
@@ -60,7 +61,7 @@ public class Agenda implements Runnable {
     }
 
     public Agenda(String demande, ProjectModel pm) {
-        this.pm = pm;
+        this.id_projetpm = pm.getId_projet();
         this.at = new AgendaTable();
         this.demande = demande;
     }
@@ -142,10 +143,12 @@ public class Agenda implements Runnable {
 
     private void getAgendaProj() throws SQLException {
         PreparedStatement stmt = this.cx.prepareStatement("SELECT * FROM agenda a JOIN projet p ON a.id_projet = p.id_projet WHERE a.id_projet = ?");
-        stmt.setInt(1, pm.getId_projet());
+        stmt.setInt(1, id_projetpm);
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
+
+            System.out.println("RECUPERATION DES DONNEES .....");
 
             int id_reu = rs.getInt("id_reunion");
             int id_projet = rs.getInt("id_projet");
@@ -229,6 +232,7 @@ public class Agenda implements Runnable {
     private void setAgendaSalle() throws SQLException {
 
     }
+
 
     @Override
     public void run() {

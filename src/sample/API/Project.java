@@ -36,6 +36,10 @@ public class Project implements Runnable {
     private int id_projet;
     private double note;
 
+
+    // recup un projet
+    private ProjectModel projm;
+
     /////////////////// CONSTRUCTEUR ///////////////////
 
     // pour recuperer tout les projets
@@ -203,6 +207,34 @@ public class Project implements Runnable {
         }
     }
 
+    private void getOneProjet() throws SQLException {
+        PreparedStatement stmt;
+        try {
+            stmt = cx.prepareStatement("SELECT * FROM projet WHERE id_projet = ? ");
+            stmt.setInt(1, this.id_projet);
+            ResultSet rs = stmt.executeQuery();
+
+
+            while (rs.next()) {
+                int id_projet = rs.getInt("id_projet");
+                String nomProjet = rs.getString("nom_projet");
+                int id_proprio = rs.getInt("id_proprio");
+                String desc = rs.getString("description");
+                String datecrea = rs.getString("date_crea");
+                String datefin = rs.getString("date_fin");
+                double note = rs.getDouble("note");
+
+
+                this.projm = new ProjectModel(id_projet, id_proprio, note, nomProjet, desc, "", datecrea, datefin);
+            }
+
+            stmt.close();
+            this.cx.close();
+        } catch (SQLException s) {
+            s.getErrorCode();
+        }
+    }
+
     // cree un thread a part pour ne pas trop ralentir le logiciel
     @Override
     public void run() {
@@ -220,18 +252,34 @@ public class Project implements Runnable {
                     break;
                 case "note":
                     modifyNote();
+                case "getNote":
+                    getOneProjet();
+                    break;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    public ProjectModel getPm() {
+        return this.projm;
+    }
+
+    public double getNote() {
+        return this.note;
+    }
     // envoie la liste de tout les projets
 
-    public ProjectTable getPt() throws SQLException { this.cx.close(); return pt; }
+    public ProjectTable getPt() throws SQLException {
+        this.cx.close();
+        return pt;
+    }
 
     // envoie la liste des membres d'un projet
 
-    public PersonTable getMembersProjet() throws SQLException { this.cx.close(); return userProject; }
+    public PersonTable getMembersProjet() throws SQLException {
+        this.cx.close();
+        return userProject;
+    }
 
 }

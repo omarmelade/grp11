@@ -19,6 +19,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
@@ -131,6 +132,7 @@ public class MainAgendaController extends Observable implements Initializable {
 
 
             boolean projetBool = verifProjetSup(projKey, id_salle, dateReu, startH, endH);
+
             if (projetBool) {
                 Agenda a = new Agenda(projKey, nomReunion, nomGroupe, dateReu.toString(), startH, endH, hex, id_salle, "insert");
                 a.run();
@@ -147,17 +149,45 @@ public class MainAgendaController extends Observable implements Initializable {
         Agenda a = new Agenda("get", id_salle);
         a.run();
         AgendaTable at = a.getAt();
+
+        Project apiProj = new Project("getNote", projKey);
+        apiProj.run();
+        ProjectModel pm = apiProj.getPm();
+        double note = pm.getNote();
+
         for (AgendaModel am : at.getArrayAgenda()) {
+
+            Project api = new Project("getNote", am.getId_projet());
+            api.run();
+            ProjectModel projTemp = api.getPm();
+
             // si la date est la même ET le debut de a est avant le debut de b
             if (am.getDateReu().equals(date.toString())
                     && (am.getDebutReu().toLocalTime().isBefore(startH) && am.getFinReu().toLocalTime().isAfter(startH))) {
 
-                Alert dialog = new Alert(Alert.AlertType.WARNING);
-                dialog.setHeaderText("OPERATION IMPOSSIBLE");
-                dialog.setContentText("UN PROJET PLUS IMPORTANT A DEJA PRIS CETTE SALLE");
-                dialog.showAndWait();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate fin = LocalDate.parse(projTemp.getDateFin(), formatter);
+
+                if (fin.isAfter(LocalDate.now().plusWeeks(2))) {
+
+                    Alert dialog = new Alert(Alert.AlertType.WARNING);
+                    dialog.setHeaderText("OPERATION IMPOSSIBLE");
+                    dialog.setContentText("CE PROJET EST PROCHE DE SA DATE BUTOIRE");
+
+                    if (am.getNote() >= note) {
+                        dialog.setHeaderText("OPERATION IMPOSSIBLE");
+                        dialog.setContentText(dialog.getContentText() + "\n" + "& UN PROJET PLUS IMPORTANT A DEJA PRIS CETTE SALLE");
+                        dialog.showAndWait();
+                    } else {
+
+                    }
+
+                    dialog.showAndWait();
+                }
 
                 return false;
+            } else {
+
             }
         }
         return true;

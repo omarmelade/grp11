@@ -12,15 +12,16 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import sample.API.Agenda;
+import sample.API.Project;
 import sample.API.Ressources;
 import sample.model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.Clock;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.TemporalField;
@@ -48,6 +49,11 @@ public class AgendaController extends Observable implements Initializable {
     private JFXComboBox<String> salleAffiche;
     @FXML
     private JFXButton validSalle;
+    @FXML
+    private JFXComboBox<String> projetAffiche;
+    @FXML
+    private JFXButton validProj;
+
 
     @FXML
     private Pane pane;
@@ -77,17 +83,21 @@ public class AgendaController extends Observable implements Initializable {
     private String demande = "";
     private RessourcesTable rt;
 
+    private ProjectTable projectTable;
+
     // pour afficher uniquement par salle
     private int id_salle;
+    private int id_projet;
 
 
-    public AgendaController(ProjectModel proj, String demande, int id_salle) {
+    public AgendaController(ProjectModel proj, String demande, int id_salle, int id_projet) {
         this.demande = demande;
         this.pm = proj;
         this.ld = LocalDate.now();
         this.today = ld;
         this.gptControl = new GridPaneTrackController(this);
         this.id_salle = id_salle;
+        this.id_projet = id_projet;
         addObserver(gptControl);
     }
 
@@ -104,7 +114,12 @@ public class AgendaController extends Observable implements Initializable {
     public AgendaTable getData() {
         if (this.demande.equals("proj")) {
             agendaAPI = new Agenda("proj", pm);
-        } else if (this.demande.equals("salle")) {
+        }
+//        else if(this.demande.equals("projetSelect")){
+//            agendaAPI = new Agenda("proj", pm);
+//            agendaAPI.id_projetpm = this.id_projet;
+//        }
+        else if (this.demande.equals("salle")) {
             agendaAPI = new Agenda("salle", this.id_salle);
         } else if (this.personm.estAdmin()) {
             agendaAPI = new Agenda("get");
@@ -125,7 +140,11 @@ public class AgendaController extends Observable implements Initializable {
         moisPlus.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> monthPlus());
         todayBtn.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> setToday());
 
-        initCombo();
+        try {
+            initCombo();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         try {
             initPane();
@@ -134,13 +153,18 @@ public class AgendaController extends Observable implements Initializable {
         }
     }
 
-    private void initCombo() {
+    private void initCombo() throws SQLException {
+
+        Project apiProj = new Project("get");
+        apiProj.run();
+        projectTable = apiProj.getPt();
+
         Ressources apiRes = new Ressources("get");
         apiRes.run();
-        this.rt = apiRes.getRt();
+        rt = apiRes.getRt();
 
         salleAffiche.setItems(FXCollections.observableArrayList(rt.ListNameId().values()));
-
+        salleAffiche.setStyle("-fx-fill: #fff;");
         validSalle.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -156,8 +180,36 @@ public class AgendaController extends Observable implements Initializable {
                 }
             }
         });
+        projetAffiche.setVisible(false);
+        validProj.setVisible(false);
+
+//        projetAffiche.setItems(FXCollections.observableArrayList(projectTable.ListNameId().values()));
+//
+//        validProj.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                if (getProjetKey() != id_projet) {
+//                    try {
+//                        pane.getChildren().remove(grid);
+//                        initPane();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
     }
 
+//    public int getProjetKey() {
+//        try {
+//            this.demande = "projetSelect";
+//            this.id_projet = ProjectTable.getKey(projectTable.ListNameId(), projetAffiche.getValue());
+//            setChanged();
+//            notifyObservers();
+//            return id_projet;
+//        } catch (NullPointerException ignored) { }
+//        return -1;
+//    }
 
     public int getSalleKey() {
         try {
@@ -181,9 +233,9 @@ public class AgendaController extends Observable implements Initializable {
 
 
     // ajoute une reunion sur la grille
-    public void addToGpt(String nomReunion, LocalDate dateReu, LocalTime startH, LocalTime endH) {
-
-    }
+//    public void addToGpt(String nomReunion, LocalDate dateReu, LocalTime startH, LocalTime endH) {
+//
+//    }
 
     // met le jour a "aujourd'hui"
     private void setToday() {
